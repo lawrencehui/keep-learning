@@ -46,6 +46,9 @@ const loaders: Record<string, ChapterContentLoader> = {
   "real-analysis/metric-spaces": () => import("./real-analysis/metric-spaces"),
   "real-analysis/sequences": () => import("./real-analysis/sequences"),
   "real-analysis/lebesgue": () => import("./real-analysis/lebesgue"),
+  "abstract-algebra/groups": () => import("./abstract-algebra/groups"),
+  "abstract-algebra/rings": () => import("./abstract-algebra/rings"),
+  "abstract-algebra/galois": () => import("./abstract-algebra/galois"),
 };
 
 /** Returns the registered chapter (lazy body + quiz loader) or null if no content yet. */
