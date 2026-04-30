@@ -34,6 +34,10 @@ const loaders: Record<string, ChapterContentLoader> = {
   "number-theory/modular": () => import("./number-theory/modular"),
   "number-theory/rsa": () => import("./number-theory/rsa"),
   "number-theory/ecdsa": () => import("./number-theory/ecdsa"),
+  "probability/combinatorics": () => import("./probability/combinatorics"),
+  "probability/rv": () => import("./probability/rv"),
+  "probability/distributions": () => import("./probability/distributions"),
+  "probability/clt-bayes": () => import("./probability/clt-bayes"),
 };
 
 /** Returns the registered chapter (lazy body + quiz loader) or null if no content yet. */
