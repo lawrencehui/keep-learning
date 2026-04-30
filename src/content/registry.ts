@@ -21,6 +21,10 @@ const loaders: Record<string, ChapterContentLoader> = {
   "linear-algebra/eigen": () => import("./linear-algebra/eigen"),
   "linear-algebra/inner-product": () =>
     import("./linear-algebra/inner-product"),
+  "multivariable/partials": () => import("./multivariable/partials"),
+  "multivariable/multi-integrals": () =>
+    import("./multivariable/multi-integrals"),
+  "multivariable/vector-calc": () => import("./multivariable/vector-calc"),
 };
 
 /** Returns the registered chapter (lazy body + quiz loader) or null if no content yet. */

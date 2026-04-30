@@ -47,7 +47,7 @@ export default function App() {
 function MobileTopBar({ onOpenMenu }: { onOpenMenu: () => void }) {
   return (
     <div className="md:hidden sticky top-0 z-30 bg-ink-950/85 backdrop-blur border-b border-ink-800 safe-pt">
-      <div className="flex items-center gap-3 px-3 py-2.5">
+      <div className="flex items-center gap-3 px-4 py-2.5">
         <button
           onClick={onOpenMenu}
           aria-label="Open menu"

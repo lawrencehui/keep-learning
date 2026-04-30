@@ -31,7 +31,7 @@ export function ModulePage() {
     totalLessons === 0 ? 0 : Math.round((doneLessons / totalLessons) * 100);
 
   return (
-    <div className="max-w-3xl mx-auto px-5 sm:px-8 py-8 sm:py-12 safe-pl safe-pr space-y-8">
+    <div className="max-w-3xl mx-auto px-6 sm:px-8 py-8 sm:py-12 safe-pl safe-pr space-y-8">
       <header className="space-y-2">
         <div className="text-xs uppercase tracking-[0.25em] text-accent-soft">
           Tier {m.tier}

@@ -11,7 +11,7 @@ export function Dashboard() {
   const streak = currentStreak(state.studyDays);
 
   return (
-    <div className="max-w-4xl mx-auto px-5 sm:px-8 py-8 sm:py-12 space-y-10 safe-pl safe-pr">
+    <div className="max-w-4xl mx-auto px-6 sm:px-8 py-8 sm:py-12 space-y-10 safe-pl safe-pr">
       <header>
         <div className="text-xs uppercase tracking-[0.25em] text-ink-400">
           Daily learning, compounding.
