@@ -4,6 +4,16 @@
 
 :root {
   color-scheme: dark;
+  --safe-top: env(safe-area-inset-top);
+  --safe-bottom: env(safe-area-inset-bottom);
+  --safe-left: env(safe-area-inset-left);
+  --safe-right: env(safe-area-inset-right);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html,
@@ -18,7 +28,17 @@ body {
     radial-gradient(circle at 15% 0%, rgba(124, 58, 237, 0.10), transparent 40%),
     radial-gradient(circle at 85% 100%, rgba(34, 211, 238, 0.08), transparent 45%);
   background-attachment: fixed;
+  overscroll-behavior-y: none;
 }
+
+/* iOS-friendly heights and safe-area helpers */
+.h-dvh { height: 100dvh; }
+.min-h-dvh { min-height: 100dvh; }
+
+.safe-pt { padding-top: max(env(safe-area-inset-top), 0px); }
+.safe-pb { padding-bottom: max(env(safe-area-inset-bottom), 0px); }
+.safe-pl { padding-left: max(env(safe-area-inset-left), 0px); }
+.safe-pr { padding-right: max(env(safe-area-inset-right), 0px); }
 
 /* KaTeX tweaks for dark theme */
 .katex {
@@ -29,21 +49,24 @@ body {
   overflow-x: auto;
   overflow-y: hidden;
   padding: 0.25rem 0;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* Subtle scrollbars */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-thumb {
-  @apply bg-ink-700 rounded;
-}
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-ink-600;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
+/* Subtle scrollbars (desktop only) */
+@media (hover: hover) {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-ink-700 rounded;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-ink-600;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
 }
 
 /* Prose-like content blocks */
@@ -57,6 +80,43 @@ body {
   @apply font-mono text-[0.9em] bg-ink-800/70 px-1.5 py-0.5 rounded;
 }
 
+/* Ebook-style reading column */
+.ebook {
+  @apply text-ink-100;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.ebook p {
+  @apply text-ink-200;
+  margin-block: 0.9rem;
+}
+.ebook h2 {
+  @apply font-serif italic text-2xl mt-10 mb-3 text-white;
+}
+.ebook h3 {
+  @apply font-medium text-lg mt-7 mb-2 text-white;
+}
+.ebook ul, .ebook ol {
+  @apply text-ink-200 pl-5 my-3 space-y-1;
+}
+.ebook ul { list-style: disc; }
+.ebook ol { list-style: decimal; }
+.ebook strong { @apply text-white; }
+.ebook em { @apply text-ink-100 italic; }
+.ebook a { @apply text-accent-soft underline-offset-2 hover:underline; }
+.ebook code {
+  @apply font-mono text-[0.92em] bg-ink-800/70 px-1.5 py-0.5 rounded;
+}
+.ebook blockquote {
+  @apply border-l-2 border-accent/60 pl-4 my-4 text-ink-300 italic;
+}
+.ebook figure {
+  @apply my-6;
+}
+.ebook figcaption {
+  @apply text-xs text-ink-500 mt-2 text-center;
+}
+
 /* Card */
 .card {
   @apply bg-ink-900/60 backdrop-blur border border-ink-800 rounded-2xl;
@@ -67,4 +127,11 @@ body {
   outline: 2px solid theme("colors.accent.soft");
   outline-offset: 2px;
   border-radius: 8px;
+}
+
+/* Mobile reading tweaks */
+@media (max-width: 640px) {
+  .ebook { font-size: 1.0625rem; line-height: 1.65; }
+  .ebook h2 { @apply text-xl mt-8; }
+  .ebook h3 { @apply text-base mt-6; }
 }

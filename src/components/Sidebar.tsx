@@ -1,29 +1,46 @@
 import { NavLink } from "react-router-dom";
 import { syllabus } from "../data/syllabus";
 import { useProgress } from "../hooks/useProgress";
-import { Sparkles } from "lucide-react";
+import { Sparkles, X } from "lucide-react";
 
-export function Sidebar() {
+interface Props {
+  /** When true, sidebar is rendered as a slide-in drawer (mobile). */
+  mobile?: boolean;
+  open?: boolean;
+  onClose?: () => void;
+}
+
+export function Sidebar({ mobile = false, open = false, onClose }: Props) {
   const { isDone } = useProgress();
 
-  return (
-    <aside className="w-72 shrink-0 h-screen overflow-y-auto border-r border-ink-800 bg-ink-950/70 backdrop-blur-md sticky top-0">
-      <div className="px-5 py-5 border-b border-ink-800">
-        <NavLink to="/" className="flex items-center gap-2">
+  const inner = (
+    <div className="flex flex-col h-full">
+      <div className="px-5 py-5 border-b border-ink-800 flex items-center justify-between safe-pt">
+        <NavLink to="/" onClick={onClose} className="flex items-center gap-2">
           <span className="text-2xl">ψ</span>
           <div>
-            <div className="font-serif italic text-lg leading-none">Foundations</div>
+            <div className="font-serif italic text-lg leading-none">keep-learning</div>
             <div className="text-xs text-ink-400">Numbers → Quantum</div>
           </div>
         </NavLink>
+        {mobile && (
+          <button
+            onClick={onClose}
+            aria-label="Close menu"
+            className="p-2 -mr-2 text-ink-400 hover:text-white"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        )}
       </div>
 
-      <nav className="px-3 py-4 space-y-2">
+      <nav className="px-3 py-4 space-y-2 overflow-y-auto flex-1 safe-pb">
         <NavLink
           to="/"
           end
+          onClick={onClose}
           className={({ isActive }) =>
-            `flex items-center gap-2 px-3 py-2 rounded-lg text-sm ${
+            `flex items-center gap-2 px-3 py-3 rounded-lg text-sm ${
               isActive ? "bg-ink-800 text-white" : "text-ink-300 hover:bg-ink-900"
             }`
           }
@@ -36,8 +53,7 @@ export function Sidebar() {
           const done = m.chapters.reduce(
             (n, c) =>
               n +
-              c.lessons.filter((l) => isDone(`${m.id}/${c.id}/${l.id}`))
-                .length,
+              c.lessons.filter((l) => isDone(`${m.id}/${c.id}/${l.id}`)).length,
             0
           );
           const pct = total === 0 ? 0 : Math.round((done / total) * 100);
@@ -45,8 +61,9 @@ export function Sidebar() {
             <NavLink
               key={m.id}
               to={`/m/${m.id}`}
+              onClick={onClose}
               className={({ isActive }) =>
-                `block px-3 py-2 rounded-lg ${
+                `block px-3 py-3 rounded-lg ${
                   isActive ? "bg-ink-800" : "hover:bg-ink-900"
                 }`
               }
@@ -70,6 +87,32 @@ export function Sidebar() {
           );
         })}
       </nav>
-    </aside>
+    </div>
+  );
+
+  if (!mobile) {
+    return (
+      <aside className="hidden md:block w-72 shrink-0 h-dvh sticky top-0 border-r border-ink-800 bg-ink-950/70 backdrop-blur-md">
+        {inner}
+      </aside>
+    );
+  }
+
+  return (
+    <>
+      <div
+        onClick={onClose}
+        className={`md:hidden fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity ${
+          open ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      />
+      <aside
+        className={`md:hidden fixed top-0 left-0 z-50 h-dvh w-[82%] max-w-sm bg-ink-950 border-r border-ink-800 transition-transform duration-200 ${
+          open ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        {inner}
+      </aside>
+    </>
   );
 }

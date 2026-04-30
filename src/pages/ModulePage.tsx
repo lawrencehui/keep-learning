@@ -1,61 +1,45 @@
 import { Link, useParams } from "react-router-dom";
 import { syllabus } from "../data/syllabus";
 import { useProgress } from "../hooks/useProgress";
-import { MathText } from "../components/MathBlock";
-import {
-  CheckCircle2,
-  Circle,
-  ExternalLink,
-  Video,
-  GraduationCap,
-  BookOpen,
-  FileText,
-  Wrench,
-  ScrollText,
-} from "lucide-react";
-import type { Resource } from "../types";
-
-const iconFor = (k: Resource["kind"]) => {
-  switch (k) {
-    case "video":
-      return <Video className="w-3.5 h-3.5" />;
-    case "course":
-      return <GraduationCap className="w-3.5 h-3.5" />;
-    case "book":
-      return <BookOpen className="w-3.5 h-3.5" />;
-    case "article":
-      return <FileText className="w-3.5 h-3.5" />;
-    case "tool":
-      return <Wrench className="w-3.5 h-3.5" />;
-    case "paper":
-      return <ScrollText className="w-3.5 h-3.5" />;
-  }
-};
+import { hasChapterContent } from "../content/registry";
+import { BookOpen, ChevronRight, Clock, Sparkles } from "lucide-react";
 
 export function ModulePage() {
   const { moduleId } = useParams();
   const m = syllabus.find((mod) => mod.id === moduleId);
-  const { isDone, toggle } = useProgress();
+  const { isDone } = useProgress();
 
   if (!m) {
     return (
-      <div className="p-12">
+      <div className="px-6 py-12 max-w-3xl mx-auto">
         <p className="text-ink-300">Module not found.</p>
-        <Link to="/" className="text-accent-soft underline">Back to dashboard</Link>
+        <Link to="/" className="text-accent-soft underline">
+          Back to dashboard
+        </Link>
       </div>
     );
   }
 
+  const totalLessons = m.chapters.reduce((n, c) => n + c.lessons.length, 0);
+  const doneLessons = m.chapters.reduce(
+    (n, c) =>
+      n +
+      c.lessons.filter((l) => isDone(`${m.id}/${c.id}/${l.id}`)).length,
+    0
+  );
+  const pct =
+    totalLessons === 0 ? 0 : Math.round((doneLessons / totalLessons) * 100);
+
   return (
-    <div className="max-w-4xl mx-auto px-8 py-12 space-y-8">
+    <div className="max-w-3xl mx-auto px-5 sm:px-8 py-8 sm:py-12 safe-pl safe-pr space-y-8">
       <header className="space-y-2">
         <div className="text-xs uppercase tracking-[0.25em] text-accent-soft">
           Tier {m.tier}
         </div>
-        <h1 className="font-serif italic text-4xl">{m.title}</h1>
+        <h1 className="font-serif italic text-3xl sm:text-4xl">{m.title}</h1>
         <p className="text-ink-300">{m.subtitle}</p>
 
-        <div className="pt-2 flex flex-wrap gap-3 text-xs text-ink-400">
+        <div className="pt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-ink-400">
           {m.references.length > 0 && (
             <span>
               <span className="text-ink-500">References:</span>{" "}
@@ -76,85 +60,99 @@ export function ModulePage() {
             </span>
           )}
         </div>
+
+        {totalLessons > 0 && (
+          <div className="pt-2">
+            <div className="flex items-baseline justify-between text-xs text-ink-400 mb-1">
+              <span>
+                {doneLessons} / {totalLessons} lessons complete
+              </span>
+              <span>{pct}%</span>
+            </div>
+            <div className="h-1.5 rounded-full bg-ink-800 overflow-hidden">
+              <div
+                className="h-full bg-accent transition-all"
+                style={{ width: `${pct}%` }}
+              />
+            </div>
+          </div>
+        )}
       </header>
 
-      {m.chapters.map((c) => (
-        <section key={c.id} className="card p-6">
-          <h2 className="text-xl font-medium">{c.title}</h2>
-          <p className="text-sm text-ink-400 mt-1">{c.blurb}</p>
+      <section>
+        <h2 className="text-sm uppercase tracking-widest text-ink-400 mb-3">
+          Chapters
+        </h2>
+        <ol className="space-y-3">
+          {m.chapters.map((c, i) => {
+            const total = c.lessons.length;
+            const done = c.lessons.filter((l) =>
+              isDone(`${m.id}/${c.id}/${l.id}`)
+            ).length;
+            const hours = c.lessons.reduce((n, l) => n + (l.hours ?? 0), 0);
+            const isReady = hasChapterContent(m.id, c.id);
 
-          <ul className="mt-4 space-y-3">
-            {c.lessons.map((l) => {
-              const key = `${m.id}/${c.id}/${l.id}`;
-              const done = isDone(key);
-              return (
-                <li key={l.id} className="border-t border-ink-800 pt-3 first:border-t-0 first:pt-0">
-                  <div className="flex items-start gap-3">
-                    <button
-                      onClick={() => toggle(key)}
-                      className="mt-1 shrink-0 text-accent-soft hover:scale-110 transition"
-                      aria-label={done ? "Mark incomplete" : "Mark complete"}
-                    >
-                      {done ? <CheckCircle2 className="w-5 h-5" /> : <Circle className="w-5 h-5" />}
-                    </button>
-                    <div className="flex-1">
+            return (
+              <li key={c.id}>
+                <Link
+                  to={`/m/${m.id}/c/${c.id}`}
+                  className="card block p-4 sm:p-5 hover:border-accent/60 transition active:bg-ink-900"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="shrink-0 w-9 h-9 rounded-lg bg-ink-800 border border-ink-700 flex items-center justify-center text-sm font-medium">
+                      {i + 1}
+                    </div>
+                    <div className="flex-1 min-w-0">
                       <div className="flex items-baseline justify-between gap-3">
-                        <h3 className={`font-medium ${done ? "text-ink-400 line-through" : ""}`}>
-                          {l.title}
+                        <h3 className="font-medium text-base sm:text-lg leading-snug">
+                          {c.title}
                         </h3>
-                        {l.hours ? (
-                          <span className="text-[11px] text-ink-500">~{l.hours}h</span>
-                        ) : null}
+                        <ChevronRight className="w-4 h-4 text-ink-500 shrink-0" />
                       </div>
-                      <div className="prose-tight text-sm mt-1">
-                        <MathText>{l.summary}</MathText>
+                      <p className="text-sm text-ink-400 mt-1">{c.blurb}</p>
+
+                      <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-ink-500">
+                        <span className="inline-flex items-center gap-1">
+                          <BookOpen className="w-3.5 h-3.5" /> {total} lesson
+                          {total === 1 ? "" : "s"}
+                        </span>
+                        {hours > 0 && (
+                          <span className="inline-flex items-center gap-1">
+                            <Clock className="w-3.5 h-3.5" /> ~{hours}h
+                          </span>
+                        )}
+                        {isReady ? (
+                          <span className="inline-flex items-center gap-1 text-accent-soft">
+                            <Sparkles className="w-3.5 h-3.5" /> Interactive
+                          </span>
+                        ) : (
+                          <span className="text-ink-600">Outline only</span>
+                        )}
+                        {total > 0 && (
+                          <span>
+                            {done}/{total} done
+                          </span>
+                        )}
                       </div>
-                      {l.topics.length > 0 && (
-                        <div className="mt-2 flex flex-wrap gap-1.5">
-                          {l.topics.map((t) => (
-                            <span
-                              key={t}
-                              className="text-[10px] px-2 py-0.5 rounded-full bg-ink-800 text-ink-300"
-                            >
-                              {t}
-                            </span>
-                          ))}
+
+                      {total > 0 && (
+                        <div className="mt-2 h-1 rounded-full bg-ink-800 overflow-hidden">
+                          <div
+                            className="h-full bg-accent transition-all"
+                            style={{
+                              width: `${total ? (done / total) * 100 : 0}%`,
+                            }}
+                          />
                         </div>
-                      )}
-                      {l.resources.length > 0 && (
-                        <ul className="mt-3 space-y-1">
-                          {l.resources.map((r) => (
-                            <li key={r.url}>
-                              <a
-                                href={r.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 text-xs text-accent-soft hover:underline"
-                              >
-                                {iconFor(r.kind)}
-                                <span>{r.title}</span>
-                                {r.author ? (
-                                  <span className="text-ink-500">— {r.author}</span>
-                                ) : null}
-                                <ExternalLink className="w-3 h-3 opacity-60" />
-                              </a>
-                              {r.note ? (
-                                <span className="ml-2 text-[11px] text-ink-500">
-                                  {r.note}
-                                </span>
-                              ) : null}
-                            </li>
-                          ))}
-                        </ul>
                       )}
                     </div>
                   </div>
-                </li>
-              );
-            })}
-          </ul>
-        </section>
-      ))}
+                </Link>
+              </li>
+            );
+          })}
+        </ol>
+      </section>
     </div>
   );
 }

@@ -11,12 +11,12 @@ export function Dashboard() {
   const streak = currentStreak(state.studyDays);
 
   return (
-    <div className="max-w-4xl mx-auto px-8 py-12 space-y-10">
+    <div className="max-w-4xl mx-auto px-5 sm:px-8 py-8 sm:py-12 space-y-10 safe-pl safe-pr">
       <header>
         <div className="text-xs uppercase tracking-[0.25em] text-ink-400">
           Daily learning, compounding.
         </div>
-        <h1 className="font-serif italic text-5xl mt-2">From numbers to quantum.</h1>
+        <h1 className="font-serif italic text-4xl sm:text-5xl mt-2">From numbers to quantum.</h1>
         <p className="mt-3 text-ink-300 max-w-2xl">
           A self-paced curriculum modeled on MIT's path through math and
           physics, all the way to quantum information. Mark lessons as you go;
