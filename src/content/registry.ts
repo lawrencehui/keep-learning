@@ -25,6 +25,11 @@ const loaders: Record<string, ChapterContentLoader> = {
   "multivariable/multi-integrals": () =>
     import("./multivariable/multi-integrals"),
   "multivariable/vector-calc": () => import("./multivariable/vector-calc"),
+  "diff-eq/first-order": () => import("./diff-eq/first-order"),
+  "diff-eq/second-order": () => import("./diff-eq/second-order"),
+  "diff-eq/laplace": () => import("./diff-eq/laplace"),
+  "diff-eq/systems": () => import("./diff-eq/systems"),
+  "diff-eq/fourier-pde": () => import("./diff-eq/fourier-pde"),
 };
 
 /** Returns the registered chapter (lazy body + quiz loader) or null if no content yet. */
