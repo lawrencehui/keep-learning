@@ -588,7 +588,7 @@ function DieSamplingWidget() {
           <button
             onClick={() => setRunning((r) => !r)}
             className={`px-3 py-1.5 rounded-lg text-sm border transition ${
-              running ? "border-rose-500 bg-rose-500/10 text-rose-300" : "border-accent-soft bg-ink-800 text-white"
+              running ? "border-rose-500 bg-rose-500/10 text-rose-300" : "border-accent-soft bg-ink-800 text-ink-50"
             }`}
           >
             {running ? "Stop" : "Roll continuously"}

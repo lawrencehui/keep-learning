@@ -2,12 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ────────────────────────────────────────────────────────────
+   Theme: ink scale via CSS variables, with dark + light values
+   ──────────────────────────────────────────────────────────── */
+
 :root {
+  /* Dark theme (default) — RGB triplets so Tailwind's <alpha-value> works */
+  --ink-50:  247 247 248;
+  --ink-100: 238 238 241;
+  --ink-200: 217 217 224;
+  --ink-300: 184 184 196;
+  --ink-400: 142 142 160;
+  --ink-500: 110 110 128;
+  --ink-600:  86  86 105;
+  --ink-700:  64  64  82;
+  --ink-800:  42  42  55;
+  --ink-900:  23  23  35;
+  --ink-950:  12  12  20;
+
+  /* Body background gradient — themable */
+  --bg-grad-1: rgba(124, 58, 237, 0.10);
+  --bg-grad-2: rgba(34, 211, 238, 0.08);
+
   color-scheme: dark;
-  --safe-top: env(safe-area-inset-top);
-  --safe-bottom: env(safe-area-inset-bottom);
-  --safe-left: env(safe-area-inset-left);
-  --safe-right: env(safe-area-inset-right);
+}
+
+html.light {
+  /* Light theme: ink scale flipped + tuned for light surfaces */
+  --ink-50:  15  15  25;
+  --ink-100:  30  30  45;
+  --ink-200:  50  50  65;
+  --ink-300:  70  70  85;
+  --ink-400:  95  95 110;
+  --ink-500: 130 130 145;
+  --ink-600: 165 165 180;
+  --ink-700: 195 195 205;
+  --ink-800: 225 225 232;
+  --ink-900: 255 255 255;
+  --ink-950: 247 247 250;
+
+  --bg-grad-1: rgba(124, 58, 237, 0.06);
+  --bg-grad-2: rgba(34, 211, 238, 0.05);
+
+  color-scheme: light;
 }
 
 html {
@@ -25,24 +62,34 @@ body,
 body {
   @apply bg-ink-950 text-ink-100 font-sans antialiased;
   background-image:
-    radial-gradient(circle at 15% 0%, rgba(124, 58, 237, 0.10), transparent 40%),
-    radial-gradient(circle at 85% 100%, rgba(34, 211, 238, 0.08), transparent 45%);
+    radial-gradient(circle at 15% 0%, var(--bg-grad-1), transparent 40%),
+    radial-gradient(circle at 85% 100%, var(--bg-grad-2), transparent 45%);
   background-attachment: fixed;
   overscroll-behavior-y: none;
 }
 
-/* iOS-friendly heights and safe-area helpers */
+/* ────────────────────────────────────────────────────────────
+   iOS-friendly heights and safe-area helpers (with baselines!)
+   These set padding to MAX of safe-area inset and a baseline,
+   so they always provide visible padding even with no notch.
+   ──────────────────────────────────────────────────────────── */
+
 .h-dvh { height: 100dvh; }
 .min-h-dvh { min-height: 100dvh; }
 
-.safe-pt { padding-top: max(env(safe-area-inset-top), 0px); }
+.safe-pt { padding-top:    max(env(safe-area-inset-top),    1.5rem); }
 .safe-pb { padding-bottom: max(env(safe-area-inset-bottom), 0px); }
-.safe-pl { padding-left: max(env(safe-area-inset-left), 0px); }
-.safe-pr { padding-right: max(env(safe-area-inset-right), 0px); }
+.safe-pl { padding-left:   max(env(safe-area-inset-left),   1.5rem); }
+.safe-pr { padding-right:  max(env(safe-area-inset-right),  1.5rem); }
 
-/* KaTeX tweaks for dark theme */
+@media (min-width: 640px) {
+  .safe-pl { padding-left:  max(env(safe-area-inset-left),  2rem); }
+  .safe-pr { padding-right: max(env(safe-area-inset-right), 2rem); }
+}
+
+/* KaTeX */
 .katex {
-  color: theme("colors.ink.100");
+  color: rgb(var(--ink-100));
 }
 .katex-display {
   margin: 1rem 0 !important;
@@ -91,17 +138,17 @@ body {
   margin-block: 0.9rem;
 }
 .ebook h2 {
-  @apply font-serif italic text-2xl mt-10 mb-3 text-white;
+  @apply font-serif italic text-2xl mt-10 mb-3 text-ink-50;
 }
 .ebook h3 {
-  @apply font-medium text-lg mt-7 mb-2 text-white;
+  @apply font-medium text-lg mt-7 mb-2 text-ink-50;
 }
 .ebook ul, .ebook ol {
   @apply text-ink-200 pl-5 my-3 space-y-1;
 }
 .ebook ul { list-style: disc; }
 .ebook ol { list-style: decimal; }
-.ebook strong { @apply text-white; }
+.ebook strong { @apply text-ink-50; }
 .ebook em { @apply text-ink-100 italic; }
 .ebook a { @apply text-accent-soft underline-offset-2 hover:underline; }
 .ebook code {

@@ -96,7 +96,7 @@ export function ModulePage() {
               <li key={c.id}>
                 <Link
                   to={`/module/${m.id}/chapter/${c.id}`}
-                  className="card block p-4 sm:p-5 hover:border-accent/60 transition active:bg-ink-900"
+                  className="card block p-4 sm:p-5 hover:border-accent/60 transition active:bg-ink-800/40"
                 >
                   <div className="flex items-start gap-4">
                     <div className="shrink-0 w-9 h-9 rounded-lg bg-ink-800 border border-ink-700 flex items-center justify-center text-sm font-medium">

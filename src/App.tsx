@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Route, Routes, useLocation, NavLink } from "react-router-dom";
 import { Menu } from "lucide-react";
 import { Sidebar } from "./components/Sidebar";
+import { ThemeToggle } from "./components/ThemeToggle";
 import { Dashboard } from "./pages/Dashboard";
 import { ModulePage } from "./pages/ModulePage";
 import { ChapterPage } from "./pages/ChapterPage";
@@ -46,12 +47,12 @@ export default function App() {
 
 function MobileTopBar({ onOpenMenu }: { onOpenMenu: () => void }) {
   return (
-    <div className="md:hidden sticky top-0 z-30 bg-ink-950/85 backdrop-blur border-b border-ink-800 safe-pt">
-      <div className="flex items-center gap-3 px-4 py-2.5">
+    <div className="md:hidden sticky top-0 z-30 bg-ink-950/85 backdrop-blur border-b border-ink-800">
+      <div className="flex items-center gap-3 px-4 pb-2.5 pt-[max(0.625rem,env(safe-area-inset-top))]">
         <button
           onClick={onOpenMenu}
           aria-label="Open menu"
-          className="p-2 -ml-1 rounded-lg text-ink-200 hover:bg-ink-900 active:bg-ink-800"
+          className="p-2 -ml-1 rounded-lg text-ink-200 hover:bg-ink-800 active:bg-ink-700"
         >
           <Menu className="w-5 h-5" />
         </button>
@@ -61,6 +62,9 @@ function MobileTopBar({ onOpenMenu }: { onOpenMenu: () => void }) {
             keep-learning
           </span>
         </NavLink>
+        <div className="ml-auto -mr-1">
+          <ThemeToggle />
+        </div>
       </div>
     </div>
   );

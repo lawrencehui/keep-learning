@@ -617,7 +617,7 @@ function VectorFieldWidget() {
               onClick={() => setKey(k)}
               className={`px-3 py-1.5 rounded-lg text-sm border transition font-mono ${
                 key === k
-                  ? "border-accent-soft bg-ink-800 text-white"
+                  ? "border-accent-soft bg-ink-800 text-ink-50"
                   : "border-ink-800 hover:border-ink-700 text-ink-300"
               }`}
             >

@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { syllabus } from "../data/syllabus";
 import { useProgress } from "../hooks/useProgress";
+import { ThemeToggle } from "./ThemeToggle";
 import { Sparkles, X } from "lucide-react";
 
 interface Props {
@@ -15,7 +16,7 @@ export function Sidebar({ mobile = false, open = false, onClose }: Props) {
 
   const inner = (
     <div className="flex flex-col h-full">
-      <div className="px-5 py-5 border-b border-ink-800 flex items-center justify-between safe-pt">
+      <div className="px-5 pb-5 border-b border-ink-800 flex items-center justify-between safe-pt">
         <NavLink to="/" onClick={onClose} className="flex items-center gap-2">
           <span className="text-2xl">ψ</span>
           <div>
@@ -23,15 +24,18 @@ export function Sidebar({ mobile = false, open = false, onClose }: Props) {
             <div className="text-xs text-ink-400">Numbers → Quantum</div>
           </div>
         </NavLink>
-        {mobile && (
-          <button
-            onClick={onClose}
-            aria-label="Close menu"
-            className="p-2 -mr-2 text-ink-400 hover:text-white"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        )}
+        <div className="flex items-center gap-1 -mr-1">
+          {!mobile && <ThemeToggle />}
+          {mobile && (
+            <button
+              onClick={onClose}
+              aria-label="Close menu"
+              className="p-2 -mr-2 text-ink-400 hover:text-ink-100"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          )}
+        </div>
       </div>
 
       <nav className="px-3 py-4 space-y-2 overflow-y-auto flex-1 safe-pb">
@@ -41,7 +45,7 @@ export function Sidebar({ mobile = false, open = false, onClose }: Props) {
           onClick={onClose}
           className={({ isActive }) =>
             `flex items-center gap-2 px-3 py-3 rounded-lg text-sm ${
-              isActive ? "bg-ink-800 text-white" : "text-ink-300 hover:bg-ink-900"
+              isActive ? "bg-ink-800 text-ink-50" : "text-ink-300 hover:bg-ink-800/60"
             }`
           }
         >
@@ -64,7 +68,7 @@ export function Sidebar({ mobile = false, open = false, onClose }: Props) {
               onClick={onClose}
               className={({ isActive }) =>
                 `block px-3 py-3 rounded-lg ${
-                  isActive ? "bg-ink-800" : "hover:bg-ink-900"
+                  isActive ? "bg-ink-800" : "hover:bg-ink-800/60"
                 }`
               }
             >
