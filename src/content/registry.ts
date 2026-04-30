@@ -30,6 +30,10 @@ const loaders: Record<string, ChapterContentLoader> = {
   "diff-eq/laplace": () => import("./diff-eq/laplace"),
   "diff-eq/systems": () => import("./diff-eq/systems"),
   "diff-eq/fourier-pde": () => import("./diff-eq/fourier-pde"),
+  "number-theory/divisibility": () => import("./number-theory/divisibility"),
+  "number-theory/modular": () => import("./number-theory/modular"),
+  "number-theory/rsa": () => import("./number-theory/rsa"),
+  "number-theory/ecdsa": () => import("./number-theory/ecdsa"),
 };
 
 /** Returns the registered chapter (lazy body + quiz loader) or null if no content yet. */
