@@ -38,6 +38,11 @@ const loaders: Record<string, ChapterContentLoader> = {
   "probability/rv": () => import("./probability/rv"),
   "probability/distributions": () => import("./probability/distributions"),
   "probability/clt-bayes": () => import("./probability/clt-bayes"),
+  "complex-analysis/complex-numbers": () =>
+    import("./complex-analysis/complex-numbers"),
+  "complex-analysis/analytic": () => import("./complex-analysis/analytic"),
+  "complex-analysis/contour": () => import("./complex-analysis/contour"),
+  "complex-analysis/residues": () => import("./complex-analysis/residues"),
 };
 
 /** Returns the registered chapter (lazy body + quiz loader) or null if no content yet. */
