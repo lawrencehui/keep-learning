@@ -28,21 +28,23 @@
 }
 
 html.light {
-  /* Light theme: ink scale flipped + tuned for light surfaces */
-  --ink-50:  15  15  25;
-  --ink-100:  30  30  45;
-  --ink-200:  50  50  65;
-  --ink-300:  70  70  85;
-  --ink-400:  95  95 110;
-  --ink-500: 130 130 145;
-  --ink-600: 165 165 180;
-  --ink-700: 195 195 205;
-  --ink-800: 225 225 232;
-  --ink-900: 255 255 255;
-  --ink-950: 247 247 250;
+  /* Light theme: warm off-white / paper-like, easy on eyes for long reads.
+     Slight sepia tint, no blue. */
+  --ink-50:   28  22  14;   /* strongest text, warm near-black */
+  --ink-100:  46  37  27;   /* primary text — warm dark brown-gray */
+  --ink-200:  70  60  46;   /* body text */
+  --ink-300:  96  84  64;   /* body text alt */
+  --ink-400: 124 110  84;   /* secondary text */
+  --ink-500: 156 140 110;   /* muted */
+  --ink-600: 184 168 138;   /* faint */
+  --ink-700: 208 195 170;   /* light borders */
+  --ink-800: 228 217 196;   /* borders / dividers — warm */
+  --ink-900: 250 245 234;   /* card bg — slightly brighter paper */
+  --ink-950: 244 238 224;   /* page bg — warm cream paper */
 
-  --bg-grad-1: rgba(124, 58, 237, 0.06);
-  --bg-grad-2: rgba(34, 211, 238, 0.05);
+  /* Subtle warm tints replace the cool purple/cyan radials */
+  --bg-grad-1: rgba(180, 130,  60, 0.05);
+  --bg-grad-2: rgba(140, 110,  60, 0.04);
 
   color-scheme: light;
 }
