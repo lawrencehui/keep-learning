@@ -59,6 +59,10 @@ const loaders: Record<string, ChapterContentLoader> = {
   "em-waves/maxwell": () => import("./em-waves/maxwell"),
   "em-waves/waves": () => import("./em-waves/waves"),
   "em-waves/optics": () => import("./em-waves/optics"),
+  "qm-1/wave-particle": () => import("./qm-1/wave-particle"),
+  "qm-1/schrodinger": () => import("./qm-1/schrodinger"),
+  "qm-1/1d-systems": () => import("./qm-1/1d-systems"),
+  "qm-1/operators": () => import("./qm-1/operators"),
 };
 
 /** Returns the registered chapter (lazy body + quiz loader) or null if no content yet. */
