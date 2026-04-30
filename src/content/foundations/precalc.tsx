@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import {
-  AudioCompanions,
+  ReferenceResources,
   Callout,
   Exercise,
   Pitfall,
@@ -27,7 +27,7 @@ export default function PrecalcBody() {
         seeing them in detail now pays off many times.
       </p>
 
-      <AudioCompanions
+      <ReferenceResources
         items={[
           {
             title: "Khan Academy — Precalculus (full course)",

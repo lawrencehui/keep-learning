@@ -11,6 +11,10 @@ import type {
 const loaders: Record<string, ChapterContentLoader> = {
   "foundations/logic-sets": () => import("./foundations/logic-sets"),
   "foundations/precalc": () => import("./foundations/precalc"),
+  "calculus/limits": () => import("./calculus/limits"),
+  "calculus/derivatives": () => import("./calculus/derivatives"),
+  "calculus/integrals": () => import("./calculus/integrals"),
+  "calculus/series": () => import("./calculus/series"),
 };
 
 /** Returns the registered chapter (lazy body + quiz loader) or null if no content yet. */

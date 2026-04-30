@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from "react";
 import {
-  Headphones,
+  Library,
   ExternalLink,
   ChevronDown,
   ChevronRight,
@@ -9,10 +9,10 @@ import {
 } from "lucide-react";
 
 // ────────────────────────────────────────────────────────────
-// AudioCompanions — chapter-level "listen instead" video block.
+// ReferenceResources — chapter-level supplementary materials.
 // ────────────────────────────────────────────────────────────
 
-export interface AudioCompanion {
+export interface ReferenceResource {
   title: string;
   author?: string;
   /** e.g. "~24h", "47 min", "Lectures 1–3" */
@@ -21,16 +21,16 @@ export interface AudioCompanion {
   note?: string;
 }
 
-export function AudioCompanions({ items }: { items: AudioCompanion[] }) {
+export function ReferenceResources({ items }: { items: ReferenceResource[] }) {
   return (
     <aside className="not-italic my-6 card p-4 sm:p-5">
       <div className="flex items-center gap-2 text-accent-soft text-xs uppercase tracking-widest">
-        <Headphones className="w-4 h-4" /> Audio companions
+        <Library className="w-4 h-4" /> Reference resources
       </div>
       <p className="text-sm text-ink-300 mt-1">
-        The chapter below is the primary teacher. These videos cover roughly
-        the same ground for gym, walks, commute — listen-along, no screen
-        required.
+        The chapter below is the primary teacher. These cover the same
+        ground from other angles — pull one up if a section needs a second
+        explanation, or queue a video for hands-busy time.
       </p>
       <ul className="mt-3 space-y-2.5">
         {items.map((c) => (

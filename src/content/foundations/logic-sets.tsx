@@ -2,7 +2,7 @@ import { useState } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import { Check, X } from "lucide-react";
 import {
-  AudioCompanions,
+  ReferenceResources,
   Callout,
   Exercise,
   Pitfall,
@@ -35,7 +35,7 @@ export default function LogicSetsBody() {
         and small pitfalls to watch for. Quiz at the end.
       </p>
 
-      <AudioCompanions
+      <ReferenceResources
         items={[
           {
             title: "MIT 6.042J — Mathematics for Computer Science",
