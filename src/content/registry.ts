@@ -49,6 +49,10 @@ const loaders: Record<string, ChapterContentLoader> = {
   "abstract-algebra/groups": () => import("./abstract-algebra/groups"),
   "abstract-algebra/rings": () => import("./abstract-algebra/rings"),
   "abstract-algebra/galois": () => import("./abstract-algebra/galois"),
+  "advanced-la/inner-product": () => import("./advanced-la/inner-product"),
+  "advanced-la/spectral-thm": () => import("./advanced-la/spectral-thm"),
+  "advanced-la/tensor": () => import("./advanced-la/tensor"),
+  "advanced-la/hilbert": () => import("./advanced-la/hilbert"),
 };
 
 /** Returns the registered chapter (lazy body + quiz loader) or null if no content yet. */
