@@ -56,6 +56,9 @@ const loaders: Record<string, ChapterContentLoader> = {
   "classical-mech/newton": () => import("./classical-mech/newton"),
   "classical-mech/lagrange": () => import("./classical-mech/lagrange"),
   "classical-mech/hamilton": () => import("./classical-mech/hamilton"),
+  "em-waves/maxwell": () => import("./em-waves/maxwell"),
+  "em-waves/waves": () => import("./em-waves/waves"),
+  "em-waves/optics": () => import("./em-waves/optics"),
 };
 
 /** Returns the registered chapter (lazy body + quiz loader) or null if no content yet. */
