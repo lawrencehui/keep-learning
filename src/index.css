@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-ink-950 text-ink-100 font-sans antialiased;
+  background-image:
+    radial-gradient(circle at 15% 0%, rgba(124, 58, 237, 0.10), transparent 40%),
+    radial-gradient(circle at 85% 100%, rgba(34, 211, 238, 0.08), transparent 45%);
+  background-attachment: fixed;
+}
+
+/* KaTeX tweaks for dark theme */
+.katex {
+  color: theme("colors.ink.100");
+}
+.katex-display {
+  margin: 1rem 0 !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem 0;
+}
+
+/* Subtle scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-ink-700 rounded;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-ink-600;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Prose-like content blocks */
+.prose-tight p {
+  @apply leading-relaxed text-ink-200;
+}
+.prose-tight a {
+  @apply text-accent-soft underline-offset-2 hover:underline;
+}
+.prose-tight code {
+  @apply font-mono text-[0.9em] bg-ink-800/70 px-1.5 py-0.5 rounded;
+}
+
+/* Card */
+.card {
+  @apply bg-ink-900/60 backdrop-blur border border-ink-800 rounded-2xl;
+}
+
+/* Soft animated focus ring */
+*:focus-visible {
+  outline: 2px solid theme("colors.accent.soft");
+  outline-offset: 2px;
+  border-radius: 8px;
+}
