@@ -15,6 +15,12 @@ const loaders: Record<string, ChapterContentLoader> = {
   "calculus/derivatives": () => import("./calculus/derivatives"),
   "calculus/integrals": () => import("./calculus/integrals"),
   "calculus/series": () => import("./calculus/series"),
+  "linear-algebra/vectors-spaces": () =>
+    import("./linear-algebra/vectors-spaces"),
+  "linear-algebra/matrices": () => import("./linear-algebra/matrices"),
+  "linear-algebra/eigen": () => import("./linear-algebra/eigen"),
+  "linear-algebra/inner-product": () =>
+    import("./linear-algebra/inner-product"),
 };
 
 /** Returns the registered chapter (lazy body + quiz loader) or null if no content yet. */
