@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p /tmp/design-handoff)",
+      "Read(//tmp/**)",
+      "Bash(rm -rf *)",
+      "Bash(gunzip -c \"/Users/lawrence/.claude/projects/-Users-lawrence-dev-lawrence-dev-keep-learning/4690aeba-447b-499c-a9b7-755575e2f39d/tool-results/webfetch-1777545645324-ik0ee9.bin\")"
+    ]
+  }
+}

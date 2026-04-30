@@ -96,7 +96,7 @@ export function Sidebar({ mobile = false, open = false, onClose }: Props) {
 
   if (!mobile) {
     return (
-      <aside className="hidden md:block w-72 shrink-0 h-dvh sticky top-0 border-r border-ink-800 bg-ink-950/70 backdrop-blur-md">
+      <aside className="hidden md:block md:w-64 lg:w-72 shrink-0 h-dvh sticky top-0 border-r border-ink-800 bg-ink-950/70 backdrop-blur-md">
         {inner}
       </aside>
     );

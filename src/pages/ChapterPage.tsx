@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
   ChevronLeft,
@@ -63,7 +63,8 @@ export function ChapterPage() {
   const next = idx < m.chapters.length - 1 ? m.chapters[idx + 1] : null;
 
   return (
-    <article className="max-w-3xl mx-auto px-6 sm:px-8 py-8 sm:py-12 safe-pl safe-pr">
+    <article className="max-w-3xl mx-auto px-6 sm:px-8 md:px-10 py-8 sm:py-12 safe-pl safe-pr">
+      <ReadingProgress />
       <Link
         to={`/module/${m.id}`}
         className="inline-flex items-center gap-1 text-xs text-ink-400 hover:text-accent-soft"
@@ -103,6 +104,37 @@ export function ChapterPage() {
 
       <ChapterNav module={m} prev={prev} next={next} />
     </article>
+  );
+}
+
+function ReadingProgress() {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const update = () => {
+      const doc = document.documentElement;
+      const total = doc.scrollHeight - window.innerHeight;
+      const pct = total > 0 ? Math.min(1, Math.max(0, window.scrollY / total)) : 0;
+      if (ref.current) ref.current.style.width = `${pct * 100}%`;
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+  return (
+    <div
+      className="sticky h-0.5 bg-ink-800 z-10 -mx-6 sm:-mx-8 md:-mx-10 mb-4 top-[calc(env(safe-area-inset-top)+44px)] md:top-0"
+      aria-hidden="true"
+    >
+      <span
+        ref={ref}
+        className="block h-full bg-accent transition-[width] duration-75"
+        style={{ width: 0 }}
+      />
+    </div>
   );
 }
 
@@ -162,7 +194,7 @@ function LessonChecklist({ module: m, chapter: c }: { module: Module; chapter: C
             <li key={l.id} className="flex items-start gap-3">
               <button
                 onClick={() => toggle(key)}
-                className="mt-0.5 shrink-0 text-accent-soft hover:scale-110 transition p-1 -m-1"
+                className="mt-0.5 shrink-0 text-accent-soft hover:scale-110 transition p-2 -m-2"
                 aria-label={done ? "Mark incomplete" : "Mark complete"}
               >
                 {done ? (

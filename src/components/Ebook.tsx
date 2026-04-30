@@ -23,7 +23,7 @@ export interface ReferenceResource {
 
 export function ReferenceResources({ items }: { items: ReferenceResource[] }) {
   return (
-    <aside className="not-italic my-6 card p-4 sm:p-5">
+    <aside className="not-italic my-6 rounded-2xl border border-ink-800 bg-ink-900/40 backdrop-blur p-4 sm:p-5">
       <div className="flex items-center gap-2 text-accent-soft text-xs uppercase tracking-widest">
         <Library className="w-4 h-4" /> Reference resources
       </div>

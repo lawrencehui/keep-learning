@@ -54,7 +54,7 @@ export function Dashboard() {
                     <span className="block text-sm text-ink-400">{m.subtitle}</span>
                   </span>
                   <span className="text-xs text-ink-400 w-16 text-right">{pct}%</span>
-                  <span className="hidden sm:block w-32 h-1 rounded-full bg-ink-800 overflow-hidden">
+                  <span className="hidden sm:block w-32 h-1.5 rounded-full bg-ink-800 overflow-hidden">
                     <span className="block h-full bg-accent" style={{ width: `${pct}%` }} />
                   </span>
                 </Link>
@@ -82,7 +82,7 @@ function Stat({
         {icon}
         <span className="uppercase tracking-widest">{label}</span>
       </div>
-      <div className="mt-2 text-2xl font-medium">{value}</div>
+      <div className="mt-2 font-serif italic text-3xl tracking-tight">{value}</div>
     </div>
   );
 }

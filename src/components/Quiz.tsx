@@ -142,7 +142,7 @@ function Question({
             else classes += " border-ink-800 opacity-70";
           } else {
             classes += chosen
-              ? " border-accent-soft bg-ink-800"
+              ? " border-accent-soft bg-ink-900"
               : " border-ink-800 hover:border-ink-700";
           }
           return (
