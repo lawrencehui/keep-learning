@@ -53,6 +53,9 @@ const loaders: Record<string, ChapterContentLoader> = {
   "advanced-la/spectral-thm": () => import("./advanced-la/spectral-thm"),
   "advanced-la/tensor": () => import("./advanced-la/tensor"),
   "advanced-la/hilbert": () => import("./advanced-la/hilbert"),
+  "classical-mech/newton": () => import("./classical-mech/newton"),
+  "classical-mech/lagrange": () => import("./classical-mech/lagrange"),
+  "classical-mech/hamilton": () => import("./classical-mech/hamilton"),
 };
 
 /** Returns the registered chapter (lazy body + quiz loader) or null if no content yet. */
