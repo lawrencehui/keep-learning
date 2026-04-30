@@ -43,7 +43,7 @@ export function Dashboard() {
             return (
               <li key={m.id}>
                 <Link
-                  to={`/m/${m.id}`}
+                  to={`/module/${m.id}`}
                   className="card p-4 flex items-center gap-4 hover:border-accent/60 transition"
                 >
                   <span className="text-[11px] tracking-widest uppercase text-accent-soft w-10 shrink-0">

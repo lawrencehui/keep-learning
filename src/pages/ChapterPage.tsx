@@ -65,7 +65,7 @@ export function ChapterPage() {
   return (
     <article className="max-w-3xl mx-auto px-5 sm:px-8 py-8 sm:py-12 safe-pl safe-pr">
       <Link
-        to={`/m/${m.id}`}
+        to={`/module/${m.id}`}
         className="inline-flex items-center gap-1 text-xs text-ink-400 hover:text-accent-soft"
       >
         <ChevronLeft className="w-3.5 h-3.5" /> {m.title}
@@ -260,7 +260,7 @@ function ChapterNav({
     <nav className="mt-14 pt-6 border-t border-ink-800 flex items-center justify-between gap-3">
       {prev ? (
         <Link
-          to={`/m/${m.id}/c/${prev.id}`}
+          to={`/module/${m.id}/chapter/${prev.id}`}
           className="card px-4 py-3 flex-1 max-w-[48%] hover:border-accent/60 transition"
         >
           <div className="text-[10px] uppercase tracking-widest text-ink-500 flex items-center gap-1">
@@ -273,7 +273,7 @@ function ChapterNav({
       )}
       {next ? (
         <Link
-          to={`/m/${m.id}/c/${next.id}`}
+          to={`/module/${m.id}/chapter/${next.id}`}
           className="card px-4 py-3 flex-1 max-w-[48%] hover:border-accent/60 transition text-right"
         >
           <div className="text-[10px] uppercase tracking-widest text-ink-500 flex items-center gap-1 justify-end">

@@ -60,7 +60,7 @@ export function Sidebar({ mobile = false, open = false, onClose }: Props) {
           return (
             <NavLink
               key={m.id}
-              to={`/m/${m.id}`}
+              to={`/module/${m.id}`}
               onClick={onClose}
               className={({ isActive }) =>
                 `block px-3 py-3 rounded-lg ${

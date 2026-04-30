@@ -51,7 +51,7 @@ export function ModulePage() {
               <span className="text-ink-500">Prereqs:</span>{" "}
               {m.prerequisites.map((p, i) => (
                 <span key={p}>
-                  <Link to={`/m/${p}`} className="text-accent-soft hover:underline">
+                  <Link to={`/module/${p}`} className="text-accent-soft hover:underline">
                     {p}
                   </Link>
                   {i < m.prerequisites.length - 1 ? ", " : ""}
@@ -95,7 +95,7 @@ export function ModulePage() {
             return (
               <li key={c.id}>
                 <Link
-                  to={`/m/${m.id}/c/${c.id}`}
+                  to={`/module/${m.id}/chapter/${c.id}`}
                   className="card block p-4 sm:p-5 hover:border-accent/60 transition active:bg-ink-900"
                 >
                   <div className="flex items-start gap-4">

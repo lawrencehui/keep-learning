@@ -33,8 +33,11 @@ export default function App() {
 
         <Routes>
           <Route path="/" element={<Dashboard />} />
-          <Route path="/m/:moduleId" element={<ModulePage />} />
-          <Route path="/m/:moduleId/c/:chapterId" element={<ChapterPage />} />
+          <Route path="/module/:moduleId" element={<ModulePage />} />
+          <Route
+            path="/module/:moduleId/chapter/:chapterId"
+            element={<ChapterPage />}
+          />
         </Routes>
       </main>
     </div>
