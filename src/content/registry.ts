@@ -74,6 +74,10 @@ const loaders: Record<string, ChapterContentLoader> = {
   "quantum-computing/shor": () => import("./quantum-computing/shor"),
   "quantum-computing/qec": () => import("./quantum-computing/qec"),
   "quantum-computing/pqc": () => import("./quantum-computing/pqc"),
+  "linalg-ml/vectors-spaces": () => import("./linalg-ml/vectors-spaces"),
+  "linalg-ml/linear-maps": () => import("./linalg-ml/linear-maps"),
+  "linalg-ml/four-subspaces": () => import("./linalg-ml/four-subspaces"),
+  "linalg-ml/change-basis": () => import("./linalg-ml/change-basis"),
 };
 
 /** Returns the registered chapter (lazy body + quiz loader) or null if no content yet. */
