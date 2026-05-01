@@ -33,7 +33,7 @@ export default function App() {
       <Sidebar collapsed={collapsed} onToggleCollapsed={toggleCollapsed} />
       <Sidebar mobile open={drawerOpen} onClose={() => setDrawerOpen(false)} />
 
-      <main className="flex-1 min-w-0 flex flex-col">
+      <main className="flex-1 min-w-0 max-w-full overflow-x-clip flex flex-col">
         <InstallBanner />
         <MobileTopBar onOpenMenu={() => setDrawerOpen(true)} />
 

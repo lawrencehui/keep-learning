@@ -112,12 +112,38 @@ body {
 .katex {
   color: rgb(var(--ink-100));
 }
+
+/* Inline math: KaTeX uses white-space: nowrap internally, so a long
+   inline formula would push the line wider than the viewport. Wrap
+   each .katex in its own inline-block scroll box so long formulas
+   stay inside their own bounds. */
+.ebook .katex {
+  display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  vertical-align: middle;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Display (block) math: the .katex-display wrapper takes 100% width
+   and scrolls horizontally; the inner .katex inside it goes back to
+   block + no max-width so it can be wider and scroll inside. */
 .katex-display {
   margin: 1rem 0 !important;
+  display: block;
+  width: 100%;
+  max-width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
   padding: 0.25rem 0;
   -webkit-overflow-scrolling: touch;
+}
+.ebook .katex-display > .katex {
+  display: block;
+  max-width: none;
+  overflow: visible;
+  white-space: nowrap;
 }
 
 /* In-prose block math gets a subtle card surface so it doesn't float
@@ -167,6 +193,17 @@ body {
   /* Long URLs, code identifiers etc. should wrap rather than push width. */
   overflow-wrap: anywhere;
   word-break: break-word;
+  /* Hard guarantee no child can extend the column. */
+  min-width: 0;
+  max-width: 100%;
+}
+.ebook > * {
+  max-width: 100%;
+}
+.ebook pre {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
 }
 .ebook p {
   @apply text-ink-200;
