@@ -63,6 +63,10 @@ const loaders: Record<string, ChapterContentLoader> = {
   "qm-1/schrodinger": () => import("./qm-1/schrodinger"),
   "qm-1/1d-systems": () => import("./qm-1/1d-systems"),
   "qm-1/operators": () => import("./qm-1/operators"),
+  "qm-2/dirac": () => import("./qm-2/dirac"),
+  "qm-2/spin": () => import("./qm-2/spin"),
+  "qm-2/entanglement": () => import("./qm-2/entanglement"),
+  "qm-2/perturbation": () => import("./qm-2/perturbation"),
 };
 
 /** Returns the registered chapter (lazy body + quiz loader) or null if no content yet. */
