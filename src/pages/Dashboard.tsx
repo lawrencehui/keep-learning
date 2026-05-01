@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { syllabus, allLessonIds } from "../data/syllabus";
 import { useProgress, currentStreak } from "../hooks/useProgress";
-import { Flame, BookOpen, Target } from "lucide-react";
+import { Flame, BookOpen, Target, ArrowRight } from "lucide-react";
 
 export function Dashboard() {
   const { state, isDone } = useProgress();
@@ -9,6 +9,7 @@ export function Dashboard() {
   const done = allLessonIds.filter((k) => isDone(k)).length;
   const pct = total === 0 ? 0 : Math.round((done / total) * 100);
   const streak = currentStreak(state.studyDays);
+  const resume = pickResume(state.lastVisited, isDone);
 
   return (
     <div className="max-w-4xl mx-auto px-6 sm:px-8 py-8 sm:py-12 space-y-10 safe-pl safe-pr">
@@ -23,6 +24,31 @@ export function Dashboard() {
           a daily streak keeps you honest.
         </p>
       </header>
+
+      {resume && (
+        <Link
+          to={`/module/${resume.moduleId}/chapter/${resume.chapterId}`}
+          className="card block p-5 hover:border-accent/60 transition group"
+        >
+          <div className="flex items-center gap-4">
+            <div className="flex-1 min-w-0">
+              <div className="text-[11px] uppercase tracking-widest text-accent-soft">
+                {resume.label}
+              </div>
+              <div className="mt-1 font-serif italic text-2xl sm:text-3xl truncate">
+                {resume.chapterTitle}
+              </div>
+              <div className="mt-1 text-sm text-ink-400 truncate">
+                {resume.moduleTitle}
+                {typeof resume.scrollPct === "number" && resume.scrollPct > 0.05
+                  ? ` · ${Math.round(resume.scrollPct * 100)}% in`
+                  : ""}
+              </div>
+            </div>
+            <ArrowRight className="w-5 h-5 text-ink-400 group-hover:text-accent transition shrink-0" />
+          </div>
+        </Link>
+      )}
 
       <section className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <Stat icon={<Flame className="w-5 h-5" />} label="Current streak" value={`${streak} day${streak === 1 ? "" : "s"}`} />
@@ -65,6 +91,54 @@ export function Dashboard() {
       </section>
     </div>
   );
+}
+
+interface ResumeTarget {
+  moduleId: string;
+  chapterId: string;
+  moduleTitle: string;
+  chapterTitle: string;
+  label: string;
+  scrollPct?: number;
+}
+
+function pickResume(
+  lastVisited: { moduleId: string; chapterId: string; scrollPct?: number } | null,
+  isDone: (key: string) => boolean
+): ResumeTarget | null {
+  // Prefer the chapter the user last opened.
+  if (lastVisited) {
+    const m = syllabus.find((mod) => mod.id === lastVisited.moduleId);
+    const c = m?.chapters.find((ch) => ch.id === lastVisited.chapterId);
+    if (m && c) {
+      return {
+        moduleId: m.id,
+        chapterId: c.id,
+        moduleTitle: m.title,
+        chapterTitle: c.title,
+        label: "Continue reading",
+        scrollPct: lastVisited.scrollPct,
+      };
+    }
+  }
+  // Otherwise, the first chapter with any incomplete lesson.
+  for (const m of syllabus) {
+    for (const c of m.chapters) {
+      const anyIncomplete = c.lessons.some(
+        (l) => !isDone(`${m.id}/${c.id}/${l.id}`)
+      );
+      if (anyIncomplete) {
+        return {
+          moduleId: m.id,
+          chapterId: c.id,
+          moduleTitle: m.title,
+          chapterTitle: c.title,
+          label: "Start here",
+        };
+      }
+    }
+  }
+  return null;
 }
 
 function Stat({

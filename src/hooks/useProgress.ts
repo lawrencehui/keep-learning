@@ -2,14 +2,27 @@ import { useCallback, useEffect, useState } from "react";
 
 const STORAGE_KEY = "learning.progress.v1";
 
+export interface LastVisited {
+  moduleId: string;
+  chapterId: string;
+  ts: number;
+  scrollPct?: number;
+}
+
 export interface ProgressState {
   /** keys are `${moduleId}/${chapterId}/${lessonId}` */
   completed: Record<string, boolean>;
   /** ISO date strings (YYYY-MM-DD) on which user marked anything complete */
   studyDays: string[];
+  /** the chapter the user last opened (for "Continue learning") */
+  lastVisited: LastVisited | null;
 }
 
-const initial: ProgressState = { completed: {}, studyDays: [] };
+const initial: ProgressState = {
+  completed: {},
+  studyDays: [],
+  lastVisited: null,
+};
 
 function load(): ProgressState {
   try {
@@ -23,7 +36,11 @@ function load(): ProgressState {
 }
 
 function save(state: ProgressState) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch {
+    // Safari private mode etc. — silently drop.
+  }
 }
 
 function todayISO(): string {
@@ -54,13 +71,51 @@ export function useProgress() {
         ? [...prev.studyDays, today]
         : prev.studyDays;
 
-      return { completed, studyDays };
+      return { ...prev, completed, studyDays };
     });
   }, []);
 
+  const markVisited = useCallback((moduleId: string, chapterId: string) => {
+    setState((prev) => {
+      const same =
+        prev.lastVisited?.moduleId === moduleId &&
+        prev.lastVisited?.chapterId === chapterId;
+      return {
+        ...prev,
+        lastVisited: {
+          moduleId,
+          chapterId,
+          ts: Date.now(),
+          scrollPct: same ? prev.lastVisited?.scrollPct : 0,
+        },
+      };
+    });
+  }, []);
+
+  const updateScroll = useCallback(
+    (moduleId: string, chapterId: string, scrollPct: number) => {
+      setState((prev) => {
+        if (
+          !prev.lastVisited ||
+          prev.lastVisited.moduleId !== moduleId ||
+          prev.lastVisited.chapterId !== chapterId
+        ) {
+          return prev;
+        }
+        const prevPct = prev.lastVisited.scrollPct ?? 0;
+        if (Math.abs(prevPct - scrollPct) < 0.01) return prev;
+        return {
+          ...prev,
+          lastVisited: { ...prev.lastVisited, scrollPct, ts: Date.now() },
+        };
+      });
+    },
+    []
+  );
+
   const reset = useCallback(() => setState(initial), []);
 
-  return { state, isDone, toggle, reset };
+  return { state, isDone, toggle, markVisited, updateScroll, reset };
 }
 
 /** Compute current daily streak ending today (or yesterday). */

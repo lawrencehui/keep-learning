@@ -43,6 +43,39 @@ export function ChapterPage() {
   const { moduleId, chapterId } = useParams();
   const m = syllabus.find((mod) => mod.id === moduleId);
   const c = m?.chapters.find((ch) => ch.id === chapterId);
+  const { markVisited, updateScroll, state } = useProgress();
+
+  // Track which chapter is currently open, and write scroll-pct on idle.
+  useEffect(() => {
+    if (!m || !c) return;
+    markVisited(m.id, c.id);
+    const restorePct = state.lastVisited?.moduleId === m.id &&
+      state.lastVisited?.chapterId === c.id
+        ? state.lastVisited.scrollPct ?? 0
+        : 0;
+    if (restorePct > 0.02) {
+      requestAnimationFrame(() => {
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        window.scrollTo({ top: total * restorePct, behavior: "auto" });
+      });
+    }
+    let timer: number | null = null;
+    const onScroll = () => {
+      if (timer) window.clearTimeout(timer);
+      timer = window.setTimeout(() => {
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = total > 0 ? Math.min(1, Math.max(0, window.scrollY / total)) : 0;
+        updateScroll(m.id, c.id, pct);
+      }, 800);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (timer) window.clearTimeout(timer);
+    };
+    // restorePct is read once on mount; markVisited/updateScroll are stable.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [m?.id, c?.id]);
 
   if (!m || !c) {
     return (
