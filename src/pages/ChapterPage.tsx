@@ -96,7 +96,7 @@ export function ChapterPage() {
   const next = idx < m.chapters.length - 1 ? m.chapters[idx + 1] : null;
 
   return (
-    <article className="max-w-3xl mx-auto px-6 sm:px-8 md:px-10 py-8 sm:py-12 safe-pl safe-pr">
+    <article className="max-w-3xl mx-auto py-6 sm:py-10 chapter-px">
       <ReadingProgress />
       <Link
         to={`/module/${m.id}`}
@@ -159,7 +159,7 @@ function ReadingProgress() {
   }, []);
   return (
     <div
-      className="sticky h-0.5 bg-ink-800 z-10 -mx-6 sm:-mx-8 md:-mx-10 mb-4 top-[calc(env(safe-area-inset-top)+44px)] md:top-0"
+      className="sticky h-0.5 bg-ink-800 z-10 -mx-4 sm:-mx-7 lg:-mx-10 mb-4 top-[calc(env(safe-area-inset-top)+44px)] md:top-0"
       aria-hidden="true"
     >
       <span

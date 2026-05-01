@@ -89,6 +89,25 @@ body {
   .safe-pr { padding-right: max(env(safe-area-inset-right), 2rem); }
 }
 
+/* Chapter reading column — tighter on mobile so prose actually
+   gets room to breathe on a 375px screen. */
+.chapter-px {
+  padding-left:  max(env(safe-area-inset-left),  1rem);
+  padding-right: max(env(safe-area-inset-right), 1rem);
+}
+@media (min-width: 640px) {
+  .chapter-px {
+    padding-left:  max(env(safe-area-inset-left),  1.75rem);
+    padding-right: max(env(safe-area-inset-right), 1.75rem);
+  }
+}
+@media (min-width: 1024px) {
+  .chapter-px {
+    padding-left:  max(env(safe-area-inset-left),  2.5rem);
+    padding-right: max(env(safe-area-inset-right), 2.5rem);
+  }
+}
+
 /* KaTeX */
 .katex {
   color: rgb(var(--ink-100));
@@ -145,6 +164,9 @@ body {
   font-family: var(--reading-font, "Newsreader", Georgia, serif);
   font-size: var(--reading-size, 1.0625rem);
   line-height: var(--reading-line-height, 1.7);
+  /* Long URLs, code identifiers etc. should wrap rather than push width. */
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .ebook p {
   @apply text-ink-200;

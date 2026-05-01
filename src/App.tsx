@@ -8,9 +8,11 @@ import { ReadingSettings } from "./components/ReadingSettings";
 import { Dashboard } from "./pages/Dashboard";
 import { ModulePage } from "./pages/ModulePage";
 import { ChapterPage } from "./pages/ChapterPage";
+import { useSidebarCollapsed } from "./hooks/useSidebar";
 
 export default function App() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const { collapsed, toggle: toggleCollapsed } = useSidebarCollapsed();
   const location = useLocation();
 
   // Close drawer on route change
@@ -28,7 +30,7 @@ export default function App() {
 
   return (
     <div className="flex min-h-dvh">
-      <Sidebar />
+      <Sidebar collapsed={collapsed} onToggleCollapsed={toggleCollapsed} />
       <Sidebar mobile open={drawerOpen} onClose={() => setDrawerOpen(false)} />
 
       <main className="flex-1 min-w-0 flex flex-col">
