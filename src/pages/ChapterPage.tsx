@@ -96,7 +96,7 @@ export function ChapterPage() {
   const next = idx < m.chapters.length - 1 ? m.chapters[idx + 1] : null;
 
   return (
-    <article className="max-w-3xl mx-auto py-6 sm:py-10 chapter-px">
+    <article className="w-full min-w-0 max-w-3xl mx-auto py-6 sm:py-10 chapter-px">
       <ReadingProgress />
       <Link
         to={`/module/${m.id}`}

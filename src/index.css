@@ -79,6 +79,14 @@ body {
 .h-dvh { height: 100dvh; }
 .min-h-dvh { min-height: 100dvh; }
 
+/* Flex children default to min-width: auto (= min-content), which on
+   mobile means a paragraph's longest unbreakable run pins the column
+   wider than the viewport. Force every direct child of <main> to be
+   shrinkable. */
+main > * {
+  min-width: 0;
+}
+
 .safe-pt { padding-top:    max(env(safe-area-inset-top),    1.5rem); }
 .safe-pb { padding-bottom: max(env(safe-area-inset-bottom), 0px); }
 .safe-pl { padding-left:   max(env(safe-area-inset-left),   1.5rem); }
