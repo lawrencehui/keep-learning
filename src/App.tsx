@@ -3,6 +3,7 @@ import { Route, Routes, useLocation, NavLink } from "react-router-dom";
 import { Menu } from "lucide-react";
 import { Sidebar } from "./components/Sidebar";
 import { ThemeToggle } from "./components/ThemeToggle";
+import { InstallBanner } from "./components/InstallBanner";
 import { Dashboard } from "./pages/Dashboard";
 import { ModulePage } from "./pages/ModulePage";
 import { ChapterPage } from "./pages/ChapterPage";
@@ -30,6 +31,7 @@ export default function App() {
       <Sidebar mobile open={drawerOpen} onClose={() => setDrawerOpen(false)} />
 
       <main className="flex-1 min-w-0 flex flex-col">
+        <InstallBanner />
         <MobileTopBar onOpenMenu={() => setDrawerOpen(true)} />
 
         <Routes>
