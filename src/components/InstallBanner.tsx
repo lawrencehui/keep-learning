@@ -13,7 +13,6 @@ function isStandalone(): boolean {
   if (typeof window === "undefined") return false;
   return (
     window.matchMedia("(display-mode: standalone)").matches ||
-    // iOS Safari exposes its own flag
     (navigator as unknown as { standalone?: boolean }).standalone === true
   );
 }
@@ -46,13 +45,11 @@ export function InstallBanner() {
   useEffect(() => {
     if (isStandalone() || recentlyDismissed()) return;
 
-    // iOS Safari has no install API — show static instructions.
     if (ios) {
       setShow(true);
       return;
     }
 
-    // Chrome/Edge/Android: wait for the prompt event.
     const onPrompt = (e: Event) => {
       e.preventDefault();
       setPrompt(e as BeforeInstallPromptEvent);
@@ -79,7 +76,7 @@ export function InstallBanner() {
         JSON.stringify({ dismissedAt: Date.now() })
       );
     } catch {
-      // Silently ignore storage failures (Safari private mode).
+      // ignore
     }
     setShow(false);
   };
@@ -98,19 +95,21 @@ export function InstallBanner() {
 
   return (
     <div className="bg-ink-900/95 backdrop-blur border-b border-ink-800 text-ink-100">
-      <div className="flex items-center gap-3 px-4 py-2 text-sm pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] pt-[max(0.5rem,env(safe-area-inset-top))]">
+      <div className="flex items-center gap-2 px-3 py-2 text-[13px] sm:text-sm">
         <Download className="w-4 h-4 text-accent-soft shrink-0" aria-hidden="true" />
-        {ios ? (
-          <span className="flex-1 min-w-0 truncate">
-            Install: tap <strong>Share</strong> → <strong>Add to Home Screen</strong>
-          </span>
-        ) : (
-          <span className="flex-1 min-w-0 truncate">Install for offline reading</span>
-        )}
+        <span className="flex-1 min-w-0 truncate">
+          {ios ? (
+            <>
+              Tap <strong>Share</strong> → <strong>Add to Home Screen</strong>
+            </>
+          ) : (
+            <>Install for offline reading</>
+          )}
+        </span>
         {!ios && prompt && (
           <button
             onClick={install}
-            className="text-xs font-medium px-3 py-1 rounded-full bg-accent text-ink-950 hover:opacity-90 shrink-0"
+            className="text-xs font-medium px-2.5 py-1 rounded-full bg-accent text-white hover:opacity-90 shrink-0"
           >
             Install
           </button>
@@ -118,7 +117,7 @@ export function InstallBanner() {
         <button
           onClick={dismiss}
           aria-label="Dismiss"
-          className="p-1.5 -m-1 rounded text-ink-400 hover:text-ink-200 shrink-0"
+          className="p-1.5 rounded text-ink-400 hover:text-ink-100 shrink-0"
         >
           <X className="w-4 h-4" />
         </button>

@@ -4,6 +4,7 @@ import { Menu } from "lucide-react";
 import { Sidebar } from "./components/Sidebar";
 import { ThemeToggle } from "./components/ThemeToggle";
 import { InstallBanner } from "./components/InstallBanner";
+import { ReadingSettings } from "./components/ReadingSettings";
 import { Dashboard } from "./pages/Dashboard";
 import { ModulePage } from "./pages/ModulePage";
 import { ChapterPage } from "./pages/ChapterPage";
@@ -64,7 +65,8 @@ function MobileTopBar({ onOpenMenu }: { onOpenMenu: () => void }) {
             keep-learning
           </span>
         </NavLink>
-        <div className="ml-auto -mr-1">
+        <div className="ml-auto flex items-center gap-1 -mr-1">
+          <ReadingSettings />
           <ThemeToggle />
         </div>
       </div>

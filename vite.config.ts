@@ -17,6 +17,35 @@ export default defineConfig({
         // Chapter chunks + KaTeX fonts can push individual files past the
         // default 2 MiB ceiling.
         maximumFileSizeToCacheInBytes: 8 * 1024 * 1024,
+        // Cache Google Fonts at runtime so chosen typefaces work offline.
+        runtimeCaching: [
+          {
+            urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "google-fonts-stylesheets",
+              expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 },
+            },
+          },
+          {
+            urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "google-fonts-webfonts",
+              expiration: { maxEntries: 30, maxAgeSeconds: 60 * 60 * 24 * 365 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          {
+            urlPattern: /^https:\/\/rsms\.me\/.*/i,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "rsms-inter",
+              expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+        ],
       },
       manifest: {
         name: "keep-learning — from numbers to quantum",

@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { syllabus } from "../data/syllabus";
 import { useProgress } from "../hooks/useProgress";
 import { ThemeToggle } from "./ThemeToggle";
+import { ReadingSettings } from "./ReadingSettings";
 import { Sparkles, X } from "lucide-react";
 
 interface Props {
@@ -25,7 +26,12 @@ export function Sidebar({ mobile = false, open = false, onClose }: Props) {
           </div>
         </NavLink>
         <div className="flex items-center gap-1 -mr-1">
-          {!mobile && <ThemeToggle />}
+          {!mobile && (
+            <>
+              <ReadingSettings />
+              <ThemeToggle />
+            </>
+          )}
           {mobile && (
             <button
               onClick={onClose}

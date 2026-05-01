@@ -138,17 +138,13 @@ body {
   @apply font-mono text-[0.9em] bg-ink-800/70 px-1.5 py-0.5 rounded;
 }
 
-/* Ebook-style reading column */
+/* Ebook-style reading column — typography is user-configurable
+   via CSS variables set by useReadingSettings. */
 .ebook {
   @apply text-ink-100;
-  font-size: 1rem;
-  line-height: 1.7;
-}
-@media (min-width: 768px) {
-  .ebook {
-    font-size: 1.0625rem;
-    line-height: 1.72;
-  }
+  font-family: var(--reading-font, "Newsreader", Georgia, serif);
+  font-size: var(--reading-size, 1.0625rem);
+  line-height: var(--reading-line-height, 1.7);
 }
 .ebook p {
   @apply text-ink-200;
@@ -193,9 +189,8 @@ body {
   border-radius: 8px;
 }
 
-/* Mobile reading tweaks */
+/* Mobile heading tightening (size/line-height come from user settings) */
 @media (max-width: 640px) {
-  .ebook { font-size: 1.0625rem; line-height: 1.65; }
   .ebook h2 { @apply text-xl mt-8; }
   .ebook h3 { @apply text-base mt-6; }
 }
