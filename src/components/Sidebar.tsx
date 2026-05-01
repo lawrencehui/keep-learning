@@ -1,5 +1,5 @@
-import { NavLink } from "react-router-dom";
-import { syllabus } from "../data/syllabus";
+import { NavLink, useParams, Link } from "react-router-dom";
+import { pathways, getPathway } from "../data/pathways";
 import { useProgress } from "../hooks/useProgress";
 import { ThemeToggle } from "./ThemeToggle";
 import { ReadingSettings } from "./ReadingSettings";
@@ -8,6 +8,7 @@ import {
   X,
   PanelLeftClose,
   PanelLeftOpen,
+  ChevronLeft,
 } from "lucide-react";
 
 interface Props {
@@ -28,6 +29,9 @@ export function Sidebar({
   onToggleCollapsed,
 }: Props) {
   const { isDone } = useProgress();
+  const { pathwayId } = useParams();
+  const pathway = getPathway(pathwayId);
+  const modules = pathway?.modules ?? [];
 
   // Collapsed-strip rendering for desktop only.
   if (!mobile && collapsed) {
@@ -66,13 +70,15 @@ export function Sidebar({
           onClick={onClose}
           className="flex items-center gap-2 min-w-0 flex-1"
         >
-          <span className="text-2xl shrink-0">ψ</span>
+          <span className="font-serif italic text-2xl shrink-0 leading-none">
+            {pathway?.emblem ?? "≡"}
+          </span>
           <div className="min-w-0">
             <div className="font-serif italic text-base leading-none truncate">
               keep-learning
             </div>
             <div className="text-[11px] text-ink-400 truncate hidden lg:block">
-              Numbers → Quantum
+              {pathway?.title ?? "Pathways"}
             </div>
           </div>
         </NavLink>
@@ -96,21 +102,54 @@ export function Sidebar({
         )}
       </div>
 
-      <nav className="px-3 py-4 space-y-2 overflow-y-auto flex-1">
-        <NavLink
+      <nav className="px-3 py-4 space-y-1.5 overflow-y-auto flex-1">
+        <Link
           to="/"
-          end
           onClick={onClose}
-          className={({ isActive }) =>
-            `flex items-center gap-2 px-3 py-3 rounded-lg text-sm ${
-              isActive ? "bg-ink-800 text-ink-50" : "text-ink-300 hover:bg-ink-800/60"
-            }`
-          }
+          className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs text-ink-400 hover:text-ink-100 hover:bg-ink-800/60"
         >
-          <Sparkles className="w-4 h-4" /> Dashboard
-        </NavLink>
+          <ChevronLeft className="w-3.5 h-3.5" /> All pathways
+        </Link>
 
-        {syllabus.map((m) => {
+        {pathway ? (
+          <NavLink
+            to={`/${pathway.id}`}
+            end
+            onClick={onClose}
+            className={({ isActive }) =>
+              `flex items-center gap-2 px-3 py-3 rounded-lg text-sm ${
+                isActive ? "bg-ink-800 text-ink-50" : "text-ink-300 hover:bg-ink-800/60"
+              }`
+            }
+          >
+            <Sparkles className="w-4 h-4" /> {pathway.title}
+          </NavLink>
+        ) : (
+          <div className="px-3 py-3 space-y-1.5">
+            {pathways.map((p) => (
+              <Link
+                key={p.id}
+                to={`/${p.id}`}
+                onClick={onClose}
+                className="block px-3 py-2.5 rounded-lg hover:bg-ink-800/60"
+              >
+                <div className="flex items-baseline gap-2">
+                  <span className="font-serif italic text-base shrink-0">
+                    {p.emblem}
+                  </span>
+                  <span className="text-sm font-medium truncate">
+                    {p.title}
+                  </span>
+                </div>
+                <div className="text-[11px] text-ink-500 truncate ml-6">
+                  {p.subtitle}
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
+
+        {modules.map((m) => {
           const total = m.chapters.reduce((n, c) => n + c.lessons.length, 0);
           const done = m.chapters.reduce(
             (n, c) =>
@@ -122,7 +161,7 @@ export function Sidebar({
           return (
             <NavLink
               key={m.id}
-              to={`/module/${m.id}`}
+              to={`/${pathway?.id ?? ""}/module/${m.id}`}
               onClick={onClose}
               className={({ isActive }) =>
                 `block px-3 py-3 rounded-lg ${

@@ -3,6 +3,9 @@ import { useCallback, useEffect, useState } from "react";
 const STORAGE_KEY = "learning.progress.v1";
 
 export interface LastVisited {
+  /** Pathway id ("quantum", "ml", ...). Older records may not have this; we
+   *  fall back to "quantum" at read time. */
+  pathwayId?: string;
   moduleId: string;
   chapterId: string;
   ts: number;
@@ -75,28 +78,39 @@ export function useProgress() {
     });
   }, []);
 
-  const markVisited = useCallback((moduleId: string, chapterId: string) => {
-    setState((prev) => {
-      const same =
-        prev.lastVisited?.moduleId === moduleId &&
-        prev.lastVisited?.chapterId === chapterId;
-      return {
-        ...prev,
-        lastVisited: {
-          moduleId,
-          chapterId,
-          ts: Date.now(),
-          scrollPct: same ? prev.lastVisited?.scrollPct : 0,
-        },
-      };
-    });
-  }, []);
+  const markVisited = useCallback(
+    (pathwayId: string, moduleId: string, chapterId: string) => {
+      setState((prev) => {
+        const same =
+          prev.lastVisited?.pathwayId === pathwayId &&
+          prev.lastVisited?.moduleId === moduleId &&
+          prev.lastVisited?.chapterId === chapterId;
+        return {
+          ...prev,
+          lastVisited: {
+            pathwayId,
+            moduleId,
+            chapterId,
+            ts: Date.now(),
+            scrollPct: same ? prev.lastVisited?.scrollPct : 0,
+          },
+        };
+      });
+    },
+    []
+  );
 
   const updateScroll = useCallback(
-    (moduleId: string, chapterId: string, scrollPct: number) => {
+    (
+      pathwayId: string,
+      moduleId: string,
+      chapterId: string,
+      scrollPct: number
+    ) => {
       setState((prev) => {
         if (
           !prev.lastVisited ||
+          (prev.lastVisited.pathwayId ?? "quantum") !== pathwayId ||
           prev.lastVisited.moduleId !== moduleId ||
           prev.lastVisited.chapterId !== chapterId
         ) {

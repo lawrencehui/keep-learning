@@ -1,5 +1,5 @@
 import { Suspense, useEffect, useRef, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import {
   ChevronLeft,
   ChevronRight,
@@ -14,7 +14,7 @@ import {
   ScrollText,
   Clock,
 } from "lucide-react";
-import { syllabus } from "../data/syllabus";
+import { getPathway } from "../data/pathways";
 import { useProgress } from "../hooks/useProgress";
 import { MathText } from "../components/MathBlock";
 import { Quiz } from "../components/Quiz";
@@ -40,16 +40,19 @@ const iconFor = (k: Resource["kind"]) => {
 };
 
 export function ChapterPage() {
-  const { moduleId, chapterId } = useParams();
-  const m = syllabus.find((mod) => mod.id === moduleId);
+  const { pathwayId, moduleId, chapterId } = useParams();
+  const pathway = getPathway(pathwayId);
+  const m = pathway?.modules.find((mod) => mod.id === moduleId);
   const c = m?.chapters.find((ch) => ch.id === chapterId);
   const { markVisited, updateScroll, state } = useProgress();
 
   // Track which chapter is currently open, and write scroll-pct on idle.
   useEffect(() => {
-    if (!m || !c) return;
-    markVisited(m.id, c.id);
-    const restorePct = state.lastVisited?.moduleId === m.id &&
+    if (!pathway || !m || !c) return;
+    markVisited(pathway.id, m.id, c.id);
+    const restorePct =
+      (state.lastVisited?.pathwayId ?? "quantum") === pathway.id &&
+      state.lastVisited?.moduleId === m.id &&
       state.lastVisited?.chapterId === c.id
         ? state.lastVisited.scrollPct ?? 0
         : 0;
@@ -65,7 +68,7 @@ export function ChapterPage() {
       timer = window.setTimeout(() => {
         const total = document.documentElement.scrollHeight - window.innerHeight;
         const pct = total > 0 ? Math.min(1, Math.max(0, window.scrollY / total)) : 0;
-        updateScroll(m.id, c.id, pct);
+        updateScroll(pathway.id, m.id, c.id, pct);
       }, 800);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -75,14 +78,15 @@ export function ChapterPage() {
     };
     // restorePct is read once on mount; markVisited/updateScroll are stable.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [m?.id, c?.id]);
+  }, [pathway?.id, m?.id, c?.id]);
 
+  if (!pathway) return <Navigate to="/" replace />;
   if (!m || !c) {
     return (
       <div className="px-6 py-12 max-w-3xl mx-auto">
         <p className="text-ink-300">Chapter not found.</p>
-        <Link to="/" className="text-accent-soft underline">
-          Back to dashboard
+        <Link to={`/${pathway.id}`} className="text-accent-soft underline">
+          Back to {pathway.title}
         </Link>
       </div>
     );
@@ -99,7 +103,7 @@ export function ChapterPage() {
     <article className="w-full min-w-0 max-w-3xl mx-auto py-6 sm:py-10 chapter-px">
       <ReadingProgress />
       <Link
-        to={`/module/${m.id}`}
+        to={`/${pathway.id}/module/${m.id}`}
         className="inline-flex items-center gap-1 text-xs text-ink-400 hover:text-accent-soft"
       >
         <ChevronLeft className="w-3.5 h-3.5" /> {m.title}
@@ -135,7 +139,7 @@ export function ChapterPage() {
 
       {registered && <ChapterQuiz registered={registered} moduleKey={`${m.id}/${c.id}`} />}
 
-      <ChapterNav module={m} prev={prev} next={next} />
+      <ChapterNav pathwayId={pathway.id} module={m} prev={prev} next={next} />
     </article>
   );
 }
@@ -313,10 +317,12 @@ function ChapterQuiz({
 }
 
 function ChapterNav({
+  pathwayId,
   module: m,
   prev,
   next,
 }: {
+  pathwayId: string;
   module: Module;
   prev: Chapter | null;
   next: Chapter | null;
@@ -325,7 +331,7 @@ function ChapterNav({
     <nav className="mt-14 pt-6 border-t border-ink-800 flex items-center justify-between gap-3">
       {prev ? (
         <Link
-          to={`/module/${m.id}/chapter/${prev.id}`}
+          to={`/${pathwayId}/module/${m.id}/chapter/${prev.id}`}
           className="card px-4 py-3 flex-1 max-w-[48%] hover:border-accent/60 transition"
         >
           <div className="text-[10px] uppercase tracking-widest text-ink-500 flex items-center gap-1">
@@ -338,7 +344,7 @@ function ChapterNav({
       )}
       {next ? (
         <Link
-          to={`/module/${m.id}/chapter/${next.id}`}
+          to={`/${pathwayId}/module/${m.id}/chapter/${next.id}`}
           className="card px-4 py-3 flex-1 max-w-[48%] hover:border-accent/60 transition text-right"
         >
           <div className="text-[10px] uppercase tracking-widest text-ink-500 flex items-center gap-1 justify-end">

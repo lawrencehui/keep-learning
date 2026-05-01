@@ -37,3 +37,15 @@ export interface Module {
   prerequisites: string[]; // module ids
   chapters: Chapter[];
 }
+
+export interface Pathway {
+  id: string;
+  title: string;
+  /** One-line tagline shown on cards */
+  subtitle: string;
+  /** Longer description shown on the pathway dashboard */
+  description: string;
+  /** Symbol shown on the picker card (a single character or short symbol) */
+  emblem: string;
+  modules: Module[];
+}

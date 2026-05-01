@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
-import { Route, Routes, useLocation, NavLink } from "react-router-dom";
+import {
+  Route,
+  Routes,
+  useLocation,
+  useParams,
+  NavLink,
+  Navigate,
+} from "react-router-dom";
 import { Menu } from "lucide-react";
 import { Sidebar } from "./components/Sidebar";
 import { ThemeToggle } from "./components/ThemeToggle";
@@ -8,7 +15,9 @@ import { ReadingSettings } from "./components/ReadingSettings";
 import { Dashboard } from "./pages/Dashboard";
 import { ModulePage } from "./pages/ModulePage";
 import { ChapterPage } from "./pages/ChapterPage";
+import { PathwayHome } from "./pages/PathwayHome";
 import { useSidebarCollapsed } from "./hooks/useSidebar";
+import { DEFAULT_PATHWAY_ID } from "./data/pathways";
 
 export default function App() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -38,15 +47,46 @@ export default function App() {
         <MobileTopBar onOpenMenu={() => setDrawerOpen(true)} />
 
         <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/module/:moduleId" element={<ModulePage />} />
+          <Route path="/" element={<PathwayHome />} />
+          <Route path="/:pathwayId" element={<Dashboard />} />
           <Route
-            path="/module/:moduleId/chapter/:chapterId"
+            path="/:pathwayId/module/:moduleId"
+            element={<ModulePage />}
+          />
+          <Route
+            path="/:pathwayId/module/:moduleId/chapter/:chapterId"
             element={<ChapterPage />}
           />
+          {/* Legacy URLs from before the pathway split — redirect to default. */}
+          <Route
+            path="/module/:moduleId"
+            element={<LegacyModuleRedirect />}
+          />
+          <Route
+            path="/module/:moduleId/chapter/:chapterId"
+            element={<LegacyChapterRedirect />}
+          />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
     </div>
+  );
+}
+
+function LegacyModuleRedirect() {
+  const { moduleId } = useParams();
+  return (
+    <Navigate to={`/${DEFAULT_PATHWAY_ID}/module/${moduleId}`} replace />
+  );
+}
+
+function LegacyChapterRedirect() {
+  const { moduleId, chapterId } = useParams();
+  return (
+    <Navigate
+      to={`/${DEFAULT_PATHWAY_ID}/module/${moduleId}/chapter/${chapterId}`}
+      replace
+    />
   );
 }
 

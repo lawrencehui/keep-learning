@@ -1,20 +1,28 @@
-import { Link, useParams } from "react-router-dom";
-import { syllabus } from "../data/syllabus";
+import { Link, Navigate, useParams } from "react-router-dom";
+import { getPathway } from "../data/pathways";
 import { useProgress } from "../hooks/useProgress";
 import { hasChapterContent } from "../content/registry";
-import { BookOpen, ChevronRight, Clock, Sparkles } from "lucide-react";
+import {
+  BookOpen,
+  ChevronLeft,
+  ChevronRight,
+  Clock,
+  Sparkles,
+} from "lucide-react";
 
 export function ModulePage() {
-  const { moduleId } = useParams();
-  const m = syllabus.find((mod) => mod.id === moduleId);
+  const { pathwayId, moduleId } = useParams();
+  const pathway = getPathway(pathwayId);
+  if (!pathway) return <Navigate to="/" replace />;
+  const m = pathway.modules.find((mod) => mod.id === moduleId);
   const { isDone } = useProgress();
 
   if (!m) {
     return (
       <div className="px-6 py-12 max-w-3xl mx-auto">
         <p className="text-ink-300">Module not found.</p>
-        <Link to="/" className="text-accent-soft underline">
-          Back to dashboard
+        <Link to={`/${pathway.id}`} className="text-accent-soft underline">
+          Back to {pathway.title}
         </Link>
       </div>
     );
@@ -33,7 +41,13 @@ export function ModulePage() {
   return (
     <div className="max-w-3xl mx-auto px-6 sm:px-8 py-8 sm:py-12 safe-pl safe-pr space-y-8">
       <header className="space-y-2">
-        <div className="text-xs uppercase tracking-[0.25em] text-accent-soft">
+        <Link
+          to={`/${pathway.id}`}
+          className="inline-flex items-center gap-1 text-xs text-ink-400 hover:text-accent-soft"
+        >
+          <ChevronLeft className="w-3.5 h-3.5" /> {pathway.title}
+        </Link>
+        <div className="text-xs uppercase tracking-[0.25em] text-accent-soft pt-1">
           Tier {m.tier}
         </div>
         <h1 className="font-serif italic text-3xl sm:text-4xl">{m.title}</h1>
@@ -51,7 +65,10 @@ export function ModulePage() {
               <span className="text-ink-500">Prereqs:</span>{" "}
               {m.prerequisites.map((p, i) => (
                 <span key={p}>
-                  <Link to={`/module/${p}`} className="text-accent-soft hover:underline">
+                  <Link
+                    to={`/${pathway.id}/module/${p}`}
+                    className="text-accent-soft hover:underline"
+                  >
                     {p}
                   </Link>
                   {i < m.prerequisites.length - 1 ? ", " : ""}
@@ -95,7 +112,7 @@ export function ModulePage() {
             return (
               <li key={c.id}>
                 <Link
-                  to={`/module/${m.id}/chapter/${c.id}`}
+                  to={`/${pathway.id}/module/${m.id}/chapter/${c.id}`}
                   className="card block p-5 sm:p-6 hover:border-accent/60 transition active:bg-ink-800/40"
                 >
                   <div className="flex items-start gap-4">
