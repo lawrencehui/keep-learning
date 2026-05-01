@@ -1,0 +1,478 @@
+import { BlockMath, InlineMath } from "react-katex";
+import {
+  Callout,
+  Pitfall,
+  ReferenceResources,
+} from "../../components/Ebook";
+import type { QuizQuestion } from "../types";
+
+export default function GatesBody() {
+  return (
+    <>
+      <p>
+        A quantum gate is a unitary operator acting on one or
+        more qubits. Quantum circuits compose gates in
+        sequence to implement algorithms. This chapter
+        catalogues the standard gates (single- and two-qubit),
+        explains universal gate sets, and shows how circuits
+        get drawn and reasoned about.
+      </p>
+
+      <ReferenceResources
+        items={[
+          {
+            title: "Nielsen &amp; Chuang — ch. 4",
+            author: "Nielsen / Chuang",
+            duration: "Reading",
+            url: "https://en.wikipedia.org/wiki/Quantum_Computation_and_Quantum_Information",
+            note: "Complete catalog of standard gates and circuit identities.",
+          },
+          {
+            title: "Qiskit Textbook — Single- and multi-qubit gates",
+            author: "IBM Qiskit",
+            duration: "~5h",
+            url: "https://learning.quantum.ibm.com/",
+            note: "Hands-on with code examples. Run circuits on real hardware via Qiskit.",
+          },
+          {
+            title: "Quantum Country — gates and circuits",
+            author: "Matuschak / Nielsen",
+            duration: "~2h",
+            url: "https://quantum.country/qcvc",
+            note: "Spaced-repetition learning of the gate catalog.",
+          },
+          {
+            title: "Mermin — Quantum Computer Science, ch. 1–3",
+            author: "N. David Mermin",
+            duration: "Reading",
+            url: "https://www.cambridge.org/9780521876582",
+            note: "Compact, pragmatic gates-and-circuits exposition.",
+          },
+          {
+            title: "MIT 6.S089 — gates lecture",
+            author: "MIT OCW",
+            duration: "~3h",
+            url: "https://ocw.mit.edu/courses/6-s089-introduction-to-quantum-computing-january-iap-2023/",
+            note: "Lecture videos cover the standard gate set.",
+          },
+        ]}
+      />
+
+      {/* ─────────────────────────────  PART 1  ───────────────────────────── */}
+      <h2>Part 1 · Single-qubit gates</h2>
+
+      <p>
+        Single-qubit gates are{" "}
+        <InlineMath math="2 \times 2" /> unitary matrices.
+      </p>
+
+      <h3>Pauli gates</h3>
+
+      <BlockMath math="X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \quad Y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}, \quad Z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}." />
+
+      <p>
+        These are the Pauli matrices from spin-1/2. Effects on
+        basis states:
+      </p>
+      <ul>
+        <li>
+          <InlineMath math="X" /> ("bit flip"):{" "}
+          <InlineMath math="X|0\rangle = |1\rangle, X|1\rangle = |0\rangle" />.
+          The quantum NOT gate.
+        </li>
+        <li>
+          <InlineMath math="Z" /> ("phase flip"):{" "}
+          <InlineMath math="Z|0\rangle = |0\rangle, Z|1\rangle = -|1\rangle" />.
+          Flips the sign of <InlineMath math="|1\rangle" />.
+        </li>
+        <li>
+          <InlineMath math="Y" /> = bit + phase flip:{" "}
+          <InlineMath math="Y = i X Z" />.
+        </li>
+      </ul>
+
+      <p>
+        Geometrically on the Bloch sphere: each Pauli is a
+        180° rotation around its axis.
+      </p>
+
+      <h3>Hadamard</h3>
+
+      <BlockMath math="H = \frac{1}{\sqrt 2} \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}." />
+
+      <p>
+        Effect:
+      </p>
+      <BlockMath math="H|0\rangle = \tfrac{1}{\sqrt 2}(|0\rangle + |1\rangle) = |+\rangle, \qquad H|1\rangle = \tfrac{1}{\sqrt 2}(|0\rangle - |1\rangle) = |-\rangle." />
+
+      <p>
+        Maps computational basis to Hadamard basis. Self-
+        inverse:{" "}
+        <InlineMath math="H^2 = I" />. The most-used single-
+        qubit gate — it creates superpositions.
+      </p>
+
+      <h3>Phase gates</h3>
+
+      <BlockMath math="S = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}, \quad T = \begin{pmatrix} 1 & 0 \\ 0 & e^{i\pi/4} \end{pmatrix}." />
+
+      <p>
+        <InlineMath math="S = T^2" />,{" "}
+        <InlineMath math="Z = S^2 = T^4" />. The T gate is
+        crucial for universality with Clifford gates (Part 4).
+      </p>
+
+      <h3>Rotation gates</h3>
+
+      <p>
+        Continuous-parameter rotations:
+      </p>
+      <BlockMath math="R_x(\theta) = e^{-i \theta X/2}, \quad R_y(\theta) = e^{-i \theta Y/2}, \quad R_z(\theta) = e^{-i \theta Z/2}." />
+
+      <p>
+        These rotate the Bloch vector by{" "}
+        <InlineMath math="\theta" /> around the corresponding
+        axis. Combinations of these can produce any single-qubit
+        unitary (Bloch sphere is a sphere; rotation group{" "}
+        <InlineMath math="SO(3)" /> is generated by rotations
+        about three axes).
+      </p>
+
+      {/* ─────────────────────────────  PART 2  ───────────────────────────── */}
+      <h2>Part 2 · Two-qubit gates</h2>
+
+      <h3>CNOT (controlled-NOT)</h3>
+
+      <p>
+        Two-qubit gate: control qubit, target qubit. Flips the
+        target if and only if the control is{" "}
+        <InlineMath math="|1\rangle" />.
+      </p>
+      <BlockMath math="\mathrm{CNOT} = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0 \end{pmatrix}" />
+
+      <p>
+        in the basis{" "}
+        <InlineMath math="\{|00\rangle, |01\rangle, |10\rangle, |11\rangle\}" />.
+        Effect:
+      </p>
+      <ul>
+        <li>
+          <InlineMath math="|00\rangle \to |00\rangle" />.
+        </li>
+        <li>
+          <InlineMath math="|01\rangle \to |01\rangle" />.
+        </li>
+        <li>
+          <InlineMath math="|10\rangle \to |11\rangle" />.
+        </li>
+        <li>
+          <InlineMath math="|11\rangle \to |10\rangle" />.
+        </li>
+      </ul>
+
+      <p>
+        CNOT is the workhorse two-qubit gate. It can{" "}
+        <em>create</em> entanglement: starting from{" "}
+        <InlineMath math="(H \otimes I)|00\rangle = |+\rangle|0\rangle" />,
+        applying CNOT gives{" "}
+        <InlineMath math="\mathrm{CNOT}(|+\rangle|0\rangle) = (|00\rangle + |11\rangle)/\sqrt 2 = |\Phi^+\rangle" />,
+        the Bell state. So <em>two gates suffice</em> to make a
+        Bell pair.
+      </p>
+
+      <h3>Other two-qubit gates</h3>
+
+      <ul>
+        <li>
+          <strong>Controlled-Z (CZ)</strong>: flip phase of{" "}
+          <InlineMath math="|11\rangle" />, leave others.
+          Symmetric in control/target.
+        </li>
+        <li>
+          <strong>SWAP</strong>: exchange the two qubits.
+          Decomposes as 3 CNOTs.
+        </li>
+        <li>
+          <strong>iSWAP</strong>: SWAP with extra phases.
+          Native to some superconducting platforms.
+        </li>
+        <li>
+          <strong>Toffoli (CCNOT)</strong>: 3-qubit gate.
+          Flips target iff both controls are 1. Universal for
+          classical reversible computing.
+        </li>
+      </ul>
+
+      {/* ─────────────────────────────  PART 3  ───────────────────────────── */}
+      <h2>Part 3 · Quantum circuits</h2>
+
+      <p>
+        A quantum circuit is a sequence of gates applied to a
+        register of qubits. Conventionally drawn left-to-right
+        in time, with horizontal lines for qubits and boxes for
+        gates.
+      </p>
+
+      <p>
+        Bell-state circuit:
+      </p>
+      <BlockMath math="|0\rangle \xrightarrow{H} \tfrac{1}{\sqrt 2}(|0\rangle + |1\rangle), \quad |0\rangle \to |0\rangle" />
+
+      <p>
+        then CNOT (top is control, bottom is target):
+      </p>
+      <BlockMath math="\tfrac{1}{\sqrt 2}(|00\rangle + |10\rangle) \xrightarrow{\mathrm{CNOT}} \tfrac{1}{\sqrt 2}(|00\rangle + |11\rangle) = |\Phi^+\rangle." />
+
+      <p>
+        Two gates → a maximally entangled state. From the
+        Bell state, the other three Bell states can be made by
+        applying I, X, Z, XZ to one qubit:
+      </p>
+      <BlockMath math="(I \otimes I) |\Phi^+\rangle, (I \otimes X)|\Phi^+\rangle, (I \otimes Z)|\Phi^+\rangle, (I \otimes XZ)|\Phi^+\rangle." />
+
+      <p>
+        give the four Bell states. Two-qubit Hilbert space is
+        spanned by them.
+      </p>
+
+      <Pitfall>
+        Quantum circuits are <em>reversible</em> (gates are
+        unitary). You can't have an "OR gate" or "AND gate"
+        directly — those aren't reversible classically. Quantum
+        analogs are constructed via Toffoli or other tricks
+        that preserve information.
+      </Pitfall>
+
+      {/* ─────────────────────────────  PART 4  ───────────────────────────── */}
+      <h2>Part 4 · Universal gate sets</h2>
+
+      <Callout title="Universal gate set">
+        A set of gates is <strong>universal</strong> if any
+        unitary on <InlineMath math="n" /> qubits can be
+        approximated to arbitrary precision by a finite
+        sequence of gates from the set.
+      </Callout>
+
+      <p>
+        Standard universal sets:
+      </p>
+
+      <ul>
+        <li>
+          <strong>Clifford + T</strong>: the Clifford group
+          (Pauli + Hadamard + S + CNOT) is exactly NOT universal —
+          it's classically simulatable (Gottesman-Knill
+          theorem). Add T (or any single non-Clifford
+          single-qubit gate) and you become universal.
+        </li>
+        <li>
+          <strong>Toffoli + Hadamard</strong>: Shor and Aaronson
+          showed this works.
+        </li>
+        <li>
+          <strong>Any 2-qubit entangling gate + arbitrary
+          single-qubit gates</strong>.
+        </li>
+      </ul>
+
+      <p>
+        The Clifford+T set is the standard target for
+        fault-tolerant QC, because Clifford operations are
+        easy in topological / surface codes, and T-gate "magic
+        state distillation" is the bottleneck. Reducing T-gate
+        counts is a major optimisation goal.
+      </p>
+
+      <h3>Solovay–Kitaev theorem</h3>
+
+      <p>
+        Any single-qubit unitary can be approximated to within{" "}
+        <InlineMath math="\varepsilon" /> using{" "}
+        <InlineMath math="O(\log^c(1/\varepsilon))" /> gates from
+        a fixed universal set, for some{" "}
+        <InlineMath math="c \in [3, 4]" />. Polylogarithmic
+        compilation overhead — efficient.
+      </p>
+
+      <p>
+        Practical compilers (Qiskit, Cirq, etc.) implement
+        Solovay-Kitaev or improved variants to map abstract
+        algorithms to a target hardware gate set.
+      </p>
+
+      {/* ─────────────────────────────  PART 5  ───────────────────────────── */}
+      <h2>Part 5 · Circuit identities</h2>
+
+      <p>
+        Useful equivalences for simplifying circuits:
+      </p>
+
+      <ul>
+        <li>
+          <InlineMath math="H X H = Z" />,{" "}
+          <InlineMath math="H Z H = X" />: Hadamard exchanges X
+          and Z.
+        </li>
+        <li>
+          <InlineMath math="H Y H = -Y" />.
+        </li>
+        <li>
+          <InlineMath math="X X = Y Y = Z Z = H H = I" />:
+          self-inverses.
+        </li>
+        <li>
+          <InlineMath math="X Y = i Z" />,{" "}
+          <InlineMath math="Y Z = i X" />,{" "}
+          <InlineMath math="Z X = i Y" />.
+        </li>
+        <li>
+          <InlineMath math="\mathrm{CNOT}_{12} \mathrm{CNOT}_{12} = I" />:
+          self-inverse.
+        </li>
+        <li>
+          SWAP = three CNOTs (alternate direction).
+        </li>
+      </ul>
+
+      <p>
+        These identities are used in compiling and optimising
+        circuits. Reducing depth (number of layers) is
+        critical for noisy intermediate-scale (NISQ) devices.
+      </p>
+
+      <h3>Decomposing arbitrary unitaries</h3>
+
+      <p>
+        Any single-qubit unitary can be written as
+      </p>
+      <BlockMath math="U = e^{i\alpha} R_z(\beta) R_y(\gamma) R_z(\delta)" />
+
+      <p>
+        — the Z-Y-Z decomposition. Two parameters for direction,
+        two for phase, four total real numbers (matching{" "}
+        <InlineMath math="U(2)" /> dimension).
+      </p>
+
+      <p>
+        Any 2-qubit unitary needs ≤ 3 CNOTs and a number of
+        single-qubit rotations (KAK decomposition). General{" "}
+        <InlineMath math="n" />-qubit unitary needs{" "}
+        <InlineMath math="O(4^n)" /> elementary gates in the
+        worst case — so general circuits aren't efficient. The
+        trick of QC is finding{" "}
+        <em>useful</em> unitaries that admit short
+        decompositions.
+      </p>
+
+      {/* ─────────────────────────────  PART 6  ───────────────────────────── */}
+      <h2>Part 6 · Why this matters</h2>
+
+      <ul>
+        <li>
+          <strong>Quantum programming.</strong> Real quantum
+          hardware exposes a fixed gate set (typically{" "}
+          <InlineMath math="\{H, S, T, \mathrm{CNOT}\}" /> or
+          variants). Algorithms get compiled into sequences of
+          these gates by software (Qiskit, Cirq, t|ket⟩).
+        </li>
+        <li>
+          <strong>Error rates per gate.</strong> Current
+          superconducting hardware achieves{" "}
+          <InlineMath math="\sim 10^{-3}" /> single-qubit error
+          rate and{" "}
+          <InlineMath math="\sim 10^{-2}" /> two-qubit error
+          rate. Far from fault-tolerant. The race is to
+          improve gate fidelities and qubit counts
+          simultaneously.
+        </li>
+        <li>
+          <strong>Depth optimization.</strong> Circuits must
+          fit within coherence times. Compiling a Shor's
+          algorithm circuit for, say, 2048-bit RSA requires
+          billions of gates — vastly beyond current capability.
+          Optimization is critical.
+        </li>
+        <li>
+          <strong>Variational quantum algorithms (VQE, QAOA).</strong>{" "}
+          Modern NISQ-era algorithms parametrise circuits and
+          tune parameters classically. Single-qubit rotation
+          gates with classical parameters are the building
+          block.
+        </li>
+      </ul>
+
+      <p>
+        Next chapter: quantum algorithms. Deutsch-Jozsa,
+        Grover's search, and the Quantum Fourier Transform —
+        the building blocks of every quantum speedup.
+      </p>
+    </>
+  );
+}
+
+// ════════════════════════════════════════════════════════════
+// Quiz
+// ════════════════════════════════════════════════════════════
+
+export const quiz: QuizQuestion[] = [
+  {
+    prompt:
+      "The Hadamard gate $H$ acts on the computational basis as…",
+    options: [
+      "$H|0\\rangle = |1\\rangle, H|1\\rangle = |0\\rangle$",
+      "$H|0\\rangle = |+\\rangle, H|1\\rangle = |-\\rangle$",
+      "$H|0\\rangle = |0\\rangle, H|1\\rangle = -|1\\rangle$",
+      "$H|0\\rangle = i|0\\rangle, H|1\\rangle = -i|1\\rangle$",
+    ],
+    correct: 1,
+    explanation:
+      "$H|0\\rangle = (|0\\rangle + |1\\rangle)/\\sqrt 2 = |+\\rangle$. Maps computational to Hadamard basis. Used to create superpositions.",
+  },
+  {
+    prompt:
+      "CNOT acting on $|+\\rangle|0\\rangle$ gives…",
+    options: [
+      "$|+\\rangle|0\\rangle$ (no change)",
+      "$(|00\\rangle + |11\\rangle)/\\sqrt 2$ — a Bell state",
+      "$|0\\rangle|0\\rangle$",
+      "an error",
+    ],
+    correct: 1,
+    explanation:
+      "$|+\\rangle|0\\rangle = (|00\\rangle + |10\\rangle)/\\sqrt 2$. CNOT flips target when control is 1: $\\to (|00\\rangle + |11\\rangle)/\\sqrt 2 = |\\Phi^+\\rangle$. Bell state from two gates.",
+  },
+  {
+    prompt:
+      "Which gate set is **not** universal?",
+    options: [
+      "Clifford + T",
+      "Hadamard + Toffoli",
+      "Just Clifford gates (Pauli + H + S + CNOT)",
+      "Any entangling 2-qubit + arbitrary 1-qubit gates",
+    ],
+    correct: 2,
+    explanation:
+      "The Clifford group alone is classically simulable (Gottesman-Knill). Adding any non-Clifford single-qubit gate (e.g. T) makes it universal.",
+  },
+  {
+    prompt:
+      "By Solovay-Kitaev, single-qubit unitaries can be approximated to error $\\varepsilon$ using…",
+    options: [
+      "$O(1)$ gates",
+      "$O(1/\\varepsilon)$ gates",
+      "$O(\\log^c (1/\\varepsilon))$ gates for some constant $c$",
+      "$O(\\varepsilon^{-2})$ gates",
+    ],
+    correct: 2,
+    explanation:
+      "Polylogarithmic compilation overhead. Specifically $c \\in [3, 4]$. Means efficient compilation from arbitrary unitaries to a fixed universal gate set.",
+  },
+  {
+    prompt:
+      "$X X = ?$",
+    options: ["$X$", "$0$", "$I$", "$-X$"],
+    correct: 2,
+    explanation:
+      "Pauli gates square to the identity: $X^2 = Y^2 = Z^2 = I$. They're self-inverse.",
+  },
+];

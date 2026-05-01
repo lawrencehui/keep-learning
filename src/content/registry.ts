@@ -67,6 +67,13 @@ const loaders: Record<string, ChapterContentLoader> = {
   "qm-2/spin": () => import("./qm-2/spin"),
   "qm-2/entanglement": () => import("./qm-2/entanglement"),
   "qm-2/perturbation": () => import("./qm-2/perturbation"),
+  "quantum-computing/qubits": () => import("./quantum-computing/qubits"),
+  "quantum-computing/gates": () => import("./quantum-computing/gates"),
+  "quantum-computing/algorithms": () =>
+    import("./quantum-computing/algorithms"),
+  "quantum-computing/shor": () => import("./quantum-computing/shor"),
+  "quantum-computing/qec": () => import("./quantum-computing/qec"),
+  "quantum-computing/pqc": () => import("./quantum-computing/pqc"),
 };
 
 /** Returns the registered chapter (lazy body + quiz loader) or null if no content yet. */
