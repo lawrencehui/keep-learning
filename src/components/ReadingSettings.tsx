@@ -59,7 +59,7 @@ export function ReadingSettings() {
           ref={popoverRef}
           role="dialog"
           aria-label="Reading settings"
-          className="absolute right-0 mt-2 w-[min(18rem,calc(100vw-1.5rem))] z-50 card p-3 space-y-4 shadow-2xl"
+          className="absolute right-0 mt-2 w-[min(18rem,calc(100vw-1.5rem))] z-50 card !bg-ink-900/85 p-3 space-y-4 shadow-2xl"
         >
           <Section title="Font">
             <div className="grid grid-cols-2 gap-1.5">
