@@ -15,7 +15,14 @@ const FONT_OPTIONS: FontKey[] = ["newsreader", "lora", "sans", "system"];
 const SIZE_OPTIONS: SizeKey[] = ["sm", "md", "lg", "xl"];
 const LINE_HEIGHT_OPTIONS: LineHeightKey[] = ["snug", "normal", "relaxed"];
 
-export function ReadingSettings() {
+interface Props {
+  /** Where to open the popover relative to the trigger.
+   *  "down" (default) for top-bar-style mounts; "up" for footer-style
+   *  mounts where opening downward would clip below the viewport. */
+  direction?: "up" | "down";
+}
+
+export function ReadingSettings({ direction = "down" }: Props) {
   const [open, setOpen] = useState(false);
   const { settings, setFont, setSize, setLineHeight } = useReadingSettings();
   const popoverRef = useRef<HTMLDivElement>(null);
@@ -59,7 +66,9 @@ export function ReadingSettings() {
           ref={popoverRef}
           role="dialog"
           aria-label="Reading settings"
-          className="absolute right-0 mt-2 w-[min(18rem,calc(100vw-1.5rem))] z-50 card !bg-ink-900/85 p-3 space-y-4 shadow-2xl"
+          className={`absolute right-0 ${
+            direction === "up" ? "bottom-full mb-2" : "mt-2"
+          } w-[min(18rem,calc(100vw-1.5rem))] z-50 card !bg-ink-900/85 p-3 space-y-4 shadow-2xl`}
         >
           <Section title="Font">
             <div className="grid grid-cols-2 gap-1.5">
