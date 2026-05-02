@@ -86,6 +86,13 @@ const loaders: Record<string, ChapterContentLoader> = {
   "matrix-calc/matrix-derivatives": () =>
     import("./matrix-calc/matrix-derivatives"),
   "matrix-calc/least-squares": () => import("./matrix-calc/least-squares"),
+  "prob-foundations/axioms-bayes": () =>
+    import("./prob-foundations/axioms-bayes"),
+  "prob-foundations/discrete-continuous": () =>
+    import("./prob-foundations/discrete-continuous"),
+  "prob-foundations/joint-distributions": () =>
+    import("./prob-foundations/joint-distributions"),
+  "prob-foundations/mgf-clt": () => import("./prob-foundations/mgf-clt"),
 };
 
 /** Returns the registered chapter (lazy body + quiz loader) or null if no content yet. */
