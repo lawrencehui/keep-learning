@@ -100,6 +100,13 @@ const loaders: Record<string, ChapterContentLoader> = {
     import("./stat-inference/hypothesis-testing"),
   "stat-inference/bayesian-inference": () =>
     import("./stat-inference/bayesian-inference"),
+  "ml-fundamentals/linear-regression": () =>
+    import("./ml-fundamentals/linear-regression"),
+  "ml-fundamentals/logistic-softmax": () =>
+    import("./ml-fundamentals/logistic-softmax"),
+  "ml-fundamentals/pca": () => import("./ml-fundamentals/pca"),
+  "ml-fundamentals/loss-functions": () =>
+    import("./ml-fundamentals/loss-functions"),
 };
 
 /** Returns the registered chapter (lazy body + quiz loader) or null if no content yet. */
