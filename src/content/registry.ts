@@ -110,6 +110,15 @@ const loaders: Record<string, ChapterContentLoader> = {
   "stoch-calc/brownian-motion": () => import("./stoch-calc/brownian-motion"),
   "stoch-calc/ito": () => import("./stoch-calc/ito"),
   "stoch-calc/hawkes": () => import("./stoch-calc/hawkes"),
+  "microstructure/lob-mechanics": () =>
+    import("./microstructure/lob-mechanics"),
+  "microstructure/market-impact": () =>
+    import("./microstructure/market-impact"),
+  "microstructure/order-flow": () => import("./microstructure/order-flow"),
+  "microstructure/optimal-execution": () =>
+    import("./microstructure/optimal-execution"),
+  "microstructure/market-making": () =>
+    import("./microstructure/market-making"),
 };
 
 /** Returns the registered chapter (lazy body + quiz loader) or null if no content yet. */
