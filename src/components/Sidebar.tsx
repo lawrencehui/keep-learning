@@ -55,7 +55,7 @@ export function Sidebar({
           <span aria-hidden="true">ψ</span>
         </NavLink>
         <div className="mt-auto flex flex-col items-center gap-1">
-          <ReadingSettings direction="up" />
+          <ReadingSettings direction="up" align="left" />
           <ThemeToggle />
         </div>
       </aside>
@@ -190,7 +190,7 @@ export function Sidebar({
       </nav>
 
       <div className="px-3 py-3 border-t border-ink-800 flex items-center gap-1 safe-pb">
-        <ReadingSettings direction="up" />
+        <ReadingSettings direction="up" align="left" />
         <ThemeToggle />
       </div>
     </div>

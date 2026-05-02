@@ -16,13 +16,20 @@ const SIZE_OPTIONS: SizeKey[] = ["sm", "md", "lg", "xl"];
 const LINE_HEIGHT_OPTIONS: LineHeightKey[] = ["snug", "normal", "relaxed"];
 
 interface Props {
-  /** Where to open the popover relative to the trigger.
-   *  "down" (default) for top-bar-style mounts; "up" for footer-style
-   *  mounts where opening downward would clip below the viewport. */
+  /** Vertical: "down" opens below the trigger, "up" opens above.
+   *  Use "up" when the trigger sits at the bottom of the viewport. */
   direction?: "up" | "down";
+  /** Horizontal: "right" anchors the popover's right edge to the
+   *  trigger's right edge (extends leftward — good when trigger is
+   *  near right of viewport). "left" extends rightward — good when
+   *  trigger is near left of viewport. */
+  align?: "left" | "right";
 }
 
-export function ReadingSettings({ direction = "down" }: Props) {
+export function ReadingSettings({
+  direction = "down",
+  align = "right",
+}: Props) {
   const [open, setOpen] = useState(false);
   const { settings, setFont, setSize, setLineHeight } = useReadingSettings();
   const popoverRef = useRef<HTMLDivElement>(null);
@@ -66,7 +73,7 @@ export function ReadingSettings({ direction = "down" }: Props) {
           ref={popoverRef}
           role="dialog"
           aria-label="Reading settings"
-          className={`absolute right-0 ${
+          className={`absolute ${align === "left" ? "left-0" : "right-0"} ${
             direction === "up" ? "bottom-full mb-2" : "mt-2"
           } w-[min(18rem,calc(100vw-1.5rem))] z-50 card !bg-ink-900/85 p-3 space-y-4 shadow-2xl`}
         >
