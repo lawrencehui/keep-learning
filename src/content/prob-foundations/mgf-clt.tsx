@@ -43,7 +43,7 @@ export default function MgfCltBody() {
             author: "Larry Wasserman",
             duration: "Reading",
             url: "https://link.springer.com/book/10.1007/978-0-387-21736-9",
-            note: "Convergence concepts in tighter form. Useful prep for Tier V's MLE asymptotics.",
+            note: "Convergence concepts in tighter form. Useful prep for Module V's MLE asymptotics.",
           },
         ]}
       />
@@ -170,7 +170,7 @@ export default function MgfCltBody() {
         <strong>characteristic function</strong>{" "}
         <InlineMath math="\varphi_X(t) = E[e^{itX}]" /> always
         exists and serves the same role. Used for Hawkes
-        processes (Tier VII) and option pricing in finance.
+        processes (Module VII) and option pricing in finance.
       </Pitfall>
 
       {/* ─────────────────────────────  PART 3  ───────────────────────────── */}
@@ -358,7 +358,7 @@ export default function MgfCltBody() {
       </p>
 
       <p>
-        In Tier II we used the spectral gap to characterise
+        In Module II we used the spectral gap to characterise
         how fast a Markov chain mixes. Now we have the
         probabilistic vocabulary to make the same statement
         rigorously: time-averages along a single sample path
@@ -399,8 +399,8 @@ export default function MgfCltBody() {
       </ul>
 
       <p>
-        Tier IV is now complete. We have the language and
-        tools of probability. Tier V picks up{" "}
+        Module IV is now complete. We have the language and
+        tools of probability. Module V picks up{" "}
         <em>statistical inference</em>: given data, how do we
         estimate parameters, quantify uncertainty, and test
         hypotheses?

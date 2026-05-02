@@ -179,7 +179,7 @@ export default function MleBody() {
       <h3>Worked example: linear regression</h3>
 
       <p>
-        Recap from Tier III: assume{" "}
+        Recap from Module III: assume{" "}
         <InlineMath math="y_i = \mathbf{x}_i^T \boldsymbol\beta + \varepsilon_i" />,{" "}
         <InlineMath math="\varepsilon_i \sim N(0, \sigma^2)" />.
         The MLE for{" "}

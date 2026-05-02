@@ -409,7 +409,7 @@ export default function ModularBody() {
       <p>
         Solving simultaneously is "the same as" working in the
         product. We'll see this notion of "isomorphism" properly in
-        Tier X (Abstract Algebra).
+        Module X (Abstract Algebra).
       </p>
 
       {/* ─────────────────────────────  PART 6  ───────────────────────────── */}
@@ -437,7 +437,7 @@ export default function ModularBody() {
       </p>
 
       <p>
-        We'll skim past it here and revisit when needed (Tier X).
+        We'll skim past it here and revisit when needed (Module X).
         The point: arithmetic mod <InlineMath math="p" /> has rich
         algebraic structure, including a notion of "square roots"
         and reciprocity laws connecting different primes.

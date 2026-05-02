@@ -100,7 +100,7 @@ export default function OneDSystemsBody() {
       <p>
         These wavefunctions are exactly the standing waves on a
         string of length{" "}
-        <InlineMath math="L" /> fixed at both ends (Tier XIII).
+        <InlineMath math="L" /> fixed at both ends (Module XIII).
         The integer <InlineMath math="n" /> counts the harmonic.
         For any 1D confined system, the eigenfunctions are wavy
         and the energies are discrete — direct analogue of

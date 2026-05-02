@@ -50,7 +50,7 @@ export default function TensorBody() {
             author: "Nielsen / Chuang",
             duration: "Reading",
             url: "https://en.wikipedia.org/wiki/Quantum_Computation_and_Quantum_Information",
-            note: "Tensor products in QC. The book we'll use heavily in Tier XVI.",
+            note: "Tensor products in QC. The book we'll use heavily in Module XVI.",
           },
           {
             title: "Differential forms (Bachman)",
@@ -255,7 +255,7 @@ export default function TensorBody() {
         has determinant <InlineMath math="1/2 \neq 0" />, so it's
         entangled — it cannot be written as a product of two
         single-qubit states. Measurement of one qubit determines
-        the other instantly. Bell's theorem (Tier XV) shows this
+        the other instantly. Bell's theorem (Module XV) shows this
         is genuinely non-classical.
       </p>
 
@@ -357,7 +357,7 @@ export default function TensorBody() {
         Stokes's theorem on manifolds, integration on Lie groups,
         and topology of smooth manifolds (de Rham cohomology) all
         speak this language. We met fragments of it in Vector
-        Calculus (Tier IV).
+        Calculus (Module IV).
       </p>
 
       {/* ─────────────────────────────  PART 5  ───────────────────────────── */}

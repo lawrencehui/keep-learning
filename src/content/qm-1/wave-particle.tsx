@@ -293,7 +293,7 @@ export default function WaveParticleBody() {
       <h2>Part 6 · The double slit, revisited</h2>
 
       <p>
-        Young's double-slit (Tier XIII) gave interference for
+        Young's double-slit (Module XIII) gave interference for
         light, proving its wave nature. Repeat with electrons
         (Jönsson 1961, Tonomura 1989):
       </p>

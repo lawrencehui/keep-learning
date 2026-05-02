@@ -112,7 +112,7 @@ export default function SpinBody() {
         Discrete spectrum from boundary conditions; falls out
         algebraically using ladder operators{" "}
         <InlineMath math="\hat L_\pm = \hat L_x \pm i \hat L_y" />.
-        Same kind of structure as the harmonic oscillator (Tier
+        Same kind of structure as the harmonic oscillator (Module
         XIV). The ladder structure is{" "}
         <em>universal</em> for systems with{" "}
         <InlineMath math="SU(2)" /> /{" "}

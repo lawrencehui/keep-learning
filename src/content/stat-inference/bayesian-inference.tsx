@@ -15,7 +15,7 @@ export default function BayesianInferenceBody() {
         randomness as repeated experiments. Bayesians treat
         parameters as random variables and condition on the
         data they actually observed. The same Bayes' theorem
-        from Tier IV is the engine, but now the parameters
+        from Module IV is the engine, but now the parameters
         are what we want to update beliefs about. This shift
         unifies regularised regression, Bayesian linear
         regression, hierarchical models, and most of probabilistic
@@ -381,7 +381,7 @@ export default function BayesianInferenceBody() {
       </ul>
 
       <p>
-        Spectral gap (Tier II) determines mixing time. Diagnostics
+        Spectral gap (Module II) determines mixing time. Diagnostics
         (effective sample size, R-hat) check whether the
         chain has converged.
       </p>
@@ -438,10 +438,10 @@ export default function BayesianInferenceBody() {
       </ul>
 
       <p>
-        Tier V is now complete. We have estimation (MLE,
+        Module V is now complete. We have estimation (MLE,
         MAP, Bayesian), uncertainty quantification (Fisher,
         bootstrap, credible intervals), and hypothesis tests.
-        Tier VI uses these tools to build the standard ML
+        Module VI uses these tools to build the standard ML
         models — linear regression, logistic regression, PCA
         — all from a probabilistic-first perspective.
       </p>

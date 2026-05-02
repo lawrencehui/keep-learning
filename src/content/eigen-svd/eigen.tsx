@@ -101,7 +101,7 @@ export default function EigenBody() {
       <p>
         The <strong>eigenspace</strong>{" "}
         <InlineMath math="E_\lambda" /> is a subspace (it's a
-        null space — Tier I, Chapter 3). Its dimension is the{" "}
+        null space — Module I, Chapter 3). Its dimension is the{" "}
         <strong>geometric multiplicity</strong> of{" "}
         <InlineMath math="\lambda" />.
       </p>
@@ -379,7 +379,7 @@ export default function EigenBody() {
         <InlineMath math="A^*" /> is the conjugate transpose.
         All the spectral-theorem statements carry over (real
         eigenvalues, unitary diagonalisation). Hermitian
-        operators are the basis of QM (Tier XV in the quantum
+        operators are the basis of QM (Module XV in the quantum
         pathway), but here we mostly work with real symmetric
         matrices.
       </p>
@@ -400,7 +400,7 @@ export default function EigenBody() {
       <p>
         So "0 is an eigenvalue" is just another way of saying{" "}
         <InlineMath math="A" /> is singular. Yet another item
-        for the Invertible Matrix Theorem from Tier I.
+        for the Invertible Matrix Theorem from Module I.
       </p>
 
       <h3>Repeated eigenvalues</h3>
@@ -437,7 +437,7 @@ export default function EigenBody() {
           <strong>PCA</strong>: principal components are the
           eigenvectors of the covariance matrix, ordered by
           eigenvalue. The biggest eigenvalue ↔ the direction of
-          maximum variance. We'll do this in Tier VI.
+          maximum variance. We'll do this in Module VI.
         </li>
         <li>
           <strong>Stability of dynamical systems</strong>:{" "}
@@ -445,7 +445,7 @@ export default function EigenBody() {
           is stable iff all eigenvalues of{" "}
           <InlineMath math="A" /> have negative real part.
           Same idea sets the criticality of Hawkes processes
-          (Tier VII): branching ratio{" "}
+          (Module VII): branching ratio{" "}
           <InlineMath math="\rho(\Phi) < 1" />.
         </li>
         <li>

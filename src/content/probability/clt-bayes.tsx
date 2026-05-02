@@ -498,15 +498,15 @@ export default function CltBayesBody() {
       </ul>
 
       <p>
-        That closes Tier VII. We've built the probabilistic
+        That closes Module VII. We've built the probabilistic
         foundations that quantum mechanics rests on: random
         variables, distributions, the central limit theorem, and
-        Bayesian updating. The next tier (Complex Analysis) gives
+        Bayesian updating. The next module (Complex Analysis) gives
         us the rest of the analytic machinery — contour integrals
         and the Fourier transform from a complex-analytic
-        perspective — and after that comes Real Analysis (Tier
+        perspective — and after that comes Real Analysis (Module
         IX), Abstract Algebra (X), Advanced Linear Algebra (XI),
-        and finally physics. Each tier sits naturally on the
+        and finally physics. Each module sits naturally on the
         previous; we are getting steadily closer to the quantum
         chapters.
       </p>

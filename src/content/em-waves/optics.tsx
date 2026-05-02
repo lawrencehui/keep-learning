@@ -52,7 +52,7 @@ export default function OpticsBody() {
             author: "Richard Feynman",
             duration: "Reading",
             url: "https://en.wikipedia.org/wiki/QED:_The_Strange_Theory_of_Light_and_Matter",
-            note: "Pop-science but mathematically honest treatment of quantum optics. Worth reading once Tier XIV is started.",
+            note: "Pop-science but mathematically honest treatment of quantum optics. Worth reading once Module XIV is started.",
           },
           {
             title: "Veritasium — series on quantum optics",
@@ -337,7 +337,7 @@ export default function OpticsBody() {
         at 45° between them — counter-intuitively — passes some
         light. Each polariser projects, and projections don't
         commute. This is exactly how spin-1/2 measurements behave
-        in quantum mechanics; we'll meet it in Tier XV.
+        in quantum mechanics; we'll meet it in Module XV.
       </p>
 
       {/* ─────────────────────────────  PART 6  ───────────────────────────── */}
@@ -458,15 +458,15 @@ export default function OpticsBody() {
           entangled photon pairs, and squeezed light are the
           tools of quantum cryptography (BB84), quantum
           teleportation, and quantum computing with photonic
-          qubits. We meet some of these in Tier XVI.
+          qubits. We meet some of these in Module XVI.
         </li>
       </ul>
 
       <p>
-        That closes Tier XIII. We've gone from Maxwell's
+        That closes Module XIII. We've gone from Maxwell's
         equations to electromagnetic waves to optics, and ended
         with the empirical phenomena that broke classical
-        physics. The next module — <strong>Tier XIV: Quantum
+        physics. The next module — <strong>Module XIV: Quantum
         Mechanics I</strong> — meets the puzzles head-on:
         Schrödinger's equation, wavefunctions, and the canonical
         1D systems (infinite well, harmonic oscillator,

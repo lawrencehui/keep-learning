@@ -550,7 +550,7 @@ export default function IntegralsBody() {
         </li>
         <li>
           <strong>Differential equations.</strong> Solving an ODE often
-          reduces to "find the antiderivative." The methods in Tier V
+          reduces to "find the antiderivative." The methods in Module V
           all rely on FTC and the techniques in this chapter.
         </li>
         <li>
@@ -562,7 +562,7 @@ export default function IntegralsBody() {
           integration there's no quantum theory.
         </li>
         <li>
-          <strong>Fourier analysis</strong> (Tier VIII) decomposes
+          <strong>Fourier analysis</strong> (Module VIII) decomposes
           functions into sines and cosines via integrals. Quantum
           information uses Fourier transforms over finite groups; the
           Quantum Fourier Transform is the heart of Shor's algorithm.

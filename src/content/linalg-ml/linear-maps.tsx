@@ -340,7 +340,7 @@ export default function LinearMapsBody() {
       <p>
         We won't grind through every step — Strang covers it
         beautifully — but the structure is worth knowing
-        because it foreshadows decompositions in Tier II.
+        because it foreshadows decompositions in Module II.
       </p>
 
       <h3>Gaussian elimination</h3>

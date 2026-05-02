@@ -43,7 +43,7 @@ export default function JointDistributionsBody() {
             author: "Deisenroth, Faisal, Ong",
             duration: "Reading",
             url: "https://mml-book.com/",
-            note: "Multivariate Gaussian — same notation as we use; foundation for Tier VI's Bayesian linear regression.",
+            note: "Multivariate Gaussian — same notation as we use; foundation for Module VI's Bayesian linear regression.",
           },
         ]}
       />
@@ -365,7 +365,7 @@ export default function JointDistributionsBody() {
         Sum of independents = convolution of densities.
         Underlies the central limit theorem, the algebra of
         characteristic functions, and the Hawkes-process
-        kernel manipulations in Tier VII.
+        kernel manipulations in Module VII.
       </p>
 
       {/* ─────────────────────────────  PART 6  ───────────────────────────── */}

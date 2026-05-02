@@ -83,7 +83,7 @@ export default function DiagonalisationBody() {
       <h3>The change-of-basis reading</h3>
 
       <p>
-        Recall from Tier I, Chapter 4:{" "}
+        Recall from Module I, Chapter 4:{" "}
         <InlineMath math="P^{-1} A P" /> is the matrix of the
         same linear map in the basis of columns of{" "}
         <InlineMath math="P" />. Diagonalisation is just{" "}

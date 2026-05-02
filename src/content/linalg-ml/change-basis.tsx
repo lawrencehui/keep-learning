@@ -24,7 +24,7 @@ export default function ChangeBasisBody() {
       <p>
         This chapter sets up the language for switching between
         bases, which is the foundation for diagonalisation
-        (Tier II), PCA (Tier VI), normal modes in physics, and
+        (Module II), PCA (Module VI), normal modes in physics, and
         — closer to home — every "decorrelation" trick in
         machine learning.
       </p>
@@ -334,7 +334,7 @@ export default function ChangeBasisBody() {
       </Callout>
 
       <p>
-        Tier II's eigenvalue/SVD chapter is exactly the
+        Module II's eigenvalue/SVD chapter is exactly the
         mechanics for finding that basis. We don't compute
         anything new here — we just establish that{" "}
         <em>once you have an eigenbasis</em>{" "}
@@ -399,7 +399,7 @@ export default function ChangeBasisBody() {
       <ul>
         <li>
           <strong>Diagonalisation.</strong> Eigendecomposition
-          (Tier II) is{" "}
+          (Module II) is{" "}
           <InlineMath math="A = P D P^{-1}" />. The whole
           construction <em>is</em> a change of basis to the
           eigenbasis.
@@ -443,9 +443,9 @@ export default function ChangeBasisBody() {
       </ul>
 
       <p>
-        This closes Tier I. We now have the language: vectors
+        This closes Module I. We now have the language: vectors
         live in spaces, bases name them, linear maps move them,
-        and matrices are linear maps in coordinates. Tier II
+        and matrices are linear maps in coordinates. Module II
         will use this language to extract the spectral structure
         of a matrix — eigenvalues, SVD, projections — which is
         where the real ML and microstructure machinery starts.

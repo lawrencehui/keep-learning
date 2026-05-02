@@ -341,7 +341,7 @@ export default function MatrixDerivativesBody() {
         eigenvalue of{" "}
         <InlineMath math="X^T X" /> up by{" "}
         <InlineMath math="\lambda" />, killing the
-        ill-conditioning we worried about in Tier II's SVD
+        ill-conditioning we worried about in Module II's SVD
         chapter.
       </p>
 
@@ -359,7 +359,7 @@ export default function MatrixDerivativesBody() {
       <p>
         — the same structure as OLS, but with predictions{" "}
         <InlineMath math="\hat{\mathbf{p}}" /> instead of{" "}
-        <InlineMath math="X\boldsymbol\beta" />. Tier VI will
+        <InlineMath math="X\boldsymbol\beta" />. Module VI will
         revisit this.
       </p>
 
@@ -382,7 +382,7 @@ export default function MatrixDerivativesBody() {
         </li>
         <li>
           <strong>Statistical inference</strong>: MLE for
-          multivariate Gaussians (Tier V), Fisher information
+          multivariate Gaussians (Module V), Fisher information
           matrices (next module), Bayesian-linear-regression
           posteriors — all involve matrix derivatives.
         </li>

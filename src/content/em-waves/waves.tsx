@@ -26,7 +26,7 @@ export default function WavesBody() {
         phase velocity. These concepts are the conceptual bridge
         to quantum mechanics — wavefunctions in QM behave like
         classical waves, with extra ingredients we'll meet in
-        Tier XIV.
+        Module XIV.
       </p>
 
       <ReferenceResources
@@ -302,7 +302,7 @@ export default function WavesBody() {
       <BlockMath math="u(x, t) = \int \tilde u(k) \, e^{i(kx - \omega(k) t)} \, dk." />
 
       <p>
-        We met these tools in Tier V (Fourier and PDEs). The
+        We met these tools in Module V (Fourier and PDEs). The
         wave equation is precisely where they prove their worth:
         every wave problem decomposes into independent Fourier
         modes, each evolving as a simple harmonic in time.

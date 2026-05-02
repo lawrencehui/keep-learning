@@ -23,7 +23,7 @@ export default function DivisibilityBody() {
       <p>
         This module culminates in two practical algorithms — RSA and
         ECDSA — and a serious view of why both crumble under a
-        full-scale quantum computer (Shor's algorithm, in Tier XVI).
+        full-scale quantum computer (Shor's algorithm, in Module XVI).
         First, the foundations: divisibility, the Euclidean
         algorithm, and the structure of the primes.
       </p>
@@ -332,7 +332,7 @@ export default function DivisibilityBody() {
         <InlineMath math="6 = 2 \cdot 3 = (1 + \sqrt{-5})(1 - \sqrt{-5})" />,
         two factorisations into "primes" of that ring. Recovering
         unique factorisation in such rings was one of the
-        motivations for ideal theory and modern algebra (Tier X).
+        motivations for ideal theory and modern algebra (Module X).
       </Pitfall>
 
       <Exercise
@@ -422,7 +422,7 @@ export default function DivisibilityBody() {
           <strong>Quantum computing.</strong> Shor's algorithm for
           factoring uses period-finding, modular exponentiation,
           and the Quantum Fourier Transform. Every concept in this
-          chapter feeds into Shor's. We'll close the loop in Tier
+          chapter feeds into Shor's. We'll close the loop in Module
           XVI.
         </li>
       </ul>

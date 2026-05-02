@@ -205,7 +205,7 @@ export default function SvdBody() {
       <h2>Part 3 · Reading off the four subspaces</h2>
 
       <p>
-        SVD displays the four fundamental subspaces (Tier I,
+        SVD displays the four fundamental subspaces (Module I,
         Chapter 3) directly. Suppose the rank of{" "}
         <InlineMath math="A" /> is{" "}
         <InlineMath math="r" /> (the number of non-zero
@@ -437,7 +437,7 @@ export default function SvdBody() {
           <InlineMath math="X" /> (= eigenvectors of{" "}
           <InlineMath math="X^T X" />). Singular values are
           the standard deviations along each component
-          direction. We'll use this in Tier VI.
+          direction. We'll use this in Module VI.
         </li>
         <li>
           <strong>Recommender systems &amp; matrix
@@ -472,7 +472,7 @@ export default function SvdBody() {
         Next chapter: projections, Gram–Schmidt, and QR. These
         are the geometric/numerical tools behind least
         squares, and they prepare the way for the matrix
-        calculus and OLS derivation in Tier III.
+        calculus and OLS derivation in Module III.
       </p>
     </>
   );

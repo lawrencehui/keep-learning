@@ -78,7 +78,7 @@ export default function ShorBody() {
       <p>
         Suppose we want to factor a composite{" "}
         <InlineMath math="N = pq" /> (product of two large
-        primes — the RSA scenario from Tier VI). The classical
+        primes — the RSA scenario from Module VI). The classical
         bottleneck is factoring; the quantum trick is reducing
         factoring to period finding, then doing period finding
         fast on a quantum computer.
@@ -92,7 +92,7 @@ export default function ShorBody() {
       <BlockMath math="f(x) = a^x \bmod N." />
 
       <p>
-        This function is periodic — by Euler's theorem (Tier
+        This function is periodic — by Euler's theorem (Module
         VI), there's an{" "}
         <InlineMath math="r" /> (the order of{" "}
         <InlineMath math="a" /> mod{" "}

@@ -536,9 +536,9 @@ export default function ResiduesBody() {
       </ul>
 
       <p>
-        That closes Tier VIII. We've gone from "what's a complex
+        That closes Module VIII. We've gone from "what's a complex
         number?" to "compute hopeless integrals by tracking residues."
-        Three more math tiers (IX Real Analysis, X Abstract Algebra,
+        Three more math modules (IX Real Analysis, X Abstract Algebra,
         XI Advanced Linear Algebra) before we leave pure math for the
         physics journey toward quantum mechanics. Each of those gives
         another layer of formalism that quantum theory will use.

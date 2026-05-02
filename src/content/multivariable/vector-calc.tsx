@@ -471,7 +471,7 @@ export default function VectorCalcBody() {
         magnetism — Coulomb's law, the right-hand rule for solenoids,
         the speed of light, electromagnetic waves — drops out of these
         four equations plus the divergence and Stokes theorems. We'll
-        unpack this in Tier XIII.
+        unpack this in Module XIII.
       </p>
 
       {/* ─────────────────────────────  PART 7  ───────────────────────────── */}
@@ -520,10 +520,10 @@ export default function VectorCalcBody() {
       </ul>
 
       <p>
-        That closes Tier IV. The next module — Differential Equations
+        That closes Module IV. The next module — Differential Equations
         — applies the calculus we've now built to dynamical problems,
         and after that we'll get into the deeper math (number theory,
-        probability, complex analysis) and the physics tiers where
+        probability, complex analysis) and the physics modules where
         the journey towards quantum begins in earnest.
       </p>
     </>

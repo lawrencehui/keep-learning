@@ -111,7 +111,7 @@ export function ChapterPage() {
 
       <header className="mt-3 space-y-3 border-b border-ink-800 pb-6">
         <div className="text-xs uppercase tracking-[0.25em] text-accent-soft">
-          Tier {m.tier} · Chapter {idx + 1}
+          Module {m.tier} · Chapter {idx + 1}
         </div>
         <h1 className="font-serif italic text-3xl sm:text-4xl leading-tight">
           {c.title}

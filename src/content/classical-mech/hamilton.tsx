@@ -326,7 +326,7 @@ export default function HamiltonBody() {
         classical theory (informally) means promoting phase-space
         coordinates to operators on a Hilbert space and replacing
         Poisson brackets with commutators. We'll see it formally
-        in Tier XIV.
+        in Module XIV.
       </p>
 
       {/* ─────────────────────────────  PART 5  ───────────────────────────── */}
@@ -427,10 +427,10 @@ export default function HamiltonBody() {
       </ul>
 
       <p>
-        That closes Tier XII. We've now seen all three classical
+        That closes Module XII. We've now seen all three classical
         formulations: Newton (force-based), Lagrange (action-
         based), Hamilton (phase-space-based). The next module is{" "}
-        <strong>Tier XIII: Electromagnetism &amp; Waves</strong>,
+        <strong>Module XIII: Electromagnetism &amp; Waves</strong>,
         where Maxwell's equations are derived from a Lagrangian
         density and where the wave equation gives us our first
         physical look at concepts that quantum mechanics will

@@ -18,7 +18,7 @@ export default function PcaBody() {
         project the data onto them. PCA is everywhere — image
         compression, exploratory analysis, factor models in
         finance, latent-feature learning. And it's the same
-        eigendecomposition / SVD machinery from Tier II.
+        eigendecomposition / SVD machinery from Module II.
       </p>
 
       <ReferenceResources
@@ -103,7 +103,7 @@ export default function PcaBody() {
         Subsequent PCs are eigenvectors of{" "}
         <InlineMath math="\Sigma" /> ordered by decreasing
         eigenvalue, all mutually orthogonal (spectral theorem
-        from Tier II — symmetric matrix has orthonormal
+        from Module II — symmetric matrix has orthonormal
         eigenbasis).
       </p>
 
@@ -114,7 +114,7 @@ export default function PcaBody() {
         Numerically, computing SVD of{" "}
         <InlineMath math="X" /> directly is more stable than
         eigendecomposing{" "}
-        <InlineMath math="X^T X" /> (Tier II revisited:{" "}
+        <InlineMath math="X^T X" /> (Module II revisited:{" "}
         <InlineMath math="\kappa(X^T X) = \kappa(X)^2" />).
       </p>
 
@@ -182,7 +182,7 @@ export default function PcaBody() {
         This is the orthogonal projection onto the subspace
         spanned by the top{" "}
         <InlineMath math="k" /> PCs. By the Eckart–Young
-        theorem (Tier II), this is the{" "}
+        theorem (Module II), this is the{" "}
         <em>best</em> rank-<InlineMath math="k" />{" "}
         approximation in Frobenius norm:
       </p>

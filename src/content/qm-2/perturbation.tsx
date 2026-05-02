@@ -400,8 +400,8 @@ export default function PerturbationBody() {
       </ul>
 
       <p>
-        That closes Tier XV. The next module —{" "}
-        <strong>Tier XVI: Quantum Information &amp; Computing</strong>{" "}
+        That closes Module XV. The next module —{" "}
+        <strong>Module XVI: Quantum Information &amp; Computing</strong>{" "}
         — applies everything we've built. Qubits are spin-1/2
         systems; gates are unitary operators; measurements use
         the Born rule; entanglement is the resource;

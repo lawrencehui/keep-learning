@@ -10,7 +10,7 @@ export default function QubitsBody() {
   return (
     <>
       <p>
-        We've arrived at the destination. Tier XVI applies the
+        We've arrived at the destination. Module XVI applies the
         full toolkit — linear algebra, complex Hilbert space,
         spin-1/2, entanglement, number theory, abstract algebra
         — to quantum information and computing. By the end of
@@ -23,7 +23,7 @@ export default function QubitsBody() {
       <p>
         This first chapter is the foundation: the qubit, the
         Bloch sphere, and the quantum-information re-statement
-        of Tier XV's spin-1/2 mathematics.
+        of Module XV's spin-1/2 mathematics.
       </p>
 
       <ReferenceResources
@@ -310,7 +310,7 @@ export default function QubitsBody() {
       </p>
 
       <p>
-        Examples (Tier XV):
+        Examples (Module XV):
       </p>
       <ul>
         <li>

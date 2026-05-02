@@ -486,9 +486,9 @@ export default function LebesgueBody() {
       </ul>
 
       <p>
-        That closes Tier IX. Real analysis is the rigorous backbone
-        of every later math/physics tier. The next module —{" "}
-        <strong>Tier X: Abstract Algebra</strong> — turns from analysis
+        That closes Module IX. Real analysis is the rigorous backbone
+        of every later math/physics module. The next module —{" "}
+        <strong>Module X: Abstract Algebra</strong> — turns from analysis
         to <em>structural</em> mathematics: groups, rings, fields. It's
         the algebraic complement to analytic thinking, and it's where
         the deeper number-theoretic results behind cryptography and

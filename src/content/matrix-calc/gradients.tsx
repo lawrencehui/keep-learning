@@ -327,7 +327,7 @@ export default function GradientsBody() {
       <p>
         This is just "diagonalise the Hessian and look at
         signs of eigenvalues" — directly using the spectral
-        theorem from Tier II. Each eigenvalue describes the
+        theorem from Module II. Each eigenvalue describes the
         curvature in the corresponding eigen-direction.
       </p>
 
@@ -378,9 +378,9 @@ export default function GradientsBody() {
       </ul>
 
       <p>
-        We'll come back to convexity in Tier III, Chapter 3
+        We'll come back to convexity in Module III, Chapter 3
         (least-squares is the prototypical convex problem) and
-        again in Tier VI when we discuss why cross-entropy is
+        again in Module VI when we discuss why cross-entropy is
         the "right" loss for classification.
       </p>
 

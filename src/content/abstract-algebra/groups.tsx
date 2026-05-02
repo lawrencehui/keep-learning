@@ -20,7 +20,7 @@ export default function GroupsBody() {
         and (centrally for us) quantum gates.
       </p>
       <p>
-        The whole tier sits on this foundation: groups → rings →
+        The whole module sits on this foundation: groups → rings →
         fields, with Galois theory at the apex. The payoff is dual.
         On the math side, every later abstraction (modules, schemes,
         Lie groups, Hopf algebras) needs this vocabulary. On the

@@ -13,12 +13,12 @@ account, no telemetry — everything is yours and lives in `localStorage`.
 
 The home screen is a pathway picker. There are two:
 
-### Numbers → Quantum — 16 tiers
+### Numbers → Quantum — 16 modules
 
 The classic MIT math + physics path, written from the ground up to close the
 loop on *why ECDSA breaks under Shor's algorithm*.
 
-| Tier  | Module                          | Reference course / book                  |
+| #     | Module                          | Reference course / book                  |
 |-------|---------------------------------|------------------------------------------|
 | I     | Foundations                     | Khan Pre-Calc · Hammack *Book of Proof*  |
 | II    | Single-Variable Calculus        | MIT 18.01 · Spivak                       |
@@ -37,13 +37,13 @@ loop on *why ECDSA breaks under Shor's algorithm*.
 | XV    | Quantum Mechanics II            | MIT 8.05 · Sakurai                       |
 | XVI   | Quantum Information & Computing | MIT 6.S089 · Nielsen & Chuang            |
 
-### ML × Market Microstructure — 8 tiers
+### ML × Market Microstructure — 8 modules
 
 A focused 8-week refresher built around MML, Wasserman, *Trades, Quotes &
 Prices*, and Cartea-Jaimungal-Penalva. Climaxes with the propagator model,
 Almgren-Chriss optimal execution, and Avellaneda-Stoikov market making.
 
-| Tier  | Module                          | Primary references                        |
+| #     | Module                          | Primary references                        |
 |-------|---------------------------------|-------------------------------------------|
 | I     | Linear Algebra Foundations      | MIT 18.06 · MML Ch 2 · 3B1B EOLA          |
 | II    | Eigenvalues, SVD & Decompositions | MIT 18.06 · MML Ch 3–4                  |
@@ -178,19 +178,19 @@ service worker so chosen typography is available offline after first load.
     │   └── ml-skeletons.ts       ← all 8 ML pathway modules
     ├── content/                  ← lazy-imported chapter bodies (~91 .tsx files)
     │   ├── registry.ts           ← maps "module/chapter" keys to dynamic imports
-    │   ├── foundations/          ← Quantum Tier I chapters
-    │   ├── calculus/             ← Quantum Tier II
-    │   ├── linear-algebra/       ← Quantum Tier III
-    │   ├── multivariable/        ← Quantum Tier IV
-    │   ├── ...                   ← remaining quantum-pathway tiers
-    │   ├── linalg-ml/            ← ML Tier I
-    │   ├── eigen-svd/            ← ML Tier II
-    │   ├── matrix-calc/          ← ML Tier III
-    │   ├── prob-foundations/     ← ML Tier IV
-    │   ├── stat-inference/       ← ML Tier V
-    │   ├── ml-fundamentals/      ← ML Tier VI
-    │   ├── stoch-calc/           ← ML Tier VII
-    │   └── microstructure/       ← ML Tier VIII
+    │   ├── foundations/          ← Quantum Module I chapters
+    │   ├── calculus/             ← Quantum Module II
+    │   ├── linear-algebra/       ← Quantum Module III
+    │   ├── multivariable/        ← Quantum Module IV
+    │   ├── ...                   ← remaining quantum-pathway modules
+    │   ├── linalg-ml/            ← ML Module I
+    │   ├── eigen-svd/            ← ML Module II
+    │   ├── matrix-calc/          ← ML Module III
+    │   ├── prob-foundations/     ← ML Module IV
+    │   ├── stat-inference/       ← ML Module V
+    │   ├── ml-fundamentals/      ← ML Module VI
+    │   ├── stoch-calc/           ← ML Module VII
+    │   └── microstructure/       ← ML Module VIII
     ├── hooks/
     │   ├── useProgress.ts        ← localStorage state + streak + lastVisited
     │   ├── useReadingSettings.ts ← font / size / line-height + CSS-var apply

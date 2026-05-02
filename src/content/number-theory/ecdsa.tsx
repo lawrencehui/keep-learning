@@ -495,14 +495,14 @@ export default function EcdsaBody() {
         signature aggregation), with the same secp256k1 curve. The
         elliptic-curve discrete log problem is still the
         underlying hard problem. We'll see Schnorr properly in
-        Tier XVI.
+        Module XVI.
       </p>
 
       {/* ─────────────────────────────  PART 7  ───────────────────────────── */}
       <h2>Part 7 · The quantum threat (preview)</h2>
 
       <p>
-        Shor's algorithm — which we'll see in detail in Tier XVI —
+        Shor's algorithm — which we'll see in detail in Module XVI —
         solves the discrete log problem in <em>any</em> abelian
         group in polynomial time on a quantum computer. That
         includes RSA's multiplicative group{" "}
@@ -563,7 +563,7 @@ export default function EcdsaBody() {
         vector problems, hash function security) believed to
         resist both classical and quantum attacks. Migration to
         these is happening now in TLS, SSH, signed messaging,
-        and is the topic of the closing chapter of Tier XVI.
+        and is the topic of the closing chapter of Module XVI.
       </p>
 
       {/* ─────────────────────────────  PART 8  ───────────────────────────── */}
@@ -601,12 +601,12 @@ export default function EcdsaBody() {
       </ul>
 
       <p>
-        That closes Tier VI. We've seen why primes, modular
+        That closes Module VI. We've seen why primes, modular
         arithmetic, and elliptic curves are{" "}
         <em>the</em> ingredients of public-key cryptography, and
         the headline fact: all currently-deployed schemes are
         vulnerable to Shor's quantum algorithm. The path to
-        Tier XVI now has a clear motivation. Next (Tier VII):
+        Module XVI now has a clear motivation. Next (Module VII):
         probability and statistics — needed for understanding
         quantum measurement, and also the source of the
         randomness that makes cryptography work.

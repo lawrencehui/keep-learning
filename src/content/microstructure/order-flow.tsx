@@ -238,7 +238,7 @@ export default function OrderFlowBody() {
       <h3>Latent state filtering</h3>
 
       <p>
-        Hawkes processes (Tier VII) extended with two event
+        Hawkes processes (Module VII) extended with two event
         types — informed and uninformed — give a latent
         state model fit by EM or particle filtering. Lets
         you separate price moves driven by information

@@ -425,7 +425,7 @@ export default function SecondOrderBody() {
       <p>
         Conservation laws are why classical mechanics is so
         powerful. Hamilton, Lagrange, and Noether (next module on
-        classical mechanics, Tier XII) systematise this.
+        classical mechanics, Module XII) systematise this.
       </p>
 
       {/* ─────────────────────────────  PART 6  ───────────────────────────── */}

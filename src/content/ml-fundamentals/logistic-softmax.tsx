@@ -418,7 +418,7 @@ export default function LogisticSoftmaxBody() {
 
       <p>
         Next chapter: PCA. Where covariance eigendecompositions
-        from Tier II become a foundational ML algorithm.
+        from Module II become a foundational ML algorithm.
       </p>
     </>
   );

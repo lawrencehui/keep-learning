@@ -10,7 +10,7 @@ export default function InnerProductDeepBody() {
   return (
     <>
       <p>
-        We met inner product spaces in Tier III: real and complex
+        We met inner product spaces in Module III: real and complex
         dot products, Cauchy–Schwarz, Gram–Schmidt, projections.
         This chapter goes deeper. We meet the <em>adjoint</em> of
         an operator (the operator that does the right thing with
@@ -20,7 +20,7 @@ export default function InnerProductDeepBody() {
         machinery that quantum mechanics speaks fluently.
       </p>
       <p>
-        The whole tier is laying foundations for{" "}
+        The whole module is laying foundations for{" "}
         <em>infinite-dimensional</em> linear algebra — Hilbert
         spaces, where wavefunctions and observables live. We start
         finite-dimensional and clean, then generalise.
@@ -82,7 +82,7 @@ export default function InnerProductDeepBody() {
       <p>
         The norm{" "}
         <InlineMath math="\|v\| = \sqrt{\langle v, v \rangle}" />,
-        Cauchy–Schwarz, and the Pythagorean theorem all from Tier
+        Cauchy–Schwarz, and the Pythagorean theorem all from Module
         III still apply. New stuff begins here.
       </p>
 

@@ -17,8 +17,8 @@ export default function HilbertBody() {
         for our purposes the headline use is QM.
       </p>
       <p>
-        This chapter consolidates the threads from earlier tiers
-        (inner products from Tier III, completeness from Tier IX,
+        This chapter consolidates the threads from earlier modules
+        (inner products from Module III, completeness from Module IX,
         operators from this module) into the framework you'll see
         used throughout quantum mechanics. We meet the canonical
         Hilbert spaces (
@@ -63,7 +63,7 @@ export default function HilbertBody() {
             author: "John von Neumann",
             duration: "Reading",
             url: "https://en.wikipedia.org/wiki/Mathematical_Foundations_of_Quantum_Mechanics",
-            note: "The book that put QM on rigorous footing. Worth a read once Tier XIV is done.",
+            note: "The book that put QM on rigorous footing. Worth a read once Module XIV is done.",
           },
         ]}
       />
@@ -125,7 +125,7 @@ export default function HilbertBody() {
         product:{" "}
         <InlineMath math="\langle f, g \rangle = \int \overline{f(x)} g(x) \, dx" />.
         Complete (Riesz–Fischer); the completion uses the Lebesgue
-        integral from Tier IX.
+        integral from Module IX.
       </p>
 
       <h3><InlineMath math="L^2[0, 1]" /></h3>
@@ -224,7 +224,7 @@ export default function HilbertBody() {
         An operator <InlineMath math="T : \mathcal H \to \mathcal H" />{" "}
         is <strong>bounded</strong> if{" "}
         <InlineMath math="\|T\| < \infty" />, where the operator
-        norm is as in Tier XI Chapter 1. Bounded operators form
+        norm is as in Module XI Chapter 1. Bounded operators form
         the algebra <InlineMath math="\mathcal B(\mathcal H)" />.
       </p>
 
@@ -455,7 +455,7 @@ export default function HilbertBody() {
       </ul>
 
       <p>
-        That closes Tier XI and the entire pure-math half of the
+        That closes Module XI and the entire pure-math half of the
         syllabus. We've built the mathematical toolkit needed for
         physics: calculus, linear algebra (with infinite
         dimensions), differential equations, complex analysis,
@@ -467,7 +467,7 @@ export default function HilbertBody() {
       </p>
 
       <p>
-        Next: Tier XII — Classical Mechanics. Newton, Lagrange,
+        Next: Module XII — Classical Mechanics. Newton, Lagrange,
         Hamilton — the foundation that quantum mechanics
         modifies.
       </p>

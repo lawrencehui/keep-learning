@@ -504,7 +504,7 @@ export default function VectorsSpacesBody() {
         <li>
           <strong>Microstructure preview.</strong> The space of
           executable order-flow trajectories is a vector space.
-          Optimal-execution methods (Almgren-Chriss, Tier
+          Optimal-execution methods (Almgren-Chriss, Module
           VIII) pick a "best" trajectory in this space subject
           to constraints. Same machinery.
         </li>

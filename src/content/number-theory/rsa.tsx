@@ -421,7 +421,7 @@ export default function RsaBody() {
       </ol>
 
       <p>
-        We'll see Shor's algorithm in detail in Tier XVI. The
+        We'll see Shor's algorithm in detail in Module XVI. The
         upshot for cryptography: RSA, DSA, ECDSA, Diffie-Hellman —
         every cryptosystem based on factoring or discrete log —
         is vulnerable to a sufficiently large fault-tolerant
@@ -438,7 +438,7 @@ export default function RsaBody() {
         standards. Migration is underway in TLS, SSH, email
         signing, and other protocols. Bitcoin's BIP-360 proposes
         quantum-safe signature schemes. We'll see this trade in
-        Tier XVI.
+        Module XVI.
       </p>
 
       {/* ─────────────────────────────  PART 8  ───────────────────────────── */}

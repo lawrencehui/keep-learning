@@ -125,7 +125,7 @@ export default function FourSubspacesBody() {
       </Callout>
 
       <p>
-        For least squares (Tier III), when{" "}
+        For least squares (Module III), when{" "}
         <InlineMath math="\mathbf{b} \notin C(A)" />, you can't
         solve exactly — but you can find the closest point in{" "}
         <InlineMath math="C(A)" />, which is the orthogonal
@@ -300,7 +300,7 @@ export default function FourSubspacesBody() {
 
       <p>
         This decomposition is what powers the{" "}
-        <strong>Moore–Penrose pseudoinverse</strong> in Tier
+        <strong>Moore–Penrose pseudoinverse</strong> in Module
         II: the minimum-norm solution to{" "}
         <InlineMath math="A\mathbf{x} = \mathbf{b}" /> is the
         one that lives entirely in{" "}
@@ -418,7 +418,7 @@ export default function FourSubspacesBody() {
           rank-deficient, the pseudoinverse picks the unique
           solution in <InlineMath math="R(A)" /> — the one
           orthogonal to <InlineMath math="N(A)" />. That's the
-          Moore–Penrose / SVD solution we'll meet in Tier II.
+          Moore–Penrose / SVD solution we'll meet in Module II.
         </li>
       </ul>
 

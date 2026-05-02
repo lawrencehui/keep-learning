@@ -108,7 +108,7 @@ export default function PrecalcBody() {
         The <strong>roots</strong> (or <strong>zeros</strong>) of a
         polynomial are the <InlineMath math="x" /> with{" "}
         <InlineMath math="p(x) = 0" />. The Fundamental Theorem of
-        Algebra (we'll prove this in Tier VIII) says that a degree-
+        Algebra (we'll prove this in Module VIII) says that a degree-
         <InlineMath math="n" /> polynomial with complex coefficients has
         exactly <InlineMath math="n" /> complex roots, counted with
         multiplicity. Over the reals this fails: a degree-2 polynomial

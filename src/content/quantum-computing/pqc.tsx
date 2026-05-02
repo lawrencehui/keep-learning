@@ -274,7 +274,7 @@ export default function PqcBody() {
       <h2>Part 4 · Bitcoin and post-quantum</h2>
 
       <p>
-        Bitcoin uses ECDSA over secp256k1 (Tier VI). All of
+        Bitcoin uses ECDSA over secp256k1 (Module VI). All of
         these become quantum-vulnerable when sufficient quantum
         computing arrives.
       </p>
@@ -451,8 +451,8 @@ export default function PqcBody() {
 
       <p>
         And if you're just learning quantum mechanics — well,
-        you've come a long way. From Tier I (logic, sets) to
-        Tier XVI (Shor's algorithm and post-quantum
+        you've come a long way. From Module I (logic, sets) to
+        Module XVI (Shor's algorithm and post-quantum
         cryptography), this syllabus has covered the
         mathematical and physical foundations of the modern
         information age. Quantum computing represents the
@@ -500,7 +500,7 @@ export default function PqcBody() {
           sets, calculus, linear algebra, number theory,
           probability, complex analysis, abstract algebra,
           quantum mechanics, and quantum computing into a
-          single coherent path. Every prior tier feeds into
+          single coherent path. Every prior module feeds into
           this one. The journey from{" "}
           <InlineMath math="2 + 2 = 4" /> to "quantum computing
           breaks ECDSA" is complete.
@@ -508,7 +508,7 @@ export default function PqcBody() {
       </ul>
 
       <p>
-        Sixteen tiers. Hundreds of pages. A lifetime of
+        Sixteen modules. Hundreds of pages. A lifetime of
         learning, hopefully launched. Good luck.
       </p>
     </>

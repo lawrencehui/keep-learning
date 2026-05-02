@@ -327,7 +327,7 @@ export default function OptimalExecutionBody() {
         <InlineMath math="\eta" /> ⇒ wrong trajectory ⇒
         higher actual cost than necessary. Calibration of
         impact parameters from execution history is itself
-        a regression / Bayesian estimation problem (Tier
+        a regression / Bayesian estimation problem (Module
         VI). Don't trust off-the-shelf{" "}
         <InlineMath math="\eta" /> from a textbook.
       </Pitfall>

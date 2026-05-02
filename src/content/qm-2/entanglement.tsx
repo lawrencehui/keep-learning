@@ -77,7 +77,7 @@ export default function EntanglementBody() {
         <InlineMath math="\mathcal H_A, \mathcal H_B" />, the
         joint system has Hilbert space{" "}
         <InlineMath math="\mathcal H_A \otimes \mathcal H_B" />{" "}
-        (Tier XI). For two qubits:{" "}
+        (Module XI). For two qubits:{" "}
         <InlineMath math="\mathbb{C}^2 \otimes \mathbb{C}^2 = \mathbb{C}^4" />{" "}
         with basis
       </p>

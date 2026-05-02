@@ -20,7 +20,7 @@ export default function OperatorsBody() {
         non-commutativity.
       </p>
       <p>
-        It's the most algebraic chapter in QM I. Tier XI's
+        It's the most algebraic chapter in QM I. Module XI's
         operator theory pays off here directly.
       </p>
 
@@ -480,7 +480,7 @@ export default function OperatorsBody() {
       </ul>
 
       <p>
-        That closes Tier XIV. Tier XV picks up with the
+        That closes Module XIV. Module XV picks up with the
         Hilbert-space formalism in full generality (Dirac
         notation), spin and angular momentum, entanglement and
         Bell inequalities, and perturbation theory. Everything

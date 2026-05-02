@@ -17,8 +17,8 @@ export default function MarketMakingBody() {
         adverse selection. The Avellaneda-Stoikov framework
         is the canonical model for optimal market-making
         — and the climax of this pathway, since it pulls
-        together stochastic calculus (Tier VII), optimal
-        control, and Bayesian inference (Tier V).
+        together stochastic calculus (Module VII), optimal
+        control, and Bayesian inference (Module V).
       </p>
 
       <ReferenceResources
@@ -71,12 +71,12 @@ export default function MarketMakingBody() {
       </ul>
 
       <p>
-        Mid-price diffuses as Brownian motion (Tier VII):
+        Mid-price diffuses as Brownian motion (Module VII):
       </p>
       <BlockMath math="dS_t = \sigma \, dW_t." />
 
       <p>
-        Fill events are Poisson processes (Tier IV) whose
+        Fill events are Poisson processes (Module IV) whose
         intensities{" "}
         <InlineMath math="\lambda^a" />,{" "}
         <InlineMath math="\lambda^b" /> depend on the maker's
@@ -273,7 +273,7 @@ export default function MarketMakingBody() {
 
       <p>
         After observing flow, the maker updates beliefs about
-        true value (Bayesian inference, Tier V). Quotes adjust
+        true value (Bayesian inference, Module V). Quotes adjust
         accordingly. In the long run, the spread compensates
         for adverse selection — this is{" "}
         <strong>Glosten's spread decomposition</strong>{" "}
@@ -396,7 +396,7 @@ export default function MarketMakingBody() {
       </ul>
 
       <p>
-        Tier VIII is now complete. We've gone from limit-
+        Module VIII is now complete. We've gone from limit-
         order-book mechanics to the canonical optimal-
         execution and market-making frameworks, with
         impact, propagators, and long-memory order flow as
@@ -404,7 +404,7 @@ export default function MarketMakingBody() {
         the entire pathway:{" "}
         <strong>linear algebra → calculus → probability →
         statistics → ML → stochastic calculus → market
-        microstructure</strong>. Every prior tier feeds into
+        microstructure</strong>. Every prior module feeds into
         what we just did. Eight modules, ~32 chapters of
         prose: now you have the math toolkit to read the
         microstructure literature critically, calibrate

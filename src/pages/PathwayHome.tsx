@@ -17,7 +17,7 @@ export function PathwayHome() {
           Pick your path.
         </h1>
         <p className="mt-3 text-ink-300 max-w-2xl">
-          Each pathway is a self-paced curriculum: tier-organised modules,
+          Each pathway is a self-paced curriculum: numbered modules,
           lessons with reading + video resources, and short quizzes at the
           end of each chapter.
         </p>

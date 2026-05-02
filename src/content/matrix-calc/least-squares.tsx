@@ -17,16 +17,16 @@ export default function LeastSquaresBody() {
       </p>
       <ul>
         <li>
-          <strong>Tier I, Ch 3</strong>: rank/null-space
+          <strong>Module I, Ch 3</strong>: rank/null-space
           characterise existence and uniqueness of solutions
           to <InlineMath math="X\boldsymbol\beta = \mathbf{y}" />.
         </li>
         <li>
-          <strong>Tier II, Ch 4</strong>: orthogonal projection
+          <strong>Module II, Ch 4</strong>: orthogonal projection
           gives a geometric closed form.
         </li>
         <li>
-          <strong>Tier III, Ch 1–2</strong>: matrix calculus
+          <strong>Module III, Ch 1–2</strong>: matrix calculus
           gives an algebraic derivation.
         </li>
       </ul>
@@ -151,7 +151,7 @@ export default function LeastSquaresBody() {
       <h2>Part 3 · Geometric derivation</h2>
 
       <p>
-        Recall from Tier II, Ch 4: minimising{" "}
+        Recall from Module II, Ch 4: minimising{" "}
         <InlineMath math="\|\mathbf{y} - X\boldsymbol\beta\|" />{" "}
         over{" "}
         <InlineMath math="\boldsymbol\beta" /> is asking{" "}
@@ -456,7 +456,7 @@ export default function LeastSquaresBody() {
         with{" "}
         <InlineMath math="\lambda = \sigma^2 / \tau^2" />.
         Lasso (L1 penalty) is the same construction with a
-        Laplace prior. Both are revisited in Tier VI.
+        Laplace prior. Both are revisited in Module VI.
       </p>
 
       <Pitfall>
@@ -516,13 +516,13 @@ export default function LeastSquaresBody() {
       </ul>
 
       <p>
-        Tier III is now complete. We have gradients,
+        Module III is now complete. We have gradients,
         Jacobians, matrix-derivative identities, and OLS in
-        three derivations. Tier IV picks up probability
+        three derivations. Module IV picks up probability
         foundations — distributions, joint laws, Bayes,
         limit theorems — which is what we'll need to build
-        statistical inference (Tier V) and the probabilistic
-        view of every ML algorithm (Tier VI).
+        statistical inference (Module V) and the probabilistic
+        view of every ML algorithm (Module VI).
       </p>
     </>
   );

@@ -34,7 +34,7 @@ export default function ProjectionsQrBody() {
             author: "Deisenroth, Faisal, Ong",
             duration: "Reading",
             url: "https://mml-book.com/",
-            note: "Orthogonal projections in tighter notation. Perfect companion before Tier III's OLS chapter.",
+            note: "Orthogonal projections in tighter notation. Perfect companion before Module III's OLS chapter.",
           },
           {
             title: "Trefethen & Bau — Numerical Linear Algebra",
@@ -168,7 +168,7 @@ export default function ProjectionsQrBody() {
       <p>
         The OLS normal equations <em>are</em> the projection
         formula in disguise. We'll re-derive them via calculus
-        in Tier III, but the geometric picture is the cleanest
+        in Module III, but the geometric picture is the cleanest
         one: regression is just orthogonal projection.
       </p>
 
@@ -381,7 +381,7 @@ export default function ProjectionsQrBody() {
         <li>
           <strong>OLS is projection</strong>. The geometric
           picture eliminates a lot of bookkeeping. Once you
-          see it, the calculus derivation in Tier III is just
+          see it, the calculus derivation in Module III is just
           confirmation.
         </li>
         <li>
@@ -419,9 +419,9 @@ export default function ProjectionsQrBody() {
       </ul>
 
       <p>
-        Tier II is now complete. We have the spectral toolbox
+        Module II is now complete. We have the spectral toolbox
         (eigendecomposition, SVD) and the geometric toolbox
-        (projection, QR). Tier III turns these into actual
+        (projection, QR). Module III turns these into actual
         machine-learning machinery: gradients, matrix calculus,
         and the OLS derivation.
       </p>

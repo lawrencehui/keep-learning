@@ -28,7 +28,7 @@ export interface Chapter {
 
 export interface Module {
   id: string;
-  /** Roman tier number for grouping (e.g. "I — Foundations") */
+  /** Roman module number for grouping (e.g. "I — Foundations") */
   tier: string;
   title: string;
   subtitle: string;

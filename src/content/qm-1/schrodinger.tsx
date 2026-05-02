@@ -330,7 +330,7 @@ export default function SchrodingerBody() {
         A modern derivation: assume time evolution is unitary
         (probability is conserved), continuous, and Markovian
         (depends only on the current state). By Stone's theorem
-        (Tier XI), there exists a self-adjoint operator{" "}
+        (Module XI), there exists a self-adjoint operator{" "}
         <InlineMath math="\hat H" /> such that
       </p>
       <BlockMath math="\psi(t) = e^{-i \hat H t/\hbar} \psi(0)." />

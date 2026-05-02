@@ -22,7 +22,7 @@ export default function MaxwellBody() {
         1905, leading to special relativity.
       </p>
       <p>
-        We met Maxwell's equations briefly in Tier IV (Vector
+        We met Maxwell's equations briefly in Module IV (Vector
         Calculus) as the showcase application of div + curl + the
         big theorems. Now we develop them properly, derive the
         wave equation, and connect to the Lagrangian formalism of
@@ -124,7 +124,7 @@ export default function MaxwellBody() {
       <p>
         the <strong>Poisson equation</strong>. For{" "}
         <InlineMath math="\rho = 0" />, Laplace's equation. We met
-        these in Tier V. The point-charge potential:
+        these in Module V. The point-charge potential:
       </p>
       <BlockMath math="V(\mathbf{r}) = \frac{1}{4\pi \varepsilon_0} \frac{q}{r}." />
 

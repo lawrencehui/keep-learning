@@ -458,9 +458,9 @@ export default function GaloisBody() {
       </ul>
 
       <p>
-        That closes Tier X. Abstract algebra is the structural
+        That closes Module X. Abstract algebra is the structural
         backbone of nearly every later topic. Next:{" "}
-        <strong>Tier XI — Advanced Linear Algebra</strong>, where
+        <strong>Module XI — Advanced Linear Algebra</strong>, where
         we'll deepen the operator theory, develop tensor products
         properly, and lay the groundwork for the Hilbert spaces of
         quantum mechanics.

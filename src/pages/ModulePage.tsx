@@ -48,7 +48,7 @@ export function ModulePage() {
           <ChevronLeft className="w-3.5 h-3.5" /> {pathway.title}
         </Link>
         <div className="text-xs uppercase tracking-[0.25em] text-accent-soft pt-1">
-          Tier {m.tier}
+          Module {m.tier}
         </div>
         <h1 className="font-serif italic text-3xl sm:text-4xl">{m.title}</h1>
         <p className="text-ink-300">{m.subtitle}</p>

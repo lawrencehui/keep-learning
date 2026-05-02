@@ -346,10 +346,10 @@ export default function LossFunctionsBody() {
       </ul>
 
       <p>
-        Tier VI is now complete. We have the four canonical
+        Module VI is now complete. We have the four canonical
         ML algorithms (linear regression, logistic, PCA, loss
         functions) all derived from the same probabilistic
-        principles. Tier VII picks up stochastic calculus
+        principles. Module VII picks up stochastic calculus
         — Brownian motion, Itô's lemma, Hawkes processes —
         which is the math of price diffusions and
         microstructure dynamics.

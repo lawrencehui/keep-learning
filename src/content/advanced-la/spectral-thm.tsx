@@ -362,7 +362,7 @@ export default function SpectralThmBody() {
         </li>
         <li>
           <strong>LU decomposition.</strong> From Gaussian
-          elimination. We met this in Tier III.
+          elimination. We met this in Module III.
         </li>
         <li>
           <strong>Cholesky decomposition.</strong>{" "}

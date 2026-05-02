@@ -145,7 +145,7 @@ export default function DiracBody() {
         Hermitian:{" "}
         <InlineMath math="\hat A^\dagger = \hat A" />. Unitary:{" "}
         <InlineMath math="\hat U^\dagger \hat U = \hat U \hat U^\dagger = I" />.
-        Same definitions as Tier XI, just with bra-ket
+        Same definitions as Module XI, just with bra-ket
         notation.
       </p>
 
@@ -295,7 +295,7 @@ export default function DiracBody() {
         <em>environment</em> (degrees of freedom you don't track)
         produces a reduced density matrix that is mixed — and
         this is the mechanism of <strong>decoherence</strong>{" "}
-        which we'll see in Tier XVI.
+        which we'll see in Module XVI.
       </p>
 
       <p>
@@ -367,7 +367,7 @@ export default function DiracBody() {
           notation is bra-ket. Qubits are kets in{" "}
           <InlineMath math="\mathbb{C}^2" />, gates are unitary
           operators. Multi-qubit states use tensor products of
-          kets. We use this notation throughout Tier XVI.
+          kets. We use this notation throughout Module XVI.
         </li>
         <li>
           <strong>Field theory.</strong> Fock space (the Hilbert

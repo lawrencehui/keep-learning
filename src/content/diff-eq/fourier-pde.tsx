@@ -483,14 +483,14 @@ export default function FourierPDEBody() {
       </ul>
 
       <p>
-        That closes Tier V. The path so far: Foundations → Calculus →
+        That closes Module V. The path so far: Foundations → Calculus →
         Linear Algebra → Multivariable → Differential Equations.
-        Five tiers of mathematics, each setting up the next. Tier
-        VI (Number Theory), Tier VII (Probability), Tier VIII
-        (Complex Analysis), and Tiers IX–XI cover analysis and
+        Five modules of mathematics, each setting up the next. Module
+        VI (Number Theory), Module VII (Probability), Module VIII
+        (Complex Analysis), and Modules IX–XI cover analysis and
         algebra in the depth that quantum mechanics needs. Then
-        Tier XII (Classical Mechanics) starts the physics journey
-        and Tier XIV finally reaches quantum.
+        Module XII (Classical Mechanics) starts the physics journey
+        and Module XIV finally reaches quantum.
       </p>
     </>
   );

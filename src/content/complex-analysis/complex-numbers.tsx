@@ -67,7 +67,7 @@ export default function ComplexNumbersBody() {
             author: "3Blue1Brown",
             duration: "22 min",
             url: "https://www.youtube.com/watch?v=sD0NjbwqlYw",
-            note: "A taste of where complex analysis leads. Pair with Tier VIII end-of-module.",
+            note: "A taste of where complex analysis leads. Pair with Module VIII end-of-module.",
           },
         ]}
       />

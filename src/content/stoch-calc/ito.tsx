@@ -353,7 +353,7 @@ export default function ItoBody() {
           continuous-time order-book limits are SDEs. Heavy-
           tailed jump-diffusion models (used in
           high-frequency studies) extend Itô to jumps. The
-          rough-volatility literature (Tier VIII context)
+          rough-volatility literature (Module VIII context)
           uses fractional BM, requiring Itô-style calculus on
           processes that don't have classical quadratic
           variation.

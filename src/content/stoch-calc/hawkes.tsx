@@ -340,7 +340,7 @@ export default function HawkesBody() {
       <p>
         First term sums log-intensity at event times; second
         is the integrated intensity over the observation
-        window. MLE recipe — back to Tier V.
+        window. MLE recipe — back to Module V.
       </p>
 
       <p>
@@ -402,9 +402,9 @@ export default function HawkesBody() {
       </ul>
 
       <p>
-        Tier VII is now complete. We have Brownian motion,
+        Module VII is now complete. We have Brownian motion,
         Itô calculus, Hawkes processes, and long-memory
-        objects. Tier VIII applies all of this to the
+        objects. Module VIII applies all of this to the
         microstructure of limit-order books — the math of
         execution, impact, and market making.
       </p>

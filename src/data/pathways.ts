@@ -8,7 +8,7 @@ export const pathways: Pathway[] = [
     title: "Numbers → Quantum",
     subtitle: "From elementary logic to quantum computing.",
     description:
-      "A 16-tier self-paced curriculum modelled on MIT's path through math and physics. Closes the loop on why ECDSA falls under Shor's algorithm and what comes after.",
+      "A 16-module self-paced curriculum modelled on MIT's path through math and physics. Closes the loop on why ECDSA falls under Shor's algorithm and what comes after.",
     emblem: "ψ",
     modules: quantumModules,
   },

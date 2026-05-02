@@ -22,7 +22,7 @@ export default function NewtonBody() {
         importantly for our journey) quantum mechanics.
       </p>
       <p>
-        We assume the math from Tiers I–XI: vectors, calculus,
+        We assume the math from Modules I–XI: vectors, calculus,
         differential equations, linear algebra. The physics here is
         the smallest classical foundation that QM modifies, and the
         Lagrangian/Hamiltonian formulations are not optional — they
@@ -152,7 +152,7 @@ export default function NewtonBody() {
       <BlockMath math="\mathbf{F} = -\nabla V(\mathbf{r})." />
 
       <p>
-        Equivalently (Tier IV, vector calculus):{" "}
+        Equivalently (Module IV, vector calculus):{" "}
         <InlineMath math="\mathbf{F}" /> is conservative iff{" "}
         <InlineMath math="\nabla \times \mathbf{F} = 0" /> on a
         simply-connected domain.
