@@ -1,27 +1,22 @@
 # keep-learning
 
-Interactive self-paced syllabus: logic → calculus → linear algebra → diff eq → quantum mechanics → quantum computing. KaTeX-rendered with embedded interactive widgets.
+A self-paced interactive ebook for learning mathematics, physics, and applied
+quant. Two complete curricula, KaTeX-rendered prose with embedded widgets,
+mobile-friendly, installable as a PWA, fully offline-capable.
 
-This is my **public learning notebook**. It's a single-page React app that I update as I work my way from elementary logic up through quantum computing. If it's useful to anyone else following the same path, even better.
-
----
-
-## Quick start
-
-```bash
-pnpm install
-pnpm dev          # http://localhost:5173
-pnpm build        # production build → dist/
-pnpm typecheck
-```
-
-Requires Node 18+ and [pnpm](https://pnpm.io).
+This is my **public learning notebook**. Single-page React app, no backend, no
+account, no telemetry — everything is yours and lives in `localStorage`.
 
 ---
 
-## What's inside
+## Pathways
 
-A 16-tier curriculum modeled on the standard MIT math + physics path:
+The home screen is a pathway picker. There are two:
+
+### Numbers → Quantum — 16 tiers
+
+The classic MIT math + physics path, written from the ground up to close the
+loop on *why ECDSA breaks under Shor's algorithm*.
 
 | Tier  | Module                          | Reference course / book                  |
 |-------|---------------------------------|------------------------------------------|
@@ -42,25 +37,93 @@ A 16-tier curriculum modeled on the standard MIT math + physics path:
 | XV    | Quantum Mechanics II            | MIT 8.05 · Sakurai                       |
 | XVI   | Quantum Information & Computing | MIT 6.S089 · Nielsen & Chuang            |
 
-Each module has chapters → lessons. Lessons mix prose with inline `$...$` and block `$$...$$` LaTeX (rendered with KaTeX), topic chips, estimated study hours, and curated external resources (MIT OCW, 3Blue1Brown, Khan Academy, standard texts).
+### ML × Market Microstructure — 8 tiers
 
-**Status:** Tiers I–IV ship with full lesson detail. V–XVI are skeletons (chapter outlines + topic lists) that I fill in as I get there.
+A focused 8-week refresher built around MML, Wasserman, *Trades, Quotes &
+Prices*, and Cartea-Jaimungal-Penalva. Climaxes with the propagator model,
+Almgren-Chriss optimal execution, and Avellaneda-Stoikov market making.
+
+| Tier  | Module                          | Primary references                        |
+|-------|---------------------------------|-------------------------------------------|
+| I     | Linear Algebra Foundations      | MIT 18.06 · MML Ch 2 · 3B1B EOLA          |
+| II    | Eigenvalues, SVD & Decompositions | MIT 18.06 · MML Ch 3–4                  |
+| III   | Matrix Calculus & Least Squares | MML Ch 5 · *Matrix Cookbook*              |
+| IV    | Probability Foundations         | Blitzstein · Wasserman 1–5 · MML Ch 6     |
+| V     | Statistical Inference           | Wasserman 9–10 · Murphy Ch 4              |
+| VI    | Machine Learning                | MML Ch 9–10 · Murphy Ch 10–11             |
+| VII   | Stochastic Calculus             | Shreve Vol I–II                           |
+| VIII  | Market Microstructure           | TQP · Cartea-Jaimungal-Penalva            |
+
+Each chapter is real prose (not just an outline): typically 6–8 named parts,
+embedded `BlockMath` / `InlineMath`, callouts and pitfalls, at least one
+collapsible exercise, and a 5-question quiz at the end. Both pathways are
+written end-to-end.
+
+---
+
+## Quick start
+
+```bash
+pnpm install
+pnpm dev          # http://localhost:5173
+pnpm build        # production build → dist/
+pnpm typecheck
+```
+
+Requires Node 18+ and [pnpm](https://pnpm.io).
 
 ---
 
 ## Features
 
-- **KaTeX math rendering** — inline and block, mixed freely with prose.
-- **Interactive widgets** — embedded directly in lessons where a static page wouldn't cut it.
-- **Progress tracking** — per-lesson completion stored in `localStorage`.
-- **Daily streak counter** — ticks every day you mark something complete; a 2-day gap resets it.
-- **No backend, no account, no telemetry** — everything is client-side.
+- **KaTeX math** — inline `$x$` and block `$$ x $$`, mixed freely with prose.
+  Long inline math is wrapped in a horizontally-scrollable inline-block so it
+  never breaks mobile layout.
+- **Interactive widgets** — embedded directly in chapters where a static page
+  wouldn't cut it (sliders, drag-points, plots, animations).
+- **PWA, offline-capable** — full curriculum (~3 MB / ~600 KB gzipped)
+  precached by Workbox. Install via the in-page banner ("Tap Share → Add to
+  Home Screen" on iOS, native prompt on Chrome/Android). Once installed,
+  works without connectivity.
+- **Reading settings** — font (Newsreader / Lora / Source Sans 3 / System),
+  size (Small / Medium / Large / X-Large), line spacing (Snug / Normal /
+  Relaxed). Applied via CSS variables, persisted in `localStorage`,
+  pre-applied before React mounts so there's no flash.
+- **Per-pathway progress tracking** — completion stored as
+  `module/chapter/lesson` keys; each pathway has its own dashboard with
+  streak counter, percent done, and per-module bars.
+- **Resume where you left off** — `lastVisited` records pathway + module +
+  chapter + scroll position. The dashboard surfaces a "Continue reading"
+  card; opening the chapter restores scroll.
+- **Tablet sidebar collapse** — desktop sidebar collapses to a 48-px strip
+  with a chevron toggle. Persisted across sessions.
+- **Light + dark themes** — paper-like warm cream for light, warm charcoal
+  for dark. No flash of wrong theme on load.
+- **Mobile-first** — safe-area inset support, dvh heights, 44-px taps,
+  drawer sidebar.
 
 To wipe progress, run in the browser console:
 
 ```js
 localStorage.removeItem("learning.progress.v1")
+localStorage.removeItem("learning.reading.v1")
+localStorage.removeItem("learning.sidebar.v1")
+localStorage.removeItem("learning.install-banner.v1")
 ```
+
+---
+
+## Routing
+
+```
+/                                                        → pathway picker
+/<pathwayId>                                             → pathway dashboard
+/<pathwayId>/module/<moduleId>                           → module page (chapter list)
+/<pathwayId>/module/<moduleId>/chapter/<chapterId>       → full chapter
+```
+
+`pathwayId` is `quantum` or `ml`. Legacy `/module/...` URLs from the
+pre-pathway era redirect to `/quantum/...` so old bookmarks still work.
 
 ---
 
@@ -68,13 +131,20 @@ localStorage.removeItem("learning.progress.v1")
 
 | Concern         | Choice                              |
 |-----------------|-------------------------------------|
-| Bundler / dev   | Vite                                |
+| Bundler / dev   | Vite 5 + `@vitejs/plugin-react`     |
 | UI              | React 18 + TypeScript               |
-| Styling         | Tailwind CSS                        |
+| Styling         | Tailwind CSS 3                      |
 | Math            | KaTeX via `react-katex`             |
 | Routing         | `react-router-dom` v6               |
 | Icons           | `lucide-react`                      |
+| PWA             | `vite-plugin-pwa` + Workbox         |
 | Persistence     | `localStorage`                      |
+| Hosting         | Vercel (any static host works)      |
+
+Chapter bodies are lazy-loaded via dynamic imports — first page load only
+ships the shell + the chapter you're reading. KaTeX CSS, Inter (rsms.me), and
+Google Fonts (Newsreader / Lora / Source Sans 3) are runtime-cached by the
+service worker so chosen typography is available offline after first load.
 
 ---
 
@@ -84,52 +154,116 @@ localStorage.removeItem("learning.progress.v1")
 .
 ├── index.html
 ├── package.json
-├── vite.config.ts
+├── vite.config.ts                ← VitePWA config + runtime caching rules
 ├── tailwind.config.js
 ├── tsconfig.json
 ├── public/
+│   ├── favicon.svg               ← master vector logo
+│   ├── pwa-192x192.png           ← Android home-screen icon
+│   ├── pwa-512x512.png           ← splash / maskable
+│   └── apple-touch-icon.png      ← iOS Add-to-Home-Screen
 └── src/
-    ├── main.tsx              ← React root + router + KaTeX CSS
-    ├── App.tsx               ← layout shell + routes
-    ├── index.css             ← Tailwind + globals
-    ├── types.ts              ← Module / Chapter / Lesson / Resource
+    ├── main.tsx                  ← React root + KaTeX CSS + boot reading settings
+    ├── App.tsx                   ← layout shell, routes, mobile drawer, banner
+    ├── index.css                 ← Tailwind + theme vars + .ebook + .chapter-px
+    ├── types.ts                  ← Pathway / Module / Chapter / Lesson / Resource
     ├── data/
-    │   ├── syllabus.ts       ← ordered module registry
-    │   ├── 01-foundations.ts
+    │   ├── pathways.ts           ← combines both pathways
+    │   ├── syllabus.ts           ← Quantum pathway (16 modules, ordered)
+    │   ├── 01-foundations.ts     ← detailed module data files
     │   ├── 02-calculus.ts
     │   ├── 03-linear-algebra.ts
     │   ├── 04-multivar.ts
-    │   └── skeletons.ts      ← Tiers V–XVI (outline-only)
+    │   ├── skeletons.ts          ← skeleton helpers + remaining quantum modules
+    │   └── ml-skeletons.ts       ← all 8 ML pathway modules
+    ├── content/                  ← lazy-imported chapter bodies (~91 .tsx files)
+    │   ├── registry.ts           ← maps "module/chapter" keys to dynamic imports
+    │   ├── foundations/          ← Quantum Tier I chapters
+    │   ├── calculus/             ← Quantum Tier II
+    │   ├── linear-algebra/       ← Quantum Tier III
+    │   ├── multivariable/        ← Quantum Tier IV
+    │   ├── ...                   ← remaining quantum-pathway tiers
+    │   ├── linalg-ml/            ← ML Tier I
+    │   ├── eigen-svd/            ← ML Tier II
+    │   ├── matrix-calc/          ← ML Tier III
+    │   ├── prob-foundations/     ← ML Tier IV
+    │   ├── stat-inference/       ← ML Tier V
+    │   ├── ml-fundamentals/      ← ML Tier VI
+    │   ├── stoch-calc/           ← ML Tier VII
+    │   └── microstructure/       ← ML Tier VIII
     ├── hooks/
-    │   └── useProgress.ts    ← localStorage state + streak math
+    │   ├── useProgress.ts        ← localStorage state + streak + lastVisited
+    │   ├── useReadingSettings.ts ← font / size / line-height + CSS-var apply
+    │   └── useSidebar.ts         ← desktop collapse state
     ├── components/
-    │   ├── Sidebar.tsx
-    │   └── MathBlock.tsx     ← KaTeX renderer for $...$ / $$...$$
+    │   ├── Sidebar.tsx           ← desktop persistent + mobile drawer + collapsed strip
+    │   ├── ThemeToggle.tsx
+    │   ├── ReadingSettings.tsx   ← popover with font/size/line-height controls
+    │   ├── InstallBanner.tsx     ← PWA install prompt (dismissable, 30-day cooldown)
+    │   ├── Quiz.tsx              ← end-of-chapter MCQ
+    │   ├── Ebook.tsx             ← Callout / Pitfall / Exercise / ReferenceResources
+    │   └── MathBlock.tsx         ← KaTeX renderer for $...$ / $$...$$
     └── pages/
-        ├── Dashboard.tsx
-        └── ModulePage.tsx
+        ├── PathwayHome.tsx       ← / — pathway picker
+        ├── Dashboard.tsx         ← /:pathwayId — pathway dashboard
+        ├── ModulePage.tsx        ← /:pathwayId/module/:moduleId
+        └── ChapterPage.tsx       ← /:pathwayId/module/:moduleId/chapter/:chapterId
 ```
 
 ---
 
-## Adding a module
+## Authoring workflow
 
-1. Create `src/data/NN-my-module.ts` exporting a `Module` object — see `01-foundations.ts` for the full shape.
-2. Import it in `src/data/syllabus.ts` at the correct tier position (or remove its stub from `skeletons.ts`).
-3. Reload — sidebar, dashboard, and module page pick it up automatically.
+### Adding a chapter to an existing module
 
-The data model is plain typed objects — no CMS, no markdown pipeline. Adding lessons is just a data change.
+1. Write `src/content/<module-id>/<chapter-id>.tsx` exporting:
+   - `default` — a React body component (use `Callout`, `Pitfall`,
+     `Exercise`, `ReferenceResources` from `components/Ebook` to keep
+     consistent styling)
+   - `quiz` — a `QuizQuestion[]` of 4–6 multiple-choice questions
+2. Register the chapter in `src/content/registry.ts`:
+   ```ts
+   "<module-id>/<chapter-id>": () => import("./<module-id>/<chapter-id>"),
+   ```
+3. Reload — the chapter shows up automatically with an "Interactive" badge
+   on the module page. Lesson titles, hours, and resources come from the
+   skeleton in `src/data/`.
+
+### Adding a module
+
+1. Add a `Module` definition (see `01-foundations.ts` for full shape, or
+   `skeletons.ts` for the lightweight stub helper).
+2. Insert into the appropriate pathway in `src/data/pathways.ts`.
+3. Module IDs must be **globally unique across pathways** (progress keys are
+   flat). The ML pathway uses prefixed names like `linalg-ml`, `eigen-svd`
+   to avoid colliding with the quantum pathway's `linear-algebra`.
+
+### Authoring rules I learned the hard way
+
+- **Don't put `$...$` in JSX headings** — JSX interprets `{x}` as a JS
+  expression. Use `<InlineMath math="..." />` inside `<h2>` / `<h3>`.
+- **Long inline math** is wrapped to be horizontally-scrollable
+  (`.ebook .katex { display: inline-block; max-width: 100%; overflow-x: auto }`) —
+  keeps mobile layout intact even with 200-char Hamilton-flow expressions.
+- **Article width** uses `chapter-px` (1 rem mobile / 1.75 rem sm /
+  2.5 rem lg) and `w-full min-w-0` to flex-shrink properly inside the
+  flex-column main element.
 
 ---
 
-## Roadmap
+## Deploying
 
-- [ ] Flesh out Tier VI — Number Theory (RSA + ECDSA mechanics)
-- [ ] Flesh out Tiers XIV–XVI so the "why ECDSA breaks under Shor" arc is end-to-end
-- [ ] Per-lesson notes field (free-text, also in `localStorage`)
-- [ ] Heatmap calendar of study days (GitHub-style)
-- [ ] Three.js widgets: vector fields, Bloch sphere, double-slit interference, QFT amplitude plots
-- [ ] Export / import progress as JSON
+The repo is set up for Vercel (`vercel.json` not needed — Vercel detects
+Vite). Any static host works:
+
+```bash
+pnpm build
+# upload dist/ to Vercel / Cloudflare Pages / Netlify / S3 / GitHub Pages
+```
+
+The PWA service worker requires HTTPS (or `localhost`). HTTP-only hosts
+won't activate the service worker, so install/offline won't work — but the
+site will still render fine.
 
 ---
 
