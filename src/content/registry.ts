@@ -93,6 +93,13 @@ const loaders: Record<string, ChapterContentLoader> = {
   "prob-foundations/joint-distributions": () =>
     import("./prob-foundations/joint-distributions"),
   "prob-foundations/mgf-clt": () => import("./prob-foundations/mgf-clt"),
+  "stat-inference/mle": () => import("./stat-inference/mle"),
+  "stat-inference/fisher-information": () =>
+    import("./stat-inference/fisher-information"),
+  "stat-inference/hypothesis-testing": () =>
+    import("./stat-inference/hypothesis-testing"),
+  "stat-inference/bayesian-inference": () =>
+    import("./stat-inference/bayesian-inference"),
 };
 
 /** Returns the registered chapter (lazy body + quiz loader) or null if no content yet. */
