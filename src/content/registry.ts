@@ -82,6 +82,10 @@ const loaders: Record<string, ChapterContentLoader> = {
   "eigen-svd/diagonalisation": () => import("./eigen-svd/diagonalisation"),
   "eigen-svd/svd": () => import("./eigen-svd/svd"),
   "eigen-svd/projections-qr": () => import("./eigen-svd/projections-qr"),
+  "matrix-calc/gradients": () => import("./matrix-calc/gradients"),
+  "matrix-calc/matrix-derivatives": () =>
+    import("./matrix-calc/matrix-derivatives"),
+  "matrix-calc/least-squares": () => import("./matrix-calc/least-squares"),
 };
 
 /** Returns the registered chapter (lazy body + quiz loader) or null if no content yet. */
