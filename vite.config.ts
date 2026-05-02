@@ -6,7 +6,9 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: "autoUpdate",
+      // "prompt" keeps the new SW in waiting state until the user confirms;
+      // we surface an in-app banner via virtual:pwa-register/react.
+      registerType: "prompt",
       includeAssets: [
         "favicon.svg",
         "favicon-64.png",

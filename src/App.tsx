@@ -11,6 +11,7 @@ import { Menu } from "lucide-react";
 import { Sidebar } from "./components/Sidebar";
 import { ThemeToggle } from "./components/ThemeToggle";
 import { InstallBanner } from "./components/InstallBanner";
+import { UpdateBanner } from "./components/UpdateBanner";
 import { ReadingSettings } from "./components/ReadingSettings";
 import { Dashboard } from "./pages/Dashboard";
 import { ModulePage } from "./pages/ModulePage";
@@ -43,6 +44,7 @@ export default function App() {
       <Sidebar mobile open={drawerOpen} onClose={() => setDrawerOpen(false)} />
 
       <main className="flex-1 min-w-0 max-w-full overflow-x-clip flex flex-col">
+        <UpdateBanner />
         <InstallBanner />
         <MobileTopBar onOpenMenu={() => setDrawerOpen(true)} />
 
