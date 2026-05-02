@@ -78,6 +78,10 @@ const loaders: Record<string, ChapterContentLoader> = {
   "linalg-ml/linear-maps": () => import("./linalg-ml/linear-maps"),
   "linalg-ml/four-subspaces": () => import("./linalg-ml/four-subspaces"),
   "linalg-ml/change-basis": () => import("./linalg-ml/change-basis"),
+  "eigen-svd/eigen": () => import("./eigen-svd/eigen"),
+  "eigen-svd/diagonalisation": () => import("./eigen-svd/diagonalisation"),
+  "eigen-svd/svd": () => import("./eigen-svd/svd"),
+  "eigen-svd/projections-qr": () => import("./eigen-svd/projections-qr"),
 };
 
 /** Returns the registered chapter (lazy body + quiz loader) or null if no content yet. */
