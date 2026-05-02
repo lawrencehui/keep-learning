@@ -107,6 +107,9 @@ const loaders: Record<string, ChapterContentLoader> = {
   "ml-fundamentals/pca": () => import("./ml-fundamentals/pca"),
   "ml-fundamentals/loss-functions": () =>
     import("./ml-fundamentals/loss-functions"),
+  "stoch-calc/brownian-motion": () => import("./stoch-calc/brownian-motion"),
+  "stoch-calc/ito": () => import("./stoch-calc/ito"),
+  "stoch-calc/hawkes": () => import("./stoch-calc/hawkes"),
 };
 
 /** Returns the registered chapter (lazy body + quiz loader) or null if no content yet. */
