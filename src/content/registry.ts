@@ -119,6 +119,10 @@ const loaders: Record<string, ChapterContentLoader> = {
     import("./microstructure/optimal-execution"),
   "microstructure/market-making": () =>
     import("./microstructure/market-making"),
+  "rl-control/mdp-bellman": () => import("./rl-control/mdp-bellman"),
+  "rl-control/policy-gradients": () =>
+    import("./rl-control/policy-gradients"),
+  "rl-control/ppo-deep-rl": () => import("./rl-control/ppo-deep-rl"),
 };
 
 /** Returns the registered chapter (lazy body + quiz loader) or null if no content yet. */

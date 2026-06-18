@@ -83,6 +83,27 @@ const nn3b1b = (n: number, title: string): Resource => ({
   url: "https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi",
 });
 
+const sutton = (ch: string, title: string): Resource => ({
+  kind: "book",
+  title: `Sutton & Barto Ch ${ch} — ${title}`,
+  author: "Sutton & Barto",
+  url: "http://incompleteideas.net/book/the-book-2nd.html",
+});
+
+const spinningup = (title: string, slug: string): Resource => ({
+  kind: "article",
+  title: `OpenAI Spinning Up — ${title}`,
+  author: "OpenAI",
+  url: `https://spinningup.openai.com/en/latest/${slug}`,
+});
+
+const silver = (n: number, title: string): Resource => ({
+  kind: "course",
+  title: `DeepMind x UCL RL — Lecture ${n}: ${title}`,
+  author: "David Silver",
+  url: "https://www.davidsilver.uk/teaching/",
+});
+
 // ────────────────────────────────────────────────────────────
 // Module 1: Linear Algebra Foundations
 // ────────────────────────────────────────────────────────────
@@ -1687,6 +1708,246 @@ const microstructure: Module = {
 };
 
 // ────────────────────────────────────────────────────────────
+// Module 9: Reinforcement Learning & Optimal Control
+// ────────────────────────────────────────────────────────────
+
+const rlControl: Module = {
+  id: "rl-control",
+  tier: "IX",
+  title: "Reinforcement Learning & Optimal Control",
+  subtitle: "MDPs, Bellman, policy gradients, PPO — the maths of sequential decisions.",
+  references: ["Sutton & Barto", "OpenAI Spinning Up", "DeepMind x UCL RL"],
+  prerequisites: ["prob-foundations", "matrix-calc"],
+  chapters: [
+    {
+      id: "mdp-bellman",
+      title: "MDPs & the Bellman Equations",
+      blurb:
+        "States, actions, rewards, and the recursive equations that define optimal behaviour.",
+      lessons: [
+        {
+          id: "mdp-definition",
+          title: "Markov Decision Processes",
+          summary:
+            "An MDP is $(\\mathcal S, \\mathcal A, P, R, \\gamma)$ with the Markov property $P(s_{t+1}\\mid s_t, a_t)$. A policy $\\pi(a\\mid s)$ maps states to action distributions.",
+          topics: ["states", "actions", "transition", "reward", "discount"],
+          hours: 1.5,
+          resources: [
+            sutton("3", "Finite Markov Decision Processes"),
+            silver(2, "Markov Decision Processes"),
+          ],
+        },
+        {
+          id: "value-q-functions",
+          title: "Value & Action-Value Functions",
+          summary:
+            "$V^\\pi(s) = \\mathbb E_\\pi[\\sum_k \\gamma^k r_{t+k}\\mid s_t = s]$; $Q^\\pi(s,a)$ also conditions on the first action. Return $G_t = \\sum_k \\gamma^k r_{t+k}$.",
+          topics: ["return", "value function", "Q function"],
+          hours: 1.5,
+          resources: [sutton("3", "Value functions")],
+        },
+        {
+          id: "bellman-expectation",
+          title: "The Bellman Expectation Equation",
+          summary:
+            "$V^\\pi(s) = \\sum_a \\pi(a\\mid s)\\sum_{s'} P(s'\\mid s,a)[R + \\gamma V^\\pi(s')]$ — a one-step self-consistency recursion.",
+          topics: ["Bellman expectation", "recursion", "backup"],
+          hours: 2,
+          resources: [
+            sutton("3", "Bellman equations"),
+            silver(2, "Markov Decision Processes"),
+          ],
+        },
+        {
+          id: "bellman-optimality",
+          title: "The Bellman Optimality Equation",
+          summary:
+            "$V^*(s) = \\max_a \\sum_{s'} P(s'\\mid s,a)[R + \\gamma V^*(s')]$. The $\\max$ makes it non-linear; the optimal policy is greedy w.r.t. $Q^*$.",
+          topics: ["optimality", "greedy policy", "non-linearity"],
+          hours: 2,
+          resources: [sutton("3", "Optimality and approximation")],
+        },
+      ],
+    },
+    {
+      id: "dynamic-programming",
+      title: "Dynamic Programming",
+      blurb:
+        "Solving an MDP exactly when you know the model: policy and value iteration.",
+      lessons: [
+        {
+          id: "policy-evaluation",
+          title: "Iterative Policy Evaluation",
+          summary:
+            "Turn the Bellman expectation equation into an update $V_{k+1}(s) \\leftarrow \\sum_a \\pi \\sum_{s'} P[R + \\gamma V_k(s')]$; iterate to the fixed point.",
+          topics: ["policy evaluation", "fixed point"],
+          hours: 1,
+          resources: [sutton("4", "Dynamic programming")],
+        },
+        {
+          id: "policy-iteration",
+          title: "Policy Iteration",
+          summary:
+            "Alternate evaluation with greedy improvement $\\pi'(s) = \\arg\\max_a Q^\\pi(s,a)$. Each step weakly improves; converges to $\\pi^*$ in finite MDPs.",
+          topics: ["policy improvement", "policy iteration"],
+          hours: 1.5,
+          resources: [
+            sutton("4", "Policy iteration"),
+            silver(3, "Planning by Dynamic Programming"),
+          ],
+        },
+        {
+          id: "value-iteration",
+          title: "Value Iteration",
+          summary:
+            "Apply the Bellman optimality operator directly: $V_{k+1}(s) \\leftarrow \\max_a \\sum_{s'} P[R + \\gamma V_k(s')]$ — evaluation + improvement in one step.",
+          topics: ["value iteration", "Bellman optimality operator"],
+          hours: 1,
+          resources: [sutton("4", "Value iteration")],
+        },
+        {
+          id: "contraction",
+          title: "Why It Converges: Contraction Mapping",
+          summary:
+            "The Bellman operator is a $\\gamma$-contraction in the sup-norm; Banach's fixed-point theorem gives a unique $V^*$ and geometric convergence.",
+          topics: ["contraction", "Banach fixed point", "convergence rate"],
+          hours: 1,
+          resources: [],
+        },
+      ],
+    },
+    {
+      id: "policy-gradients",
+      title: "Policy Gradients & Actor-Critic",
+      blurb:
+        "Optimising a parameterised policy directly by gradient ascent on expected return.",
+      lessons: [
+        {
+          id: "policy-gradient-theorem",
+          title: "The Policy Gradient Theorem",
+          summary:
+            "$\\nabla_\\theta J(\\theta) = \\mathbb E_{\\pi_\\theta}[\\nabla_\\theta \\log \\pi_\\theta(a\\mid s)\\, Q^{\\pi_\\theta}(s,a)]$ — the score-function (log-derivative) trick moves the gradient inside the expectation.",
+          topics: ["policy gradient theorem", "score function", "log-derivative trick"],
+          hours: 2,
+          resources: [
+            sutton("13", "Policy gradient methods"),
+            spinningup("Intro to Policy Optimization", "spinningup/rl_intro3.html"),
+          ],
+        },
+        {
+          id: "reinforce",
+          title: "REINFORCE",
+          summary:
+            "Monte-Carlo estimate $\\nabla_\\theta J \\approx \\sum_t \\nabla_\\theta \\log \\pi_\\theta(a_t\\mid s_t)\\, G_t$. Unbiased but high variance.",
+          topics: ["REINFORCE", "Monte Carlo", "variance"],
+          hours: 1,
+          resources: [sutton("13", "REINFORCE")],
+        },
+        {
+          id: "baselines-advantage",
+          title: "Baselines & the Advantage",
+          summary:
+            "Subtracting a state baseline $b(s)$ keeps the gradient unbiased but cuts variance. The best baseline is $V(s)$, giving the advantage $A(s,a) = Q(s,a) - V(s)$.",
+          topics: ["baseline", "advantage", "variance reduction"],
+          hours: 1.5,
+          resources: [
+            spinningup("Intro to Policy Optimization", "spinningup/rl_intro3.html"),
+          ],
+        },
+        {
+          id: "actor-critic-gae",
+          title: "Actor-Critic & GAE",
+          summary:
+            "Learn critic $V_\\phi$ and actor $\\pi_\\theta$ together. Generalised Advantage Estimation $\\hat A_t = \\sum_l (\\gamma\\lambda)^l \\delta_{t+l}$ trades bias for variance via $\\lambda$.",
+          topics: ["actor-critic", "TD error", "GAE"],
+          hours: 1.5,
+          resources: [spinningup("Vanilla Policy Gradient", "algorithms/vpg.html")],
+        },
+      ],
+    },
+    {
+      id: "ppo-deep-rl",
+      title: "PPO & Deep RL",
+      blurb:
+        "From DQN to the clipped surrogate objective that powers the BMBench battery agent.",
+      lessons: [
+        {
+          id: "value-based-dqn",
+          title: "Value-Based Deep RL: DQN",
+          summary:
+            "Fit $Q_\\theta$ to the TD target $r + \\gamma \\max_{a'} Q_{\\theta^-}(s',a')$. Replay buffer + target network stabilise the bootstrapped regression.",
+          topics: ["DQN", "replay buffer", "target network"],
+          hours: 1,
+          resources: [silver(6, "Value Function Approximation")],
+        },
+        {
+          id: "trust-region",
+          title: "Why Trust Regions: TRPO",
+          summary:
+            "Large policy steps destabilise training. TRPO bounds the KL between old and new policy; PPO approximates that constraint cheaply.",
+          topics: ["trust region", "KL constraint", "TRPO"],
+          hours: 1,
+          resources: [spinningup("Trust Region Policy Optimization", "algorithms/trpo.html")],
+        },
+        {
+          id: "ppo-clip",
+          title: "PPO: The Clipped Surrogate",
+          summary:
+            "Maximise $\\min(r_t(\\theta)\\hat A_t,\\ \\mathrm{clip}(r_t, 1-\\epsilon, 1+\\epsilon)\\hat A_t)$ with ratio $r_t = \\pi_\\theta/\\pi_{\\theta_{\\text{old}}}$. Clipping kills the incentive to move too far.",
+          topics: ["PPO", "clipped objective", "importance ratio"],
+          hours: 2,
+          resources: [spinningup("Proximal Policy Optimization", "algorithms/ppo.html")],
+        },
+        {
+          id: "marl-energy",
+          title: "MARL & Battery Dispatch",
+          summary:
+            "PPO on a 1 MW / 2 MWh battery arbitraging the GB Balancing Mechanism — the BMBench setup. Multi-agent RL and sim-to-real transfer are the open research edges.",
+          topics: ["MARL", "battery dispatch", "sim-to-real"],
+          hours: 1,
+          resources: [],
+        },
+      ],
+    },
+    {
+      id: "optimal-control-lqr",
+      title: "Optimal Control & LQR",
+      blurb:
+        "The control-theory twin of RL: continuous states, known dynamics, quadratic costs.",
+      lessons: [
+        {
+          id: "bellman-to-hjb",
+          title: "From Bellman to Hamilton–Jacobi–Bellman",
+          summary:
+            "In continuous time the Bellman optimality equation becomes the HJB PDE $-\\partial_t V = \\min_a [c + \\nabla_x V^\\top f]$.",
+          topics: ["HJB", "continuous control", "value function"],
+          hours: 1.5,
+          resources: [],
+        },
+        {
+          id: "lqr",
+          title: "The Linear–Quadratic Regulator",
+          summary:
+            "Linear dynamics $\\dot x = Ax + Bu$ plus quadratic cost give the optimal $u = -Kx$ via the Riccati equation — the closed-form base case of optimal control.",
+          topics: ["LQR", "Riccati equation", "feedback gain"],
+          hours: 1.5,
+          resources: [],
+        },
+        {
+          id: "mpc-dispatch",
+          title: "MPC & Energy Dispatch",
+          summary:
+            "Model Predictive Control re-solves a finite-horizon optimisation each step — the classical baseline for battery/grid dispatch that an RL agent must beat.",
+          topics: ["MPC", "receding horizon", "energy dispatch"],
+          hours: 1,
+          resources: [],
+        },
+      ],
+    },
+  ],
+};
+
+// ────────────────────────────────────────────────────────────
 
 export const mlPathwayModules: Module[] = [
   linalgMl,
@@ -1697,4 +1958,5 @@ export const mlPathwayModules: Module[] = [
   mlFundamentals,
   stochCalc,
   microstructure,
+  rlControl,
 ];

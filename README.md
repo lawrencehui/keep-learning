@@ -37,11 +37,12 @@ loop on *why ECDSA breaks under Shor's algorithm*.
 | XV    | Quantum Mechanics II            | MIT 8.05 · Sakurai                       |
 | XVI   | Quantum Information & Computing | MIT 6.S089 · Nielsen & Chuang            |
 
-### ML × Market Microstructure — 8 modules
+### ML × Market Microstructure — 9 modules
 
-A focused 8-week refresher built around MML, Wasserman, *Trades, Quotes &
-Prices*, and Cartea-Jaimungal-Penalva. Climaxes with the propagator model,
-Almgren-Chriss optimal execution, and Avellaneda-Stoikov market making.
+A focused refresher built around MML, Wasserman, *Trades, Quotes &
+Prices*, Cartea-Jaimungal-Penalva, and Sutton & Barto. Runs through the
+propagator model, Almgren-Chriss optimal execution, and Avellaneda-Stoikov
+market making, then closes with reinforcement learning & optimal control.
 
 | #     | Module                          | Primary references                        |
 |-------|---------------------------------|-------------------------------------------|
@@ -53,6 +54,7 @@ Almgren-Chriss optimal execution, and Avellaneda-Stoikov market making.
 | VI    | Machine Learning                | MML Ch 9–10 · Murphy Ch 10–11             |
 | VII   | Stochastic Calculus             | Shreve Vol I–II                           |
 | VIII  | Market Microstructure           | TQP · Cartea-Jaimungal-Penalva            |
+| IX    | Reinforcement Learning & Optimal Control | Sutton & Barto · OpenAI Spinning Up    |
 
 Each chapter is real prose (not just an outline): typically 6–8 named parts,
 embedded `BlockMath` / `InlineMath`, callouts and pitfalls, at least one

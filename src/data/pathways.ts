@@ -15,9 +15,9 @@ export const pathways: Pathway[] = [
   {
     id: "ml",
     title: "ML × Market Microstructure",
-    subtitle: "Linear algebra to limit-order books.",
+    subtitle: "Linear algebra to RL & limit-order books.",
     description:
-      "An 8-week refresher pathway: linear algebra, calculus, probability, statistics, ML fundamentals, stochastic calculus, and limit-order-book mechanics. Built around MML, Wasserman, Trades-Quotes-Prices, and Cartea-Jaimungal-Penalva.",
+      "A 9-module refresher pathway: linear algebra, calculus, probability, statistics, ML fundamentals, stochastic calculus, limit-order-book mechanics, and reinforcement learning & optimal control. Built around MML, Wasserman, Trades-Quotes-Prices, Cartea-Jaimungal-Penalva, and Sutton & Barto.",
     emblem: "Σ",
     modules: mlPathwayModules,
   },
