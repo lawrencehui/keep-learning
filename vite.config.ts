@@ -6,6 +6,10 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
+      // PWA disabled: ship a self-destroying service worker that unregisters
+      // itself and clears all caches on clients that already installed the old
+      // one (no more stale-version caching). Re-enable by removing this line.
+      selfDestroying: true,
       // "prompt" keeps the new SW in waiting state until the user confirms;
       // we surface an in-app banner via virtual:pwa-register/react.
       registerType: "prompt",
