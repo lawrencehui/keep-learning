@@ -8,7 +8,7 @@ export function PathwayHome() {
   const lastVisited = state.lastVisited;
 
   return (
-    <div className="max-w-4xl mx-auto px-6 sm:px-8 py-10 sm:py-16 space-y-12 safe-pl safe-pr">
+    <div className="w-full max-w-4xl mx-auto px-6 sm:px-8 py-10 sm:py-16 space-y-12 safe-pl safe-pr">
       <header>
         <div className="text-xs uppercase tracking-[0.25em] text-ink-400">
           Pathways

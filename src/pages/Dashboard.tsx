@@ -26,7 +26,7 @@ export function Dashboard() {
   const resume = pickResume(pathway, state.lastVisited, isDone);
 
   return (
-    <div className="max-w-4xl mx-auto px-6 sm:px-8 py-8 sm:py-12 space-y-10 safe-pl safe-pr">
+    <div className="w-full max-w-4xl mx-auto px-6 sm:px-8 py-8 sm:py-12 space-y-10 safe-pl safe-pr">
       <header>
         <Link
           to="/"
@@ -37,7 +37,7 @@ export function Dashboard() {
         <div className="text-xs uppercase tracking-[0.25em] text-ink-400 mt-3">
           Daily learning, compounding.
         </div>
-        <h1 className="font-serif italic text-4xl sm:text-5xl mt-2">
+        <h1 className="font-serif italic text-4xl sm:text-5xl mt-2 break-words">
           {pathway.title}.
         </h1>
         <p className="mt-3 text-ink-300 max-w-2xl">{pathway.description}</p>

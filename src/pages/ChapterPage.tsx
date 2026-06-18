@@ -83,7 +83,7 @@ export function ChapterPage() {
   if (!pathway) return <Navigate to="/" replace />;
   if (!m || !c) {
     return (
-      <div className="px-6 py-12 max-w-3xl mx-auto">
+      <div className="w-full px-6 py-12 max-w-3xl mx-auto">
         <p className="text-ink-300">Chapter not found.</p>
         <Link to={`/${pathway.id}`} className="text-accent-soft underline">
           Back to {pathway.title}

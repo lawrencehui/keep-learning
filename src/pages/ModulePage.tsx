@@ -19,7 +19,7 @@ export function ModulePage() {
 
   if (!m) {
     return (
-      <div className="px-6 py-12 max-w-3xl mx-auto">
+      <div className="w-full px-6 py-12 max-w-3xl mx-auto">
         <p className="text-ink-300">Module not found.</p>
         <Link to={`/${pathway.id}`} className="text-accent-soft underline">
           Back to {pathway.title}
@@ -39,7 +39,7 @@ export function ModulePage() {
     totalLessons === 0 ? 0 : Math.round((doneLessons / totalLessons) * 100);
 
   return (
-    <div className="max-w-3xl mx-auto px-6 sm:px-8 py-8 sm:py-12 safe-pl safe-pr space-y-8">
+    <div className="w-full max-w-3xl mx-auto px-6 sm:px-8 py-8 sm:py-12 safe-pl safe-pr space-y-8">
       <header className="space-y-2">
         <Link
           to={`/${pathway.id}`}
